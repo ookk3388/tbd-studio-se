@@ -77,9 +77,11 @@
             needGenereateJarSqoopOptions_<%=cid%>.setClassName("SqoopMerge_<%=cid%>");
         <%}%>
 
-        java.util.Properties generateJarAdditionalProperties_<%=cid%> = new java.util.Properties();
 <%
-        if(generateJarAdditionalList != null){ 
+        if((generateJarAdditionalList != null) && (generateJarAdditionalList.size() > 0)){
+%>
+	        java.util.Properties generateJarAdditionalProperties_<%=cid%> = new java.util.Properties();
+<%
             for(Map<String,String> generateJarAdditionalMap : generateJarAdditionalList){
                 if(generateJarAdditionalMap.get("GENERATE_JAR_ADDITIONAL_VALUE")==null || "".equals(generateJarAdditionalMap.get("GENERATE_JAR_ADDITIONAL_VALUE"))) { 
                     break; 
@@ -95,9 +97,11 @@
 <%
                 }
             } 
+%> 
+	        needGenereateJarSqoopOptions_<%=cid%>.loadProperties(generateJarAdditionalProperties_<%=cid%>);
+<%
         } 
 %>
-        needGenereateJarSqoopOptions_<%=cid%>.loadProperties(generateJarAdditionalProperties_<%=cid%>);
         
         com.cloudera.sqoop.tool.CodeGenTool codeGen_<%=cid%> = new com.cloudera.sqoop.tool.CodeGenTool();
         com.cloudera.sqoop.Sqoop codeGenerator_<%=cid%> = new com.cloudera.sqoop.Sqoop(codeGen_<%=cid%>,configuration_<%=cid%>, needGenereateJarSqoopOptions_<%=cid%>);
