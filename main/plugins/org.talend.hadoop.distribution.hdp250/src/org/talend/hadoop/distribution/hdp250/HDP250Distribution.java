@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.hdp250;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,6 +54,7 @@ import org.talend.hadoop.distribution.hdp250.modulegroup.HDP250SqoopModuleGroup;
 import org.talend.hadoop.distribution.hdp250.modulegroup.node.mr.HDP250MRS3NodeModuleGroup;
 import org.talend.hadoop.distribution.hdp250.modulegroup.node.pigoutput.HDP250PigOutputNodeModuleGroup;
 import org.talend.hadoop.distribution.hdp250.modulegroup.node.sparkbatch.HDP250GraphFramesNodeModuleGroup;
+import org.talend.hadoop.distribution.hdp250.modulegroup.node.sparkbatch.HDP250SparkBatchAzureNodeModuleGroup;
 import org.talend.hadoop.distribution.hdp250.modulegroup.node.sparkbatch.HDP250SparkBatchParquetNodeModuleGroup;
 import org.talend.hadoop.distribution.hdp250.modulegroup.node.sparkbatch.HDP250SparkBatchS3NodeModuleGroup;
 import org.talend.hadoop.distribution.hdp250.modulegroup.node.sparkstreaming.HDP250SparkStreamingFlumeNodeModuleGroup;
@@ -100,6 +102,13 @@ public class HDP250Distribution extends AbstractDistribution implements HDFSComp
 
         // Used to add a module group import for a specific node. The given node must have a HADOOP_LIBRARIES parameter.
         nodeModuleGroups = new HashMap<>();
+
+        // Azure
+        nodeModuleGroups.put(
+                new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.AZURE_CONFIGURATION_COMPONENT),
+                HDP250SparkBatchAzureNodeModuleGroup.getModuleGroups());
+        nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
+                SparkStreamingConstant.AZURE_CONFIGURATION_COMPONENT), HDP250SparkBatchAzureNodeModuleGroup.getModuleGroups());
 
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.MAPREDUCE, MRConstant.S3_INPUT_COMPONENT),
                 HDP250MRS3NodeModuleGroup.getModuleGroups());
@@ -307,8 +316,10 @@ public class HDP250Distribution extends AbstractDistribution implements HDFSComp
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_6;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_6);
+        return version;
     }
 
     @Override
@@ -409,5 +420,25 @@ public class HDP250Distribution extends AbstractDistribution implements HDFSComp
     @Override
     public boolean isImpactedBySqoop2995() {
         return true;
+    }
+
+    @Override
+    public boolean doSupportKerberizedKafka() {
+        return true;
+    }
+
+    @Override
+    public boolean isHortonworksDistribution() {
+        return true;
+    }
+
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return true;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
     }
 }

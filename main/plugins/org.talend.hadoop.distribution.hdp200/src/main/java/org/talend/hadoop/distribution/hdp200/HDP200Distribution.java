@@ -41,7 +41,7 @@ public class HDP200Distribution extends AbstractDistribution implements HDFSComp
 
     public static final String VERSION = "HDP_2_0";
 
-    public static final String VERSION_DISPLAY = "Hortonworks Data Platform V2.0.0(BigWheel)";
+    public static final String VERSION_DISPLAY = "Hortonworks Data Platform V2.0.0(BigWheel) - DEPRECATED";
 
     private final static String YARN_APPLICATION_CLASSPATH = "/etc/hadoop/conf,/usr/lib/hadoop/*,/usr/lib/hadoop/lib/*,/usr/lib/hadoop-hdfs/*,/usr/lib/hadoop-hdfs/lib/*,/usr/lib/hadoop-yarn/*,/usr/lib/hadoop-yarn/lib/*,/usr/lib/hadoop-mapreduce/*,/usr/lib/hadoop-mapreduce/lib/*"; //$NON-NLS-1$
 
@@ -218,10 +218,29 @@ public class HDP200Distribution extends AbstractDistribution implements HDFSComp
     public ComponentCondition getDisplayCondition(ComponentType componentType) {
         return displayConditions.get(componentType);
     }
-    
+
     @Override
     public boolean doSupportFetchPasswordFromFile() {
-    	return true;
+        return true;
     }
 
+    @Override
+    public boolean isHortonworksDistribution() {
+        return true;
+    }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

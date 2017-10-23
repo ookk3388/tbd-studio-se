@@ -36,7 +36,7 @@ public class HDP130Distribution extends AbstractDistribution implements HDFSComp
 
     public static final String VERSION = "HDP_1_3";
 
-    public static final String VERSION_DISPLAY = "Hortonworks Data Platform V1.3.0(Condor)";
+    public static final String VERSION_DISPLAY = "Hortonworks Data Platform V1.3.0(Condor) - DEPRECATED";
 
     private static Map<ComponentType, Set<DistributionModuleGroup>> moduleGroups;
 
@@ -196,4 +196,23 @@ public class HDP130Distribution extends AbstractDistribution implements HDFSComp
         return false;
     }
 
+    @Override
+    public boolean isHortonworksDistribution() {
+        return true;
+    }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

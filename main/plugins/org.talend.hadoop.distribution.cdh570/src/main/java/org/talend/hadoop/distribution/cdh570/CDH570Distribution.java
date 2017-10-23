@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.cdh570;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,6 +39,7 @@ import org.talend.hadoop.distribution.cdh570.modulegroup.CDH570SqoopModuleGroup;
 import org.talend.hadoop.distribution.cdh570.modulegroup.node.mr.CDH570MRS3NodeModuleGroup;
 import org.talend.hadoop.distribution.cdh570.modulegroup.node.pigoutput.CDH570PigOutputNodeModuleGroup;
 import org.talend.hadoop.distribution.cdh570.modulegroup.node.sparkbatch.CDH570GraphFramesNodeModuleGroup;
+import org.talend.hadoop.distribution.cdh570.modulegroup.node.sparkbatch.CDH570SparkBatchAzureNodeModuleGroup;
 import org.talend.hadoop.distribution.cdh570.modulegroup.node.sparkbatch.CDH570SparkBatchParquetNodeModuleGroup;
 import org.talend.hadoop.distribution.cdh570.modulegroup.node.sparkbatch.CDH570SparkBatchS3NodeModuleGroup;
 import org.talend.hadoop.distribution.cdh570.modulegroup.node.sparkstreaming.CDH570SparkStreamingFlumeNodeModuleGroup;
@@ -106,6 +108,13 @@ public class CDH570Distribution extends AbstractDistribution implements HDFSComp
         // Used to add a module group import for a specific node. The given node must have a HADOOP_LIBRARIES parameter.
         nodeModuleGroups = new HashMap<>();
 
+        // Azure
+        nodeModuleGroups.put(
+                new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.AZURE_CONFIGURATION_COMPONENT),
+                CDH570SparkBatchAzureNodeModuleGroup.getModuleGroups(distribution, version));
+        nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING, SparkStreamingConstant.AZURE_CONFIGURATION_COMPONENT), 
+                CDH570SparkBatchAzureNodeModuleGroup.getModuleGroups(distribution, version));
+
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.MAPREDUCE, MRConstant.S3_INPUT_COMPONENT),
                 CDH570MRS3NodeModuleGroup.getModuleGroups(distribution, version));
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.MAPREDUCE, MRConstant.S3_OUTPUT_COMPONENT),
@@ -119,10 +128,10 @@ public class CDH570Distribution extends AbstractDistribution implements HDFSComp
                 CDH570SparkBatchParquetNodeModuleGroup.getModuleGroups(distribution, version));
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.S3_CONFIGURATION_COMPONENT),
                 CDH570SparkBatchS3NodeModuleGroup.getModuleGroups(distribution, version));
-        
+
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.MATCH_PREDICT_COMPONENT),
                 CDH570GraphFramesNodeModuleGroup.getModuleGroups(distribution, version));
-        
+
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
                 SparkStreamingConstant.PARQUET_INPUT_COMPONENT), CDH570SparkStreamingParquetNodeModuleGroup.getModuleGroups(
                 distribution, version));
@@ -316,8 +325,10 @@ public class CDH570Distribution extends AbstractDistribution implements HDFSComp
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_6;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_6);
+        return version;
     }
 
     @Override
@@ -398,5 +409,15 @@ public class CDH570Distribution extends AbstractDistribution implements HDFSComp
     @Override
     public boolean doSupportHDFSEncryption() {
         return true;
+    }
+
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return true;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
     }
 }

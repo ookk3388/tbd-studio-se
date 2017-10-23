@@ -179,7 +179,7 @@ public class RetrieveLocalConfsService implements IRetrieveConfsService {
         filterProps = filterProperties;
     }
 
-    private void applyFilterInConfFile(File confFile, List<String> filterProperties) {
+    public void applyFilterInConfFile(File confFile, List<String> filterProperties) {
         if (confFile == null || filterProperties == null || filterProperties.size() == 0) {
             return;
         }
@@ -189,16 +189,18 @@ public class RetrieveLocalConfsService implements IRetrieveConfsService {
                 applyFilterInConfFile(file, filterProperties);
             }
         }
-        boolean modified = false;
-        Document doc = HadoopConfsResolveUtils.readConfFile(confFile);
-        for (String property : filterProperties) {
-            boolean removed = HadoopConfsResolveUtils.removePropertyElement(doc, property);
-            if (!modified && removed) {
-                modified = true;
+        if (confFile.isFile()) {
+            boolean modified = false;
+            Document doc = HadoopConfsResolveUtils.readConfFile(confFile);
+            for (String property : filterProperties) {
+                boolean removed = HadoopConfsResolveUtils.removePropertyElement(doc, property);
+                if (!modified && removed) {
+                    modified = true;
+                }
             }
-        }
-        if (modified) {
-            HadoopConfsResolveUtils.writeConfFile(confFile, doc);
+            if (modified) {
+                HadoopConfsResolveUtils.writeConfFile(confFile, doc);
+            }
         }
     }
 

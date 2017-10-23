@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.hdp240;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,6 +54,7 @@ import org.talend.hadoop.distribution.hdp240.modulegroup.HDP240SqoopModuleGroup;
 import org.talend.hadoop.distribution.hdp240.modulegroup.node.mr.HDP240MRS3NodeModuleGroup;
 import org.talend.hadoop.distribution.hdp240.modulegroup.node.pigoutput.HDP240PigOutputNodeModuleGroup;
 import org.talend.hadoop.distribution.hdp240.modulegroup.node.sparkbatch.HDP240GraphFramesNodeModuleGroup;
+import org.talend.hadoop.distribution.hdp240.modulegroup.node.sparkbatch.HDP240SparkBatchAzureNodeModuleGroup;
 import org.talend.hadoop.distribution.hdp240.modulegroup.node.sparkbatch.HDP240SparkBatchParquetNodeModuleGroup;
 import org.talend.hadoop.distribution.hdp240.modulegroup.node.sparkbatch.HDP240SparkBatchS3NodeModuleGroup;
 import org.talend.hadoop.distribution.hdp240.modulegroup.node.sparkstreaming.HDP240SparkStreamingFlumeNodeModuleGroup;
@@ -101,6 +103,13 @@ public class HDP240Distribution extends AbstractDistribution implements HDFSComp
         // Used to add a module group import for a specific node. The given node must have a HADOOP_LIBRARIES parameter.
         nodeModuleGroups = new HashMap<>();
 
+        // Azure
+        nodeModuleGroups.put(
+                new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.AZURE_CONFIGURATION_COMPONENT),
+                HDP240SparkBatchAzureNodeModuleGroup.getModuleGroups());
+        nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
+                SparkStreamingConstant.AZURE_CONFIGURATION_COMPONENT), HDP240SparkBatchAzureNodeModuleGroup.getModuleGroups());
+
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.MAPREDUCE, MRConstant.S3_INPUT_COMPONENT),
                 HDP240MRS3NodeModuleGroup.getModuleGroups());
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.MAPREDUCE, MRConstant.S3_OUTPUT_COMPONENT),
@@ -114,7 +123,7 @@ public class HDP240Distribution extends AbstractDistribution implements HDFSComp
                 HDP240SparkBatchParquetNodeModuleGroup.getModuleGroups());
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.S3_CONFIGURATION_COMPONENT),
                 HDP240SparkBatchS3NodeModuleGroup.getModuleGroups());
-        nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.MATCH_PREDICT_COMPONENT), 
+        nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.MATCH_PREDICT_COMPONENT),
                 HDP240GraphFramesNodeModuleGroup.getModuleGroups());
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
                 SparkStreamingConstant.PARQUET_INPUT_COMPONENT), HDP240SparkStreamingParquetNodeModuleGroup.getModuleGroups());
@@ -306,8 +315,10 @@ public class HDP240Distribution extends AbstractDistribution implements HDFSComp
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_6;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_6);
+        return version;
     }
 
     @Override
@@ -398,5 +409,20 @@ public class HDP240Distribution extends AbstractDistribution implements HDFSComp
     @Override
     public boolean doSupportHDFSEncryption() {
         return true;
+    }
+
+    @Override
+    public boolean isHortonworksDistribution() {
+        return true;
+    }
+
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return true;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
     }
 }

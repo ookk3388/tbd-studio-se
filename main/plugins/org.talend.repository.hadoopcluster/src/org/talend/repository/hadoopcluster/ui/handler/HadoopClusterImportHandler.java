@@ -23,6 +23,7 @@ import org.talend.core.hadoop.IHadoopClusterService;
 import org.talend.core.model.metadata.builder.connection.DatabaseConnection;
 import org.talend.core.model.properties.DatabaseConnectionItem;
 import org.talend.core.model.properties.Item;
+import org.talend.repository.hadoopcluster.conf.HadoopConfsUtils;
 import org.talend.repository.items.importexport.handlers.imports.ImportRepTypeHandler;
 import org.talend.repository.items.importexport.handlers.model.ImportItem;
 import org.talend.repository.items.importexport.manager.ResourcesManager;
@@ -31,25 +32,12 @@ import org.talend.repository.model.hadoopcluster.HadoopClusterConnectionItem;
 import org.talend.repository.model.hadoopcluster.HadoopSubConnection;
 import org.talend.repository.model.hadoopcluster.HadoopSubConnectionItem;
 
-/**
- * DOC ggu class global comment. Detailled comment
- */
 public class HadoopClusterImportHandler extends ImportRepTypeHandler {
 
     public HadoopClusterImportHandler() {
         super();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.talend.repository.items.importexport.handlers.imports.ImportRepTypeHandler#findRelatedImportItems(org.eclipse
-     * .core.runtime.IProgressMonitor,
-     * org.talend.repository.items.importexport.ui.wizard.imports.managers.ResourcesManager,
-     * org.talend.repository.items.importexport.ui.wizard.imports.models.ItemRecord,
-     * org.talend.repository.items.importexport.ui.wizard.imports.models.ItemRecord[])
-     */
     @Override
     public List<ImportItem> findRelatedImportItems(IProgressMonitor monitor, ResourcesManager resManager, ImportItem importItem,
             ImportItem[] allImportItemRecords) throws Exception {
@@ -90,6 +78,17 @@ public class HadoopClusterImportHandler extends ImportRepTypeHandler {
             }
         }
         return relatedItemRecords;
+    }
+
+    @Override
+    public void afterImportingItems(IProgressMonitor monitor, ResourcesManager resManager, ImportItem importItem) {
+        super.afterImportingItems(monitor, resManager, importItem);
+        Item item = importItem.getItem();
+        if (item instanceof HadoopClusterConnectionItem) {
+            // Deploy the conf jars if needed.
+            HadoopConfsUtils.getConfsJarDefaultNames((HadoopClusterConnectionItem) item, true);
+        }
+
     }
 
 }

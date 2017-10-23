@@ -23,7 +23,7 @@ import org.talend.repository.hadoopcluster.util.EHadoopClusterImage;
 import org.talend.repository.model.hadoopcluster.HadoopClusterConnectionItem;
 
 /**
- * 
+ *
  * created by ycbai on 2015年5月29日 Detailled comment
  *
  */
@@ -33,14 +33,20 @@ public class HadoopImportConfsWizard extends Wizard {
 
     private HadoopClusterConnectionItem connectionItem;
 
+    private String contextGroup;
+
     private boolean creation;
 
     private HadoopImportConfsOptionPage optionPage;
 
-    public HadoopImportConfsWizard(AbstractHadoopForm parentForm, HadoopClusterConnectionItem connectionItem, boolean creation) {
+    private String confJarName;
+
+    public HadoopImportConfsWizard(AbstractHadoopForm parentForm, HadoopClusterConnectionItem connectionItem, String contextGroup,
+            boolean creation) {
         super();
         this.parentForm = parentForm;
         this.connectionItem = connectionItem;
+        this.contextGroup = contextGroup;
         this.creation = creation;
         setNeedsProgressMonitor(true);
         setForcePreviousAndNextButtons(true);
@@ -83,14 +89,20 @@ public class HadoopImportConfsWizard extends Wizard {
                         this.getContainer().run(true, true, new IRunnableWithProgress() {
 
                             @Override
-                            public void run(final IProgressMonitor monitor) throws InvocationTargetException,
-                                    InterruptedException {
-                                monitor.beginTask(
-                                        Messages.getString("HadoopImportConfsWizard.doingImport"), IProgressMonitor.UNKNOWN); //$NON-NLS-1$
+                            public void run(final IProgressMonitor monitor)
+                                    throws InvocationTargetException, InterruptedException {
+                                monitor.beginTask(Messages.getString("HadoopImportConfsWizard.doingImport"), //$NON-NLS-1$
+                                        IProgressMonitor.UNKNOWN);
                                 try {
-                                    HadoopConfsUtils.buildAndDeployConfsJar(connectionItem, confsDir,
-                                            HadoopConfsUtils.getConfsJarDefaultName(connectionItem, false));
+                                    if (contextGroup == null) {
+                                        confJarName = HadoopConfsUtils.getConfsJarDefaultName(connectionItem, false);
+                                    } else {
+                                        confJarName = HadoopConfsUtils.getConfsJarDefaultName(connectionItem, false,
+                                                contextGroup);
+                                    }
+                                    HadoopConfsUtils.buildAndDeployConfsJar(connectionItem, contextGroup, confsDir, confJarName);
                                 } catch (Exception e) {
+                                    confJarName = null;
                                     throw new InvocationTargetException(e);
                                 } finally {
                                     monitor.done();
@@ -141,6 +153,10 @@ public class HadoopImportConfsWizard extends Wizard {
             return (IImportConfsWizardPage) currentPage;
         }
         return null;
+    }
+
+    public String getConfJarName() {
+        return this.confJarName;
     }
 
 }

@@ -40,9 +40,9 @@ public class MapR212Distribution extends AbstractMapRDistribution implements HDF
 
     public static final String VERSION = "MAPR212";
 
-    public static final String VERSION_DISPLAY = "MapR 2.1.2";
+    public static final String VERSION_DISPLAY = "MapR 2.1.2 - DEPRECATED";
 
-    public static final String VERSION_SQOOP_DISPLAY = "MapR 2.1.2 (Sqoop 1.4.2)";
+    public static final String VERSION_SQOOP_DISPLAY = "MapR 2.1.2 (Sqoop 1.4.2) - DEPRECATED";
 
     private static Map<ComponentType, Set<DistributionModuleGroup>> moduleGroups;
 
@@ -186,5 +186,20 @@ public class MapR212Distribution extends AbstractMapRDistribution implements HDF
     public ComponentCondition getDisplayCondition(ComponentType componentType) {
         return displayConditions.get(componentType);
     }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 
 }

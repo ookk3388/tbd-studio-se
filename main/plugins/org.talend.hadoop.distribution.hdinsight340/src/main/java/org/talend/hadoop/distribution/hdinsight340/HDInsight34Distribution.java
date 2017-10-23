@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.hdinsight340;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -93,7 +94,7 @@ public class HDInsight34Distribution extends AbstractDistribution implements MRC
                 HDInsight34SparkBatchParquetNodeModuleGroup.getModuleGroups());
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.MATCH_PREDICT_COMPONENT),
                 HDInsight34SparkBatchGraphFramesNodeModuleGroup.getModuleGroups(DISTRIBUTION_NAME, VERSION));
-        
+
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
                 SparkStreamingConstant.PARQUET_INPUT_COMPONENT), HDInsight34SparkStreamingParquetNodeModuleGroup
                 .getModuleGroups());
@@ -272,8 +273,10 @@ public class HDInsight34Distribution extends AbstractDistribution implements MRC
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_6;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_6);
+        return version;
     }
 
     @Override
@@ -287,11 +290,6 @@ public class HDInsight34Distribution extends AbstractDistribution implements MRC
     }
 
     @Override
-    public boolean doSupportSparkYarnClusterMode() {
-        return true;
-    }
-
-    @Override
     public boolean doSupportBackpressure() {
         return false;
     }
@@ -300,5 +298,35 @@ public class HDInsight34Distribution extends AbstractDistribution implements MRC
     public boolean doSupportHDFSEncryption() {
         return true;
     }
+
+    @Override
+    public boolean doSupportOozie() {
+        return false;
+    }
+
+    @Override
+    public boolean isCloudDistribution() {
+        return true;
+    }
+
+    @Override
+    public boolean useCloudLauncher() {
+        return true;
+    }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 
 }

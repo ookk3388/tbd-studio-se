@@ -40,16 +40,16 @@ public class HDFSModelUtil {
 
     /**
      * DOC ycbai Comment method "convert2HDFSConnectionBean".
-     * 
+     *
      * Convert HDFSConnection to HDFSConnectionBean
-     * 
+     *
      * @param connection
      * @return
      */
     public static HDFSConnectionBean convert2HDFSConnectionBean(HDFSConnection connection) {
         ContextType contextType = null;
         if (connection.isContextMode()) {
-            contextType = ConnectionContextHelper.getContextTypeForContextMode(connection);
+            contextType = ConnectionContextHelper.getContextTypeForContextMode(connection, true);
         }
         HDFSConnectionBean bean = new HDFSConnectionBean();
         bean.setContextType(contextType);
@@ -58,7 +58,7 @@ public class HDFSModelUtil {
             if (hcConnection != null) {
                 ContextType parentContextType = null;
                 if (hcConnection.isContextMode()) {
-                    parentContextType = ConnectionContextHelper.getContextTypeForContextMode(hcConnection);
+                    parentContextType = ConnectionContextHelper.getContextTypeForContextMode(hcConnection, true);
                 }
                 bean.setParentContextType(parentContextType);
                 BeanUtils.copyProperties(bean, hcConnection);

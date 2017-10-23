@@ -44,6 +44,8 @@ public final class SparkStreamingConstant {
 
     public static final String S3_SPARKCONFIGURATION_LINKEDPARAMETER = "STORAGE_CONFIGURATION"; //$NON-NLS-1$
 
+    public static final String AZURE_CONFIGURATION_COMPONENT = "tAzureFSConfiguration"; //$NON-NLS-1$
+
     public static final String SPARK_STREAMING_SPARKCONFIGURATION_LINKEDPARAMETER = "SPARK_CONFIGURATION"; //$NON-NLS-1$
 
     public static final String SPARKCONFIGURATION_IS_LOCAL_MODE_PARAMETER = "SPARK_LOCAL_MODE"; //$NON-NLS-1$
@@ -60,6 +62,12 @@ public final class SparkStreamingConstant {
 
     public static final String FLUME_INPUT_COMPONENT = "tFlumeInput"; //$NON-NLS-1$
 
+    public static final String DYNAMODB_CONFIGURATION_COMPONENT = "tDynamoDBConfiguration"; //$NON-NLS-1$
+
+    public static final String DYNAMODB_OUTPUT_COMPONENT = "tDynamoDBOutput"; //$NON-NLS-1$
+
+    public static final String DYNAMODB_INPUT_COMPONENT = "tDynamoDBLookupInput"; //$NON-NLS-1$
+
     public static final String MAPRSTREAMS_INPUT_COMPONENT = "tMapRStreamsInput"; //$NON-NLS-1$
 
     public static final String MAPRSTREAMS_AVRO_INPUT_COMPONENT = "tMapRStreamsInputAvro"; //$NON-NLS-1$
@@ -71,5 +79,9 @@ public final class SparkStreamingConstant {
     public static final String MAPRDB_LOOKUPINPUT_COMPONENT = "tMapRDBLookupInput"; //$NON-NLS-1$
 
     public static final String MAPRDB_OUTPUT_COMPONENT = "tMapRDBOutput"; //$NON-NLS-1$
+
+    public static final String SPARK_SQL_ROW_COMPONENT = "tSqlRow"; //$NON-NLS-1$
+
+    public static final String TMODEL_ENCODER_COMPONENT = "tModelEncoder"; //$NON-NLS-1$
 
 }

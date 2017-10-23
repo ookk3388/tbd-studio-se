@@ -43,7 +43,7 @@ public class CDH4MR1Distribution extends AbstractDistribution implements HDFSCom
 
     public static final String VERSION = "Cloudera_CDH4";
 
-    public static final String VERSION_DISPLAY = "Cloudera CDH4.X(MR1 mode)";
+    public static final String VERSION_DISPLAY = "Cloudera CDH4.X(MR1 mode) - DEPRECATED";
 
     private static Map<ComponentType, Set<DistributionModuleGroup>> moduleGroups;
 
@@ -200,4 +200,19 @@ public class CDH4MR1Distribution extends AbstractDistribution implements HDFSCom
     public ComponentCondition getDisplayCondition(ComponentType componentType) {
         return displayConditions.get(componentType);
     }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

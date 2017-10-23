@@ -807,6 +807,76 @@ public class HCRepositoryUtil {
             connection.setMaprTHadoopLogin(defaultHadoop_Login);
         }
         connection.setPreloadAuthentification(true);
+
+        String defaultGoogleProjectId = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.GOOGLE_PROJECT_ID.getName());
+        if (defaultGoogleProjectId != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_PROJECT_ID, defaultGoogleProjectId);
+        }
+
+        String defaultGoogleClusterId = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.GOOGLE_CLUSTER_ID.getName());
+        if (defaultGoogleClusterId != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_CLUSTER_ID, defaultGoogleClusterId);
+        }
+
+        String defaultGoogleRegion = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.GOOGLE_REGION.getName());
+        if (defaultGoogleRegion != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_REGION, defaultGoogleRegion);
+        }
+        String defaultGoogleJarsBucket = hiveVersion.getDefaultConfig(distribution,
+                EHadoopProperties.GOOGLE_JARS_BUCKET.getName());
+        if (defaultGoogleJarsBucket != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_JARS_BUCKET, defaultGoogleJarsBucket);
+        }
+        String defaultWebHCatHostName = hiveVersion.getDefaultConfig(distribution,
+                EHadoopProperties.HD_WEBHCAT_HOSTNAME.getName());
+        if (defaultWebHCatHostName != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_WEB_HCAT_HOSTNAME, defaultWebHCatHostName);
+        }
+
+        String defaultWebHCatPort = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.HD_WEBHCAT_PORT.getName());
+        if (defaultWebHCatPort != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_WEB_HCAT_PORT, defaultWebHCatPort);
+        }
+
+        String defaultWebHCatUserName = hiveVersion.getDefaultConfig(distribution,
+                EHadoopProperties.HD_WEBHCAT_USERNAME.getName());
+        if (defaultWebHCatUserName != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_WEB_HCAT_USERNAME, defaultWebHCatUserName);
+        }
+
+        String defaultHDInsightUserName = hiveVersion.getDefaultConfig(distribution,
+                EHadoopProperties.HD_INSIGHT_USERNAME.getName());
+        if (defaultHDInsightUserName != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_HDI_USERNAME, defaultHDInsightUserName);
+        }
+
+        String defaultAzureHostName = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.HD_AZURE_HOSTNAME.getName());
+        if (defaultAzureHostName != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_AZURE_HOSTNAME, defaultAzureHostName);
+        }
+
+        String defaultAzureContainer = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.HD_AZURE_CONTAINER.getName());
+        if (defaultAzureContainer != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_AZURE_CONTAINER, defaultAzureContainer);
+        }
+
+        String defaultAzureUserName = hiveVersion.getDefaultConfig(distribution, EHadoopProperties.HD_AZURE_USERNAME.getName());
+        if (defaultAzureUserName != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_AZURE_USERNAME, defaultAzureUserName);
+        }
+
+        String defaultAzureDeployBlob = hiveVersion.getDefaultConfig(distribution,
+                EHadoopProperties.HD_AZURE_DEPLOYBOLB.getName());
+        if (defaultAzureDeployBlob != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_AZURE_DEPLOY_BLOB, defaultAzureDeployBlob);
+        }
+
+        String defaultJobResultFolder = hiveVersion.getDefaultConfig(distribution,
+                EHadoopProperties.HD_JOB_RESULT_FOLDER.getName());
+        if (defaultJobResultFolder != null) {
+            connection.getParameters().put(ConnParameterKeys.CONN_PARA_KEY_WEB_HCAT_JOB_RESULT_FOLDER, defaultJobResultFolder);
+        }
+
     }
 
     public static String getRepositoryTypeOfHadoopSubItem(Item item) {

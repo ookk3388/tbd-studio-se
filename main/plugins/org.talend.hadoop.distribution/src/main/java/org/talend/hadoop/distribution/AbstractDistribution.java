@@ -94,36 +94,10 @@ public abstract class AbstractDistribution {
     }
 
     // Only used if SparkComponent is implemented
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_3;
-    }
-
-    // Only used if SparkComponent is implemented
-    public boolean isSpark13() {
-        return getSparkVersion() == ESparkVersion.SPARK_1_3;
-    }
-
-    // Only used if SparkComponent is implemented
-    public boolean isSpark14() {
-        return getSparkVersion() == ESparkVersion.SPARK_1_4;
-    }
-
-    // Only used if SparkComponent is implemented
-    public boolean isSpark15() {
-        return getSparkVersion() == ESparkVersion.SPARK_1_5;
-    }
-
-    // Only used if SparkComponent is implemented
-    public boolean isSpark16() {
-        ESparkVersion vers = getSparkVersion();
-        return (vers == ESparkVersion.SPARK_1_6 || (vers != ESparkVersion.SPARK_2_0 && vers != ESparkVersion.SPARK_1_4
-                && vers != ESparkVersion.SPARK_1_5 && vers != ESparkVersion.SPARK_1_5));
-    }
-
-    // Only used if SparkComponent is implemented
-    public boolean isSpark20() {
-        ESparkVersion vers = getSparkVersion();
-        return (vers == ESparkVersion.SPARK_2_0);
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_3);
+        return version;
     }
 
     public boolean doSupportTezForPig() {
@@ -151,7 +125,7 @@ public abstract class AbstractDistribution {
     }
 
     public boolean doSupportSparkYarnClusterMode() {
-        return false;
+        return true;
     }
 
     public boolean doSupportS3() {
@@ -252,8 +226,12 @@ public abstract class AbstractDistribution {
         return false;
     }
 
-    public SparkStreamingKafkaVersion getSparkStreamingKafkaVersion() {
+    public SparkStreamingKafkaVersion getSparkStreamingKafkaVersion(ESparkVersion sparkVersion) {
         return SparkStreamingKafkaVersion.KAFKA_0_8;
+    }
+
+    public boolean doSupportKerberizedKafka() {
+        return false;
     }
 
     public boolean doSupportHDFSEncryption() {
@@ -275,12 +253,56 @@ public abstract class AbstractDistribution {
     public String generateSparkJarsPaths(List<String> commandLineJarsPaths) {
         return ""; //$NON-NLS-1$
     }
-    
+
+    public boolean isCloudDistribution() {
+        return false;
+    }
+
+    public boolean useCloudLauncher() {
+        return false;
+    }
+
+    public boolean isGoogleDataprocDistribution() {
+        return false;
+    }
+
+    public boolean isAltusDistribution() {
+        return false;
+    }
+
+    public boolean doSupportOozie() {
+        return true;
+    }
+
     public boolean doSupportCreateServiceConnection() {
         return true;
     }
 
     public List<String> getNecessaryServiceName() {
         return null;
+    }
+
+    public boolean doRequireMetastoreVersionOverride() {
+        return false;
+    }
+
+    public String getHiveMetastoreVersionForSpark() {
+        return null;
+    }
+
+    public boolean isHortonworksDistribution() {
+        return false;
+    }
+
+    public boolean doImportDynamoDBDependencies() {
+        return false;
+    }
+
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
     }
 }

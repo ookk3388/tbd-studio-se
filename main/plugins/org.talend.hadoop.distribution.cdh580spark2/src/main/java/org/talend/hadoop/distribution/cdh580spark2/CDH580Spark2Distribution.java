@@ -15,6 +15,7 @@ package org.talend.hadoop.distribution.cdh580spark2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +45,7 @@ import org.talend.hadoop.distribution.condition.ComponentCondition;
 import org.talend.hadoop.distribution.constants.SparkBatchConstant;
 import org.talend.hadoop.distribution.constants.SparkStreamingConstant;
 import org.talend.hadoop.distribution.constants.cdh.IClouderaDistribution;
+import org.talend.hadoop.distribution.kafka.SparkStreamingKafkaVersion;
 import org.talend.hadoop.distribution.spark.SparkClassPathUtils;
 
 @SuppressWarnings("nls")
@@ -90,7 +92,7 @@ public class CDH580Spark2Distribution extends AbstractDistribution implements IC
 
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
                 SparkStreamingConstant.PARQUET_INPUT_COMPONENT), CDH580Spark2SparkStreamingParquetNodeModuleGroup
-						.getModuleGroups(distribution, version));
+                .getModuleGroups(distribution, version));
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING,
                 SparkStreamingConstant.PARQUET_OUTPUT_COMPONENT), CDH580Spark2SparkStreamingParquetNodeModuleGroup
                 .getModuleGroups(distribution, version));
@@ -230,8 +232,10 @@ public class CDH580Spark2Distribution extends AbstractDistribution implements IC
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_2_0;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_2_0);
+        return version;
     }
 
     @Override
@@ -288,8 +292,13 @@ public class CDH580Spark2Distribution extends AbstractDistribution implements IC
     public boolean doSupportS3V4() {
         return true;
     }
+
+    @Override
+    public boolean doSupportOozie() {
+        return false;
+    }
     
-     @Override
+    @Override
     public boolean doSupportCreateServiceConnection() {
         return false;
     }
@@ -301,5 +310,15 @@ public class CDH580Spark2Distribution extends AbstractDistribution implements IC
         list.add(EHadoopConfs.YARN.getName());
         list.add(EHadoopConfs.MAPREDUCE2.getName());
         return list;
+    }
+
+    @Override
+    public SparkStreamingKafkaVersion getSparkStreamingKafkaVersion(ESparkVersion sparkVersion) {
+        return SparkStreamingKafkaVersion.KAFKA_0_10;
+    }
+
+    @Override
+    public short orderingWeight() {
+        return 5;
     }
 }

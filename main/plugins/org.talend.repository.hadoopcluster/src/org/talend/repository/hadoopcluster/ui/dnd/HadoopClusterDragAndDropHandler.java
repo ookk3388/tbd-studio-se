@@ -162,6 +162,13 @@ public class HadoopClusterDragAndDropHandler extends AbstractDragAndDropServiceH
         } else if (EHDFSRepositoryToComponent.HADOOP_ADVANCED_PROPERTIES.getRepositoryValue().equals(value)
                 || "HBASE_PARAMETERS".equals(value)) { //$NON-NLS-1$
             return HadoopRepositoryUtil.getHadoopPropertiesFullList(hcConnection, hcConnection.getHadoopProperties(), true);
+        } else if (EHDFSRepositoryToComponent.SPARK_ADVANCED_PROPERTIES.getRepositoryValue().equals(value)) {
+            if (hcConnection.isUseSparkProperties()) {
+                return HadoopRepositoryUtil.getHadoopPropertiesFullList(hcConnection, hcConnection.getSparkProperties(), true,
+                        false);
+            } else {
+                return new ArrayList<Map<String, Object>>();
+            }
         } else if (EHDFSRepositoryToComponent.SET_SCHEDULER_ADDRESS.getRepositoryValue().equals(value)) {
             return true;
         } else if (EHDFSRepositoryToComponent.RESOURCEMANAGER_SCHEDULER_ADDRESS.getRepositoryValue().equals(value)) {
@@ -194,6 +201,24 @@ public class HadoopClusterDragAndDropHandler extends AbstractDragAndDropServiceH
             return hcConnection.isClouderaDisableSSL();
         } else if (EHDFSRepositoryToComponent.CLOUDERA_NAVIGATOR_DIE_ON_ERROR.getRepositoryValue().equals(value)) {
             return hcConnection.isClouderaDieNoError();
+        } else if (EHDFSRepositoryToComponent.GOOGLE_PROJECT_ID.getRepositoryValue().equals(value)) {
+            return getRepositoryValueOfStringType(hcConnection,
+                    hcConnection.getParameters().get(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_PROJECT_ID));
+        } else if (EHDFSRepositoryToComponent.GOOGLE_CLUSTER_ID.getRepositoryValue().equals(value)) {
+            return getRepositoryValueOfStringType(hcConnection,
+                    hcConnection.getParameters().get(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_CLUSTER_ID));
+        } else if (EHDFSRepositoryToComponent.GOOGLE_REGION.getRepositoryValue().equals(value)) {
+            return getRepositoryValueOfStringType(hcConnection,
+                    hcConnection.getParameters().get(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_REGION));
+        } else if (EHDFSRepositoryToComponent.GOOGLE_JARS_BUCKET.getRepositoryValue().equals(value)) {
+            return getRepositoryValueOfStringType(hcConnection,
+                    hcConnection.getParameters().get(ConnParameterKeys.CONN_PARA_KEY_GOOGLE_JARS_BUCKET));
+        } else if (EHDFSRepositoryToComponent.DEFINE_PATH_TO_GOOGLE_CREDENTIALS.getRepositoryValue().equals(value)) {
+            return Boolean.parseBoolean(hcConnection.getParameters().get(
+                    ConnParameterKeys.CONN_PARA_KEY_DEFINE_PATH_TO_GOOGLE_CREDENTIALS));
+        } else if (EHDFSRepositoryToComponent.PATH_TO_GOOGLE_CREDENTIALS.getRepositoryValue().equals(value)) {
+            return getRepositoryValueOfStringType(hcConnection,
+                    hcConnection.getParameters().get(ConnParameterKeys.CONN_PARA_KEY_PATH_TO_GOOGLE_CREDENTIALS));
         }
         return null;
     }

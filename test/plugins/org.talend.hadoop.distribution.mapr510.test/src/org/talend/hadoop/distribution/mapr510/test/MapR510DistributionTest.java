@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.talend.hadoop.distribution.EHadoopVersion;
+import org.talend.hadoop.distribution.ESparkVersion;
 import org.talend.hadoop.distribution.component.HBaseComponent;
 import org.talend.hadoop.distribution.component.HCatalogComponent;
 import org.talend.hadoop.distribution.component.HDFSComponent;
@@ -28,6 +29,7 @@ import org.talend.hadoop.distribution.component.PigComponent;
 import org.talend.hadoop.distribution.component.SparkBatchComponent;
 import org.talend.hadoop.distribution.component.SparkStreamingComponent;
 import org.talend.hadoop.distribution.component.SqoopComponent;
+import org.talend.hadoop.distribution.kafka.SparkStreamingKafkaVersion;
 import org.talend.hadoop.distribution.mapr510.MapR510Distribution;
 import org.talend.hadoop.distribution.test.AbstractDistributionTest;
 
@@ -81,15 +83,21 @@ public class MapR510DistributionTest extends AbstractDistributionTest {
         assertTrue(((HiveComponent) distribution).doSupportParquetFormat());
         assertFalse(((HiveComponent) distribution).doSupportStoreAsParquet());
         assertFalse(((HiveComponent) distribution).doSupportClouderaNavigator());
-        assertFalse(((SparkBatchComponent) distribution).isSpark14());
-        assertTrue(((SparkBatchComponent) distribution).isSpark15());
+        assertFalse(((SparkBatchComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_2_0));
+        assertFalse(((SparkBatchComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_6));
+        assertTrue(((SparkBatchComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_5));
+        assertFalse(((SparkBatchComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_4));
+        assertFalse(((SparkBatchComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_3));
         assertFalse(((SparkBatchComponent) distribution).doSupportDynamicMemoryAllocation());
         assertFalse(((SparkBatchComponent) distribution).isExecutedThroughSparkJobServer());
         assertTrue(((SparkBatchComponent) distribution).doSupportSparkStandaloneMode());
         assertTrue(((SparkBatchComponent) distribution).doSupportSparkYarnClientMode());
         assertTrue(distribution instanceof SparkStreamingComponent);
-        assertFalse(((SparkStreamingComponent) distribution).isSpark14());
-        assertTrue(((SparkStreamingComponent) distribution).isSpark15());
+        assertFalse(((SparkStreamingComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_2_0));
+        assertFalse(((SparkStreamingComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_6));
+        assertTrue(((SparkStreamingComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_5));
+        assertFalse(((SparkStreamingComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_4));
+        assertFalse(((SparkStreamingComponent) distribution).getSparkVersions().contains(ESparkVersion.SPARK_1_3));
         assertTrue(((SparkStreamingComponent) distribution).doSupportSparkStandaloneMode());
         assertTrue(((SparkStreamingComponent) distribution).doSupportSparkYarnClientMode());
         assertTrue(distribution instanceof HCatalogComponent);
@@ -99,6 +107,7 @@ public class MapR510DistributionTest extends AbstractDistributionTest {
         assertTrue(distribution instanceof MapRStreamsComponent);
         assertFalse(((MapRStreamsComponent) distribution).canCreateMapRStream());
         assertEquals(MapR510Distribution.MAPR_STREAMS_JAR_PATH, ((MapRStreamsComponent) distribution).getMapRStreamsJarPath());
+        assertEquals(SparkStreamingKafkaVersion.MAPR_5X0_KAFKA, ((SparkStreamingComponent) distribution).getSparkStreamingKafkaVersion(ESparkVersion.SPARK_1_5));
         assertTrue(distribution.doSupportCreateServiceConnection());
         assertTrue((distribution.getNecessaryServiceName() == null ? 0 : distribution.getNecessaryServiceName().size()) == 0);
     }

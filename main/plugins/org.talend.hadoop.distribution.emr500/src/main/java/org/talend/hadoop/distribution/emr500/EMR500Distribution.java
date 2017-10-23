@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.emr500;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -336,8 +337,10 @@ public class EMR500Distribution extends AbstractDistribution implements HBaseCom
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_2_0;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_2_0);
+        return version;
     }
 
     @Override
@@ -416,7 +419,22 @@ public class EMR500Distribution extends AbstractDistribution implements HBaseCom
     }
 
     @Override
-    public SparkStreamingKafkaVersion getSparkStreamingKafkaVersion() {
+    public SparkStreamingKafkaVersion getSparkStreamingKafkaVersion(ESparkVersion sparkVersion) {
         return SparkStreamingKafkaVersion.KAFKA_0_10;
     }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

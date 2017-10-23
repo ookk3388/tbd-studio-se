@@ -169,6 +169,13 @@ public class HDFSDragAndDropHandler extends AbstractDragAndDropServiceHandler {
             return "PigStorage"; //$NON-NLS-1$
         } else if (EHDFSRepositoryToComponent.HADOOP_ADVANCED_PROPERTIES.getRepositoryValue().equals(value)) {
             return HadoopRepositoryUtil.getHadoopPropertiesFullList(connection, connection.getHadoopProperties(), true);
+        } else if (EHDFSRepositoryToComponent.SPARK_ADVANCED_PROPERTIES.getRepositoryValue().equals(value)) {
+            if (hcConnection.isUseSparkProperties()) {
+                return HadoopRepositoryUtil.getHadoopPropertiesFullList(hcConnection, hcConnection.getSparkProperties(), true,
+                        false);
+            } else {
+                return new ArrayList<Map<String, Object>>();
+            }
         } else if (EHDFSRepositoryToComponent.SET_SCHEDULER_ADDRESS.getRepositoryValue().equals(value)) {
             return true;
         } else if (EHDFSRepositoryToComponent.RESOURCEMANAGER_SCHEDULER_ADDRESS.getRepositoryValue().equals(value)) {

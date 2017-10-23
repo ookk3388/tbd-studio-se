@@ -13,6 +13,7 @@
 package org.talend.hadoop.distribution.component;
 
 import java.util.List;
+import java.util.Set;
 
 import org.talend.hadoop.distribution.ESparkVersion;
 
@@ -23,36 +24,30 @@ import org.talend.hadoop.distribution.ESparkVersion;
 public interface SparkComponent extends MRComponent {
 
     /**
-     * A distribution can be using Spark 1.3 or Spark 1.4. This method returns the used Spark version.
+     * Spark uses Hive 1.2.1 internally
+     * (https://spark.apache.org/docs/latest/sql-programming-guide.html#interacting-with
+     * -different-versions-of-hive-metastore), If we're using another Hive version for table creation, we need to
+     * override default hive version with the one which spark uses.
      * 
-     * @return the @link{ESparkVersion} of the distribution.
+     * @return true if distribution creates hive tables with hive other than Spark uses internally
      */
-    public ESparkVersion getSparkVersion();
+    public boolean doRequireMetastoreVersionOverride();
 
     /**
-     * @return true if the Spark version included in the distribution is 1.3.
+     * Returns Spark's internal Hive version (currently 1.2.1, as described here:
+     * https://spark.apache.org/docs/latest/sql
+     * -programming-guide.html#interacting-with-different-versions-of-hive-metastore)
+     *
+     * @return Spark internal hive version
      */
-    public boolean isSpark13();
+    public String getHiveMetastoreVersionForSpark();
 
     /**
-     * @return true if the Spark version included in the distribution is 1.4.
+     * A distribution can be using Spark 1.3 or Spark 1.4. This method returns the supported Spark versions.
+     * 
+     * @return the collection of supported @link{ESparkVersion} in the distribution.
      */
-    public boolean isSpark14();
-
-    /**
-     * @return true if the Spark version included in the distribution is 1.5.
-     */
-    public boolean isSpark15();
-
-    /**
-     * @return true if the Spark version included in the distribution is 1.6 or more.
-     */
-    public boolean isSpark16();
-
-    /**
-     * @return true if the Spark version included in the distribution is 2.0.
-     */
-    public boolean isSpark20();
+    public Set<ESparkVersion> getSparkVersions();
 
     /**
      * @return true if the distribution supports the Spark Standalone mode.
@@ -89,4 +84,10 @@ public interface SparkComponent extends MRComponent {
      * @return A string with all of the Spark jars (from the module group SPARK) mapped to local Studio paths.
      */
     public String generateSparkJarsPaths(List<String> commandLineJarsPaths);
+
+    /**
+     * @return true if the distribution implementation is responsible for importing the Dynamo DB dependencies. If
+     * false, the components themselves are going to import a default version of the dependencies
+     */
+    public boolean doImportDynamoDBDependencies();
 }

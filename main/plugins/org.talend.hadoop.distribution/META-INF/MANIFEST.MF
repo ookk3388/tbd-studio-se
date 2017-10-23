@@ -2,11 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Hadoop distribution
 Bundle-SymbolicName: org.talend.hadoop.distribution;singleton:=true
-Bundle-Version: 6.3.3.qualifier
+Bundle-Version: 7.0.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.core.runtime,
  org.apache.commons.collections,
- org.talend.core.runtime
+ org.talend.core.runtime,
+ org.talend.librariesmanager,
+ org.talend.libraries.jackson,
+ org.talend.designer.maven.aether,
+ org.eclipse.m2e.core
 Export-Package: org.talend.hadoop.distribution,
  org.talend.hadoop.distribution.component,
  org.talend.hadoop.distribution.condition,
@@ -14,12 +18,18 @@ Export-Package: org.talend.hadoop.distribution,
  org.talend.hadoop.distribution.constants,
  org.talend.hadoop.distribution.constants.apache,
  org.talend.hadoop.distribution.constants.cdh,
+ org.talend.hadoop.distribution.constants.cdh.altus,
  org.talend.hadoop.distribution.constants.custom,
+ org.talend.hadoop.distribution.constants.dataproc,
  org.talend.hadoop.distribution.constants.emr,
  org.talend.hadoop.distribution.constants.hdinsight,
  org.talend.hadoop.distribution.constants.hdp,
  org.talend.hadoop.distribution.constants.mapr,
  org.talend.hadoop.distribution.constants.piv,
+ org.talend.hadoop.distribution.dynamic,
+ org.talend.hadoop.distribution.dynamic.adapter,
+ org.talend.hadoop.distribution.dynamic.bean,
+ org.talend.hadoop.distribution.dynamic.util,
  org.talend.hadoop.distribution.helper,
  org.talend.hadoop.distribution.kafka,
  org.talend.hadoop.distribution.model,
@@ -27,3 +37,4 @@ Export-Package: org.talend.hadoop.distribution,
  org.talend.hadoop.distribution.utils
 Import-Package: org.osgi.framework
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.talend.hadoop.distribution.HadoopDistributionPlugin

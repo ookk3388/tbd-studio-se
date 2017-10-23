@@ -71,6 +71,13 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
     private EClass hadoopSubConnectionItemEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass hadoopConfJarEntryEClass = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -329,7 +336,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_RmScheduler() {
+    public EAttribute getHadoopClusterConnection_UseSparkProperties() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(20);
     }
 
@@ -338,7 +345,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_JobHistory() {
+    public EAttribute getHadoopClusterConnection_SparkProperties() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(21);
     }
 
@@ -347,7 +354,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_StagingDirectory() {
+    public EAttribute getHadoopClusterConnection_RmScheduler() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(22);
     }
 
@@ -356,7 +363,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_UseDNHost() {
+    public EAttribute getHadoopClusterConnection_JobHistory() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(23);
     }
 
@@ -365,7 +372,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_UseCustomConfs() {
+    public EAttribute getHadoopClusterConnection_StagingDirectory() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(24);
     }
 
@@ -374,7 +381,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_UseClouderaNavi() {
+    public EAttribute getHadoopClusterConnection_UseDNHost() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(25);
     }
 
@@ -383,7 +390,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaNaviUserName() {
+    public EAttribute getHadoopClusterConnection_UseCustomConfs() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(26);
     }
 
@@ -392,7 +399,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaNaviPassword() {
+    public EAttribute getHadoopClusterConnection_UseClouderaNavi() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(27);
     }
 
@@ -401,7 +408,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaNaviUrl() {
+    public EAttribute getHadoopClusterConnection_ClouderaNaviUserName() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(28);
     }
 
@@ -410,7 +417,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaNaviMetadataUrl() {
+    public EAttribute getHadoopClusterConnection_ClouderaNaviPassword() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(29);
     }
 
@@ -419,7 +426,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaNaviClientUrl() {
+    public EAttribute getHadoopClusterConnection_ClouderaNaviUrl() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(30);
     }
 
@@ -428,7 +435,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaDisableSSL() {
+    public EAttribute getHadoopClusterConnection_ClouderaNaviMetadataUrl() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(31);
     }
 
@@ -437,7 +444,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaAutoCommit() {
+    public EAttribute getHadoopClusterConnection_ClouderaNaviClientUrl() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(32);
     }
 
@@ -446,7 +453,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ClouderaDieNoError() {
+    public EAttribute getHadoopClusterConnection_ClouderaDisableSSL() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(33);
     }
 
@@ -455,7 +462,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_EnableMaprT() {
+    public EAttribute getHadoopClusterConnection_ClouderaAutoCommit() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(34);
     }
 
@@ -464,7 +471,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_MaprTPassword() {
+    public EAttribute getHadoopClusterConnection_ClouderaDieNoError() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(35);
     }
 
@@ -473,7 +480,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_MaprTCluster() {
+    public EAttribute getHadoopClusterConnection_EnableMaprT() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(36);
     }
 
@@ -482,7 +489,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_MaprTDuration() {
+    public EAttribute getHadoopClusterConnection_MaprTPassword() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(37);
     }
 
@@ -491,7 +498,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_SetMaprTHomeDir() {
+    public EAttribute getHadoopClusterConnection_MaprTCluster() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(38);
     }
 
@@ -500,7 +507,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_MaprTHomeDir() {
+    public EAttribute getHadoopClusterConnection_MaprTDuration() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(39);
     }
 
@@ -509,7 +516,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_SetHadoopLogin() {
+    public EAttribute getHadoopClusterConnection_SetMaprTHomeDir() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(40);
     }
 
@@ -518,7 +525,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_MaprTHadoopLogin() {
+    public EAttribute getHadoopClusterConnection_MaprTHomeDir() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(41);
     }
 
@@ -527,7 +534,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_PreloadAuthentification() {
+    public EAttribute getHadoopClusterConnection_SetHadoopLogin() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(42);
     }
 
@@ -536,8 +543,35 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getHadoopClusterConnection_ConfFile() {
+    public EAttribute getHadoopClusterConnection_MaprTHadoopLogin() {
         return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(43);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getHadoopClusterConnection_PreloadAuthentification() {
+        return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(44);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getHadoopClusterConnection_ConfFile() {
+        return (EAttribute)hadoopClusterConnectionEClass.getEStructuralFeatures().get(45);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getHadoopClusterConnection_ConfFiles() {
+        return (EReference)hadoopClusterConnectionEClass.getEStructuralFeatures().get(46);
     }
 
     /**
@@ -617,6 +651,33 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getHadoopConfJarEntry() {
+        return hadoopConfJarEntryEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getHadoopConfJarEntry_Key() {
+        return (EAttribute)hadoopConfJarEntryEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getHadoopConfJarEntry_Value() {
+        return (EAttribute)hadoopConfJarEntryEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public HadoopClusterFactory getHadoopClusterFactory() {
         return (HadoopClusterFactory)getEFactoryInstance();
     }
@@ -661,6 +722,8 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__KEYTAB_PRINCIPAL);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__KEYTAB);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__HADOOP_PROPERTIES);
+        createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__USE_SPARK_PROPERTIES);
+        createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__SPARK_PROPERTIES);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__RM_SCHEDULER);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__JOB_HISTORY);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__STAGING_DIRECTORY);
@@ -685,6 +748,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__MAPR_THADOOP_LOGIN);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__PRELOAD_AUTHENTIFICATION);
         createEAttribute(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__CONF_FILE);
+        createEReference(hadoopClusterConnectionEClass, HADOOP_CLUSTER_CONNECTION__CONF_FILES);
 
         hadoopClusterConnectionItemEClass = createEClass(HADOOP_CLUSTER_CONNECTION_ITEM);
 
@@ -697,6 +761,10 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         createEAttribute(hadoopSubConnectionEClass, HADOOP_SUB_CONNECTION__HADOOP_PROPERTIES);
 
         hadoopSubConnectionItemEClass = createEClass(HADOOP_SUB_CONNECTION_ITEM);
+
+        hadoopConfJarEntryEClass = createEClass(HADOOP_CONF_JAR_ENTRY);
+        createEAttribute(hadoopConfJarEntryEClass, HADOOP_CONF_JAR_ENTRY__KEY);
+        createEAttribute(hadoopConfJarEntryEClass, HADOOP_CONF_JAR_ENTRY__VALUE);
     }
 
     /**
@@ -759,6 +827,8 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         initEAttribute(getHadoopClusterConnection_KeytabPrincipal(), theXMLTypePackage.getString(), "keytabPrincipal", "", 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_Keytab(), theXMLTypePackage.getString(), "keytab", "", 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_HadoopProperties(), theXMLTypePackage.getString(), "hadoopProperties", null, 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getHadoopClusterConnection_UseSparkProperties(), theXMLTypePackage.getBoolean(), "useSparkProperties", null, 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getHadoopClusterConnection_SparkProperties(), theXMLTypePackage.getString(), "sparkProperties", null, 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_RmScheduler(), theXMLTypePackage.getString(), "rmScheduler", "", 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_JobHistory(), theXMLTypePackage.getString(), "jobHistory", "", 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_StagingDirectory(), theXMLTypePackage.getString(), "stagingDirectory", "", 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -783,6 +853,7 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         initEAttribute(getHadoopClusterConnection_MaprTHadoopLogin(), theXMLTypePackage.getString(), "maprTHadoopLogin", "", 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_PreloadAuthentification(), theXMLTypePackage.getBoolean(), "preloadAuthentification", null, 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHadoopClusterConnection_ConfFile(), ecorePackage.getEByteArray(), "confFile", null, 0, 1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getHadoopClusterConnection_ConfFiles(), this.getHadoopConfJarEntry(), null, "confFiles", null, 0, -1, HadoopClusterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(hadoopClusterConnectionItemEClass, HadoopClusterConnectionItem.class, "HadoopClusterConnectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -795,6 +866,10 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         initEAttribute(getHadoopSubConnection_HadoopProperties(), theXMLTypePackage.getString(), "hadoopProperties", null, 0, 1, HadoopSubConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(hadoopSubConnectionItemEClass, HadoopSubConnectionItem.class, "HadoopSubConnectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(hadoopConfJarEntryEClass, Map.Entry.class, "HadoopConfJarEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getHadoopConfJarEntry_Key(), theXMLTypePackage.getString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getHadoopConfJarEntry_Value(), ecorePackage.getEByteArray(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -814,6 +889,11 @@ public class HadoopClusterPackageImpl extends EPackageImpl implements HadoopClus
         String source = "MapEntry";	
         addAnnotation
           (hadoopAdditionalPropertiesEClass, 
+           source, 
+           new String[] {
+           });	
+        addAnnotation
+          (hadoopConfJarEntryEClass, 
            source, 
            new String[] {
            });

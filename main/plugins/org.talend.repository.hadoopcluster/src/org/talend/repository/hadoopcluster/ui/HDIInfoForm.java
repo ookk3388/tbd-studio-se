@@ -12,6 +12,9 @@
 // ============================================================================
 package org.talend.repository.hadoopcluster.ui;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.swt.SWT;
@@ -24,12 +27,15 @@ import org.eclipse.swt.widgets.Group;
 import org.talend.commons.ui.swt.formtools.Form;
 import org.talend.commons.ui.swt.formtools.LabelledText;
 import org.talend.core.database.conn.ConnParameterKeys;
+import org.talend.core.hadoop.repository.HadoopRepositoryUtil;
 import org.talend.core.model.properties.ConnectionItem;
 import org.talend.core.model.utils.ContextParameterUtils;
+import org.talend.metadata.managment.ui.dialog.HadoopPropertiesDialog;
 import org.talend.metadata.managment.ui.utils.ExtendedNodeConnectionContextUtils.EHadoopParamName;
 import org.talend.repository.hadoopcluster.i18n.Messages;
 import org.talend.repository.hadoopcluster.ui.common.AbstractHadoopForm;
 import org.talend.repository.hadoopcluster.ui.common.IHadoopClusterInfoForm;
+import org.talend.repository.hadoopcluster.util.HCRepositoryUtil;
 import org.talend.repository.model.hadoopcluster.HadoopClusterConnection;
 
 /**
@@ -47,8 +53,6 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
 
     private LabelledText whcUsernameText;
 
-    private LabelledText whcJobResultFolderText;
-
     private LabelledText hdiUsernameText;
 
     private LabelledText hdiPasswordText;
@@ -63,10 +67,21 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
 
     private LabelledText azureDeployBlobText;
 
+    private LabelledText whcJobResultFolderText;
+
+    protected Composite propertiesComposite;
+
+    private Composite hadoopPropertiesComposite;
+
+    private HadoopPropertiesDialog propertiesDialog;
+
+    private boolean creation;
+
     public HDIInfoForm(Composite parent, ConnectionItem connectionItem, String[] existingNames, boolean creation) {
         super(parent, SWT.NONE, existingNames);
         this.parentForm = parent;
         this.connectionItem = connectionItem;
+        this.creation = creation;
         setConnectionItem(connectionItem);
         setupForm(true);
         init();
@@ -99,6 +114,10 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
 
     @Override
     public void init() {
+        if (isNeedFillDefaults()) {
+            fillDefaults();
+        }
+
         String whcHostName = StringUtils.trimToEmpty(getConnection().getParameters().get(
                 ConnParameterKeys.CONN_PARA_KEY_WEB_HCAT_HOSTNAME));
         whcHostnameText.setText(whcHostName);
@@ -167,6 +186,7 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
         azureUsernameText.setEditable(isEditable);
         azurePasswordText.setEditable(isEditable);
         azureDeployBlobText.setEditable(isEditable);
+        propertiesDialog.updateStatusLabel(getHadoopProperties());
         ((HadoopClusterForm) this.getParent()).updateEditableStatus(isEditable);
     }
 
@@ -175,6 +195,13 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
         addWebHCatFields();
         addInsightFields();
         addAzureFields();
+        propertiesComposite = new Composite(this, SWT.NONE);
+        GridLayout propertiesLayout = new GridLayout(2, false);
+        propertiesLayout.marginWidth = 0;
+        propertiesLayout.marginHeight = 0;
+        propertiesComposite.setLayout(propertiesLayout);
+        propertiesComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        addHadoopPropertiesFields();
     }
 
     private void addWebHCatFields() {
@@ -183,8 +210,9 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
         whcHostnameText = new LabelledText(whcGroup, Messages.getString("HadoopClusterForm.text.webHCat.hostname"), 1); //$NON-NLS-1$
         whcPortText = new LabelledText(whcGroup, Messages.getString("HadoopClusterForm.text.webHCat.port"), 1); //$NON-NLS-1$
         whcUsernameText = new LabelledText(whcGroup, Messages.getString("HadoopClusterForm.text.webHCat.username"), 1); //$NON-NLS-1$
-        whcJobResultFolderText = new LabelledText(whcGroup,
-                Messages.getString("HadoopClusterForm.text.webHCat.jobResultFolder"), 1); //$NON-NLS-1$
+        whcJobResultFolderText = new LabelledText(whcGroup, Messages.getString("HadoopClusterForm.text.webHCat.jobResultFolder"), //$NON-NLS-1$
+                1);
+
     }
 
     private void addInsightFields() {
@@ -206,6 +234,41 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
                 Messages.getString("HadoopClusterForm.text.azure.password"), 1, SWT.PASSWORD | SWT.BORDER | SWT.SINGLE); //$NON-NLS-1$
         azurePasswordText.getTextControl().setEchoChar('*');
         azureDeployBlobText = new LabelledText(azureGroup, Messages.getString("HadoopClusterForm.text.azure.deployBlob"), 1); //$NON-NLS-1$
+    }
+
+    private void addHadoopPropertiesFields() {
+        hadoopPropertiesComposite = new Composite(propertiesComposite, SWT.NONE);
+        GridLayout hadoopPropertiesLayout = new GridLayout(1, false);
+        hadoopPropertiesLayout.marginWidth = 0;
+        hadoopPropertiesLayout.marginHeight = 0;
+        hadoopPropertiesComposite.setLayout(hadoopPropertiesLayout);
+        hadoopPropertiesComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        propertiesDialog = new HadoopPropertiesDialog(getShell(), getHadoopProperties()) {
+
+            @Override
+            protected boolean isReadOnly() {
+                return !isEditable();
+            }
+
+            @Override
+            protected List<Map<String, Object>> getLatestInitProperties() {
+                return getHadoopProperties();
+            }
+
+            @Override
+            public void applyProperties(List<Map<String, Object>> properties) {
+                getConnection().setHadoopProperties(HadoopRepositoryUtil.getHadoopPropertiesJsonStr(properties));
+            }
+
+        };
+        propertiesDialog.createPropertiesFields(hadoopPropertiesComposite);
+    }
+
+    private List<Map<String, Object>> getHadoopProperties() {
+        String hadoopProperties = getConnection().getHadoopProperties();
+        List<Map<String, Object>> hadoopPropertiesList = HadoopRepositoryUtil.getHadoopPropertiesList(hadoopProperties);
+        return hadoopPropertiesList;
     }
 
     @Override
@@ -234,6 +297,7 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
                 checkFieldsValue();
             }
         });
+
         whcJobResultFolderText.addModifyListener(new ModifyListener() {
 
             @Override
@@ -243,6 +307,7 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
                 checkFieldsValue();
             }
         });
+
         hdiUsernameText.addModifyListener(new ModifyListener() {
 
             @Override
@@ -401,6 +466,13 @@ public class HDIInfoForm extends AbstractHadoopForm<HadoopClusterConnection> imp
         addContextParams(EHadoopParamName.KeyAzuresUser, isUse);
         addContextParams(EHadoopParamName.KeyAzurePassword, isUse);
         addContextParams(EHadoopParamName.KeyAzureDeployBlob, isUse);
+    }
+
+    private void fillDefaults() {
+        HadoopClusterConnection connection = getConnection();
+        if (creation && !connection.isUseCustomConfs()) {
+            HCRepositoryUtil.fillDefaultValuesOfHadoopCluster(connection);
+        }
     }
 
 }

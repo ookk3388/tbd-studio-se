@@ -18,11 +18,18 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -57,27 +64,47 @@ import org.talend.hadoop.distribution.helper.HadoopDistributionsHelper;
 import org.talend.hadoop.distribution.model.DistributionBean;
 import org.talend.hadoop.distribution.model.DistributionVersion;
 import org.talend.metadata.managment.ui.dialog.HadoopPropertiesDialog;
+import org.talend.metadata.managment.ui.dialog.SparkPropertiesDialog;
 import org.talend.metadata.managment.ui.utils.ConnectionContextHelper;
 import org.talend.metadata.managment.ui.utils.ExtendedNodeConnectionContextUtils.EHadoopParamName;
 import org.talend.repository.hadoopcluster.conf.HadoopConfsUtils;
 import org.talend.repository.hadoopcluster.i18n.Messages;
 import org.talend.repository.hadoopcluster.ui.common.AbstractHadoopForm;
 import org.talend.repository.hadoopcluster.ui.common.IHadoopClusterInfoForm;
+import org.talend.repository.hadoopcluster.ui.conf.HadoopContextConfConfigDialog;
 import org.talend.repository.hadoopcluster.util.HCRepositoryUtil;
 import org.talend.repository.hadoopcluster.util.HCVersionUtil;
 import org.talend.repository.model.hadoopcluster.HadoopClusterConnection;
 import org.talend.repository.model.hadoopcluster.HadoopClusterConnectionItem;
 
 /**
- * 
+ *
  * created by ycbai on 2014年9月16日 Detailled comment
  *
  */
 public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnection> implements IHadoopClusterInfoForm {
 
+    private SashForm sash;
+
+    private Composite upsash;
+
+    private Composite downsash;
+
+    private ScrolledComposite scrolledComposite;
+
+    private Composite bigComposite;
+
     private Composite parentForm;
 
+    protected Composite propertiesComposite;
+
     private Composite hadoopPropertiesComposite;
+
+    private Composite sparkPropertiesComposite;
+
+    private SparkPropertiesDialog sparkPropertiesDialog;
+
+    private Button useSparkPropertiesBtn;
 
     private LabelledCombo authenticationCombo;
 
@@ -168,6 +195,8 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
 
     private Composite maprTSetComposite;
 
+    private Group authGroup;
+
     public StandardHCInfoForm(Composite parent, ConnectionItem connectionItem, String[] existingNames, boolean creation,
             DistributionBean hadoopDistribution, DistributionVersion hadoopVersison) {
         super(parent, SWT.NONE, existingNames);
@@ -216,6 +245,7 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
         jobHistoryText.setText(StringUtils.trimToEmpty(connection.getJobHistory()));
         stagingDirectoryText.setText(StringUtils.trimToEmpty(connection.getStagingDirectory()));
         useDNHostBtn.setSelection(connection.isUseDNHost());
+        useSparkPropertiesBtn.setSelection(connection.isUseSparkProperties());
         useCustomConfBtn.setSelection(connection.isUseCustomConfs());
         if (useClouderaNaviBtn != null) {
             useClouderaNaviBtn.setSelection(connection.isUseClouderaNavi());
@@ -254,6 +284,8 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
         jobHistoryText.setReadOnly(readOnly);
         stagingDirectoryText.setReadOnly(readOnly);
         useDNHostBtn.setEnabled(!readOnly);
+        useSparkPropertiesBtn.setEnabled(!readOnly);
+        sparkPropertiesDialog.propertyButton.setEnabled(!readOnly && useSparkPropertiesBtn.getSelection());
         useCustomConfBtn.setEnabled(!readOnly);
         hadoopConfsButton.setEnabled(!readOnly && useCustomConfBtn.getSelection());
         if (useClouderaNaviBtn != null) {
@@ -319,18 +351,68 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
         maprTHadoopLoginText.setEditable(isMaprTEditable);
 
         propertiesDialog.updateStatusLabel(getHadoopProperties());
+        useSparkPropertiesBtn.setEnabled(isEditable);
+        sparkPropertiesDialog.updateStatusLabel(getSparkProperties());
     }
 
     @Override
     protected void addFields() {
+
+        Composite parent = new Composite(this, SWT.NONE);
+        parent.setLayout(new FillLayout());
+        GridData parentGridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+        parent.setLayoutData(parentGridData);
+
+        sash = new SashForm(parent, SWT.VERTICAL | SWT.SMOOTH);
+        sash.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+        GridLayout layout = new GridLayout();
+        sash.setLayout(layout);
+        upsash = new Composite(sash, SWT.NONE);
+        GridLayout upsashLayout = new GridLayout(1, false);
+        upsash.setLayout(upsashLayout);
+
+        downsash = new Composite(sash, SWT.NONE);
+        GridLayout downsashLayout = new GridLayout(1, false);
+        downsash.setLayout(downsashLayout);
+        sash.setWeights(new int[] { 21, 12 });
+
+        scrolledComposite = new ScrolledComposite(upsash, SWT.V_SCROLL | SWT.H_SCROLL);
+        scrolledComposite.setExpandHorizontal(true);
+        scrolledComposite.setExpandVertical(true);
+        scrolledComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+        bigComposite = Form.startNewGridLayout(scrolledComposite, 1);
+        scrolledComposite.setContent(bigComposite);
+       
+
         addCustomFields();
-        addConnectionFields();
-        addAuthenticationFields();
+        addConnectionFields(bigComposite);
+        addAuthenticationFields(bigComposite);
+        propertiesComposite = new Composite(downsash, SWT.NONE);
+        GridLayout propertiesLayout = new GridLayout(2, false);
+        propertiesLayout.marginWidth = 0;
+        propertiesLayout.marginHeight = 0;
+        propertiesComposite.setLayout(propertiesLayout);
+        propertiesComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         addHadoopPropertiesFields();
+        addSparkPropertiesFields();
         addNavigatorFields();
         addHadoopConfsFields();
 
         addCheckFields();
+
+        scrolledComposite.addControlListener(new ControlAdapter() {
+            @Override
+            public void controlResized(ControlEvent e) {
+                Rectangle r = scrolledComposite.getClientArea();
+                // scrolledComposite.setMinSize(bigComposite.computeSize(r.width-100, 550));
+                    if (Platform.getOS().equals(Platform.OS_LINUX)) {
+                        scrolledComposite.setMinSize(bigComposite.computeSize(SWT.DEFAULT, 900));
+                    } else {
+                    scrolledComposite.setMinSize(bigComposite.computeSize(SWT.DEFAULT, 620));
+                    }
+            }
+        });
     }
 
     private void addCustomFields() {
@@ -343,8 +425,9 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
                         .toArray(new String[0]), 1, false);
     }
 
-    private void addConnectionFields() {
-        Group connectionGroup = Form.createGroup(this, 1, Messages.getString("HadoopClusterForm.connectionSettings"), 110); //$NON-NLS-1$
+    private void addConnectionFields(Composite scrolledComposite) {
+        Group connectionGroup = Form.createGroup(scrolledComposite, 1, Messages.getString("HadoopClusterForm.connectionSettings"), //$NON-NLS-1$
+                110);
         connectionGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         Composite uriPartComposite = new Composite(connectionGroup, SWT.NULL);
         GridLayout uriPartLayout = new GridLayout(2, false);
@@ -363,8 +446,8 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
         useDNHostBtn.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 2, 1));
     }
 
-    private void addAuthenticationFields() {
-        Group authGroup = Form.createGroup(this, 1, Messages.getString("HadoopClusterForm.authenticationSettings"), 110); //$NON-NLS-1$
+    private void addAuthenticationFields(Composite downsash) {
+        authGroup = Form.createGroup(downsash, 1, Messages.getString("HadoopClusterForm.authenticationSettings"), 110); //$NON-NLS-1$
         authGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         authPartComposite = new Composite(authGroup, SWT.NULL);
@@ -482,7 +565,7 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
     }
 
     private void addHadoopPropertiesFields() {
-        hadoopPropertiesComposite = new Composite(this, SWT.NONE);
+        hadoopPropertiesComposite = new Composite(propertiesComposite, SWT.NONE);
         GridLayout hadoopPropertiesLayout = new GridLayout(1, false);
         hadoopPropertiesLayout.marginWidth = 0;
         hadoopPropertiesLayout.marginHeight = 0;
@@ -516,6 +599,45 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
         return hadoopPropertiesList;
     }
 
+    protected void addSparkPropertiesFields() {
+        sparkPropertiesComposite = new Composite(propertiesComposite, SWT.NONE);
+        GridLayout sparkPropertiesLayout = new GridLayout(3, false);
+        sparkPropertiesLayout.marginWidth = 5;
+        sparkPropertiesLayout.marginHeight = 5;
+        sparkPropertiesComposite.setLayout(sparkPropertiesLayout);
+        sparkPropertiesComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        useSparkPropertiesBtn = new Button(sparkPropertiesComposite, SWT.CHECK);
+        useSparkPropertiesBtn.setText(Messages.getString("HadoopClusterForm.button.useSparkProperties")); //$NON-NLS-1$
+        useSparkPropertiesBtn.setLayoutData(new GridData());
+
+        sparkPropertiesDialog = new SparkPropertiesDialog(getShell(), getSparkProperties()) {
+
+            @Override
+            protected boolean isReadOnly() {
+                return !(useSparkPropertiesBtn.getSelection() && isEditable());
+            }
+
+            @Override
+            protected List<Map<String, Object>> getLatestInitProperties() {
+                return getSparkProperties();
+            }
+
+            @Override
+            public void applyProperties(List<Map<String, Object>> properties) {
+                getConnection().setSparkProperties(HadoopRepositoryUtil.getHadoopPropertiesJsonStr(properties));
+            }
+
+        };
+        sparkPropertiesDialog.createPropertiesFields(sparkPropertiesComposite);
+    }
+
+    private List<Map<String, Object>> getSparkProperties() {
+        String sparkProperties = getConnection().getSparkProperties();
+        List<Map<String, Object>> sparkPropertiesList = HadoopRepositoryUtil.getHadoopPropertiesList(sparkProperties);
+        return sparkPropertiesList;
+    }
+
     private void addNavigatorFields() {
         DistributionBean distriBean = getDistribution();
         MRComponent currentDistribution;
@@ -531,7 +653,7 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
             return;
         }
 
-        Composite clouderaNaviComposite = new Composite(this, SWT.NONE);
+        Composite clouderaNaviComposite = new Composite(propertiesComposite, SWT.NONE);
         GridLayout hadoopConfsCompLayout = new GridLayout(3, false);
         hadoopConfsCompLayout.marginWidth = 5;
         hadoopConfsCompLayout.marginHeight = 5;
@@ -553,7 +675,7 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
     }
 
     private void addHadoopConfsFields() {
-        Composite hadoopConfsComposite = new Composite(this, SWT.NONE);
+        Composite hadoopConfsComposite = new Composite(propertiesComposite, SWT.NONE);
         GridLayout hadoopConfsCompLayout = new GridLayout(3, false);
         hadoopConfsCompLayout.marginWidth = 5;
         hadoopConfsCompLayout.marginHeight = 5;
@@ -670,6 +792,16 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
             }
         });
 
+        useSparkPropertiesBtn.addSelectionListener(new SelectionAdapter() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                sparkPropertiesDialog.propertyButton.setEnabled(useSparkPropertiesBtn.getSelection());
+                getConnection().setUseSparkProperties(useSparkPropertiesBtn.getSelection());
+                checkFieldsValue();
+            }
+        });
+
         useCustomConfBtn.addSelectionListener(new SelectionAdapter() {
 
             @Override
@@ -688,7 +820,7 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
                 if (parentForm instanceof AbstractHadoopForm) {
                     form = (AbstractHadoopForm) parentForm;
                 }
-                HadoopConfsUtils.openHadoopConfsWizard(form, (HadoopClusterConnectionItem) connectionItem, creation);
+                new HadoopContextConfConfigDialog(getShell(), form, (HadoopClusterConnectionItem) connectionItem).open();
             }
         });
         if (useClouderaNaviBtn != null) {
@@ -750,16 +882,6 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
             }
         });
 
-        useCustomConfBtn.addSelectionListener(new SelectionAdapter() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                hadoopConfsButton.setEnabled(useCustomConfBtn.getSelection());
-                getConnection().setUseCustomConfs(useCustomConfBtn.getSelection());
-                checkFieldsValue();
-            }
-        });
-
         namenodePrincipalText.addModifyListener(new ModifyListener() {
 
             @Override
@@ -814,6 +936,8 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
                 hideControl(maprTPasswordCompposite, kerberosBtn.getSelection() && maprTBtn.getSelection());
                 getConnection().setEnableKerberos(kerberosBtn.getSelection());
                 updateForm();
+                authGroup.layout();
+                authGroup.getParent().layout();
                 checkFieldsValue();
             }
         });
@@ -852,8 +976,11 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
             public void widgetSelected(SelectionEvent e) {
                 hideControl(maprTPCDCompposite, !maprTBtn.getSelection());
                 hideControl(maprTSetComposite, !maprTBtn.getSelection());
+                hideControl(maprTPasswordCompposite, kerberosBtn.getSelection() && maprTBtn.getSelection());
                 getConnection().setEnableMaprT(maprTBtn.getSelection());
                 updateForm();
+                authGroup.layout();
+                authGroup.getParent().layout();
                 checkFieldsValue();
             }
         });
@@ -979,10 +1106,11 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
     }
 
     private void initCommonProperties(HadoopServiceProperties properties) {
+        properties.setItem(this.connectionItem);
         HadoopClusterConnection connection = getConnection();
         ContextType contextType = null;
         if (getConnection().isContextMode()) {
-            contextType = ConnectionContextHelper.getContextTypeForContextMode(connection);
+            contextType = ConnectionContextHelper.getContextTypeForContextMode(connection, true);
         }
         properties.setContextType(contextType);
         properties.setDistribution(connection.getDistribution());
@@ -1434,7 +1562,7 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.eclipse.swt.widgets.Control#setVisible(boolean)
      */
     @Override
@@ -1501,4 +1629,11 @@ public class StandardHCInfoForm extends AbstractHadoopForm<HadoopClusterConnecti
         addContextParams(EHadoopParamName.maprTHomeDir, useMaprT);
         addContextParams(EHadoopParamName.maprTHadoopLogin, useMaprT);
     }
+
+    @Override
+    protected void exportAsContext() {
+        super.exportAsContext();
+        HadoopConfsUtils.updateContextualHadoopConfs((HadoopClusterConnectionItem) this.connectionItem);
+    }
+
 }

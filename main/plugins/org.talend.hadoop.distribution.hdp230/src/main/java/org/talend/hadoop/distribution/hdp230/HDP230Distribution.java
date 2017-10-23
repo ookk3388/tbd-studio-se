@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.hdp230;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,7 +54,7 @@ public class HDP230Distribution extends AbstractDistribution implements HDFSComp
         SqoopComponent, PigComponent, HiveComponent, HCatalogComponent, SparkBatchComponent, SparkStreamingComponent,
         HiveOnSparkComponent, IHortonworksDistribution {
 
-    public static final String VERSION_DISPLAY = "Hortonworks Data Platform V2.3.2"; //$NON-NLS-1$
+    public static final String VERSION_DISPLAY = "Hortonworks Data Platform V2.3.2 - DEPRECATED"; //$NON-NLS-1$
 
     public final static String VERSION = "HDP_2_3"; //$NON-NLS-1$
 
@@ -129,8 +130,10 @@ public class HDP230Distribution extends AbstractDistribution implements HDFSComp
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_4;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_4);
+        return version;
     }
 
     @Override
@@ -322,4 +325,24 @@ public class HDP230Distribution extends AbstractDistribution implements HDFSComp
     public boolean doSupportHDFSEncryption() {
         return true;
     }
+
+    @Override
+    public boolean isHortonworksDistribution() {
+        return true;
+    }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

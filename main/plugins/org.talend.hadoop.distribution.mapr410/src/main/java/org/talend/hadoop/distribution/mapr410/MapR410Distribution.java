@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.mapr410;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -43,12 +44,12 @@ import org.talend.hadoop.distribution.mapr410.modulegroup.MapR410PigOutputNodeMo
 import org.talend.hadoop.distribution.mapr410.modulegroup.MapR410SparkBatchS3NodeModuleGroup;
 
 public class MapR410Distribution extends AbstractMapRDistribution implements HDFSComponent, MRComponent, HBaseComponent,
-        SqoopComponent, PigComponent, HiveComponent, HCatalogComponent, SparkBatchComponent, HiveOnSparkComponent, MapRDBComponent,
-        IMapRDistribution {
+        SqoopComponent, PigComponent, HiveComponent, HCatalogComponent, SparkBatchComponent, HiveOnSparkComponent,
+        MapRDBComponent, IMapRDistribution {
 
     public static final String VERSION = "MAPR410";
 
-    public static final String VERSION_DISPLAY = "MapR 4.1.0(YARN mode)";
+    public static final String VERSION_DISPLAY = "MapR 4.1.0(YARN mode) - DEPRECATED";
 
     private final static String YARN_APPLICATION_CLASSPATH = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,$YARN_HOME/*,$YARN_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*"; //$NON-NLS-1$
 
@@ -217,8 +218,10 @@ public class MapR410Distribution extends AbstractMapRDistribution implements HDF
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_3;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_3);
+        return version;
     }
 
     @Override
@@ -250,4 +253,19 @@ public class MapR410Distribution extends AbstractMapRDistribution implements HDF
     public boolean doSupportS3() {
         return true;
     }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

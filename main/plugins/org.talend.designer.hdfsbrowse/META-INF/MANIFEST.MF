@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: HDFS Browse Plug-in
 Bundle-SymbolicName: org.talend.designer.hdfsbrowse;singleton:=true
-Bundle-Version: 6.3.3.qualifier
+Bundle-Version: 7.0.1.qualifier
 Bundle-Activator: org.talend.designer.hdfsbrowse.HDFSPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -24,6 +24,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: .Talend SA.
 Bundle-Localization: plugin
 Export-Package: org.talend.designer.hdfsbrowse,
+ org.talend.designer.hdfsbrowse.constants,
  org.talend.designer.hdfsbrowse.controllers,
  org.talend.designer.hdfsbrowse.exceptions,
  org.talend.designer.hdfsbrowse.generators,
@@ -35,3 +36,4 @@ Export-Package: org.talend.designer.hdfsbrowse,
  org.talend.designer.hdfsbrowse.ui.provider,
  org.talend.designer.hdfsbrowse.util
 Bundle-ClassPath: .
+Import-Package: org.talend.hadoop.distribution.constants.dataproc

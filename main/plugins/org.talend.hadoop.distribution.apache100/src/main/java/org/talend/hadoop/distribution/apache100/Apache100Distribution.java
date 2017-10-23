@@ -38,11 +38,11 @@ public class Apache100Distribution extends AbstractDistribution implements HDFSC
 
     public static final String VERSION = "APACHE_1_0_0";
 
-    public static final String VERSION_DISPLAY = "Apache 1.0.0";
+    public static final String VERSION_DISPLAY = "Apache 1.0.0 - DEPRECATED";
 
-    public static final String VERSION_PIG_DISPLAY = "Apache 1.0.0 (Pig 0.9.2)";
+    public static final String VERSION_PIG_DISPLAY = "Apache 1.0.0 (Pig 0.9.2) - DEPRECATED";
 
-    public static final String VERSION_HIVE_DISPLAY = "Apache 1.0.0 (Hive 0.9.0)";
+    public static final String VERSION_HIVE_DISPLAY = "Apache 1.0.0 (Hive 0.9.0) - DEPRECATED";
 
     private static Map<ComponentType, Set<DistributionModuleGroup>> moduleGroups;
 
@@ -184,8 +184,28 @@ public class Apache100Distribution extends AbstractDistribution implements HDFSC
     }
 
     @Override
+    public boolean doSupportOozie() {
+        return false;
+    }
+
+    @Override
     public ComponentCondition getDisplayCondition(ComponentType componentType) {
         return displayConditions.get(componentType);
     }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 
 }

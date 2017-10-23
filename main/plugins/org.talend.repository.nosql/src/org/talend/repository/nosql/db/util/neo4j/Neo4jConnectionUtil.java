@@ -30,9 +30,9 @@ import org.talend.repository.nosql.i18n.Messages;
 import org.talend.repository.nosql.reflection.NoSQLReflection;
 
 /**
- * 
+ *
  * created by ycbai on Jul 22, 2014 Detailled comment
- * 
+ *
  */
 public class Neo4jConnectionUtil {
 
@@ -45,8 +45,10 @@ public class Neo4jConnectionUtil {
     public static synchronized boolean checkConnection(NoSQLConnection connection) throws NoSQLServerException {
         boolean canConnect = true;
         final ClassLoader classLoader = NoSQLClassLoaderFactory.getClassLoader(connection);
+        Object dbConnection = null;
         try {
             final Object db = getDB(connection);
+            dbConnection = db;
             boolean isRemote = Boolean.valueOf(connection.getAttributes().get(INeo4jAttributes.REMOTE_SERVER));
             if (isRemote) {
                 NoSQLReflection.invokeMethod(db, "getAllNodes", //$NON-NLS-1$
@@ -69,6 +71,10 @@ public class Neo4jConnectionUtil {
             canConnect = false;
             resetAll();
             throw new NoSQLServerException(Messages.getString("Neo4jConnectionUtil.cannotConnectDatabase"), e); //$NON-NLS-1$
+        } finally {
+            if (dbConnection != null) {
+                shutdownNeo4JDb(dbConnection);
+            }
         }
 
         return canConnect;
@@ -81,17 +87,27 @@ public class Neo4jConnectionUtil {
                 new Object[0]);
     }
 
-    public static boolean isNeedAuthorization(String neo4jVersion) {
-        if (INeo4jConstants.NEO4J_2_2_X.equals(neo4jVersion)) {
-            return true;
-        }if (INeo4jConstants.NEO4J_2_3_X.equals(neo4jVersion)) {
-            return true;
-        } else {
-            return false;
-        }
+    public static boolean isHasSetUsernameOption(NoSQLConnection connection) {
+        boolean isRemote = Boolean.valueOf(connection.getAttributes().get(INeo4jAttributes.REMOTE_SERVER));
+        String neo4jVersion = connection.getAttributes().get(INeo4jAttributes.DB_VERSION);
+        return isRemote && (INeo4jConstants.NEO4J_1_X_X.equals(neo4jVersion) || INeo4jConstants.NEO4J_2_1_X.equals(neo4jVersion));
+    }
+
+    public static boolean isNeedAuthorization(NoSQLConnection connection) {
+        boolean isRemote = Boolean.valueOf(connection.getAttributes().get(INeo4jAttributes.REMOTE_SERVER));
+        boolean setUsername = Boolean.valueOf(connection.getAttributes().get(INeo4jAttributes.SET_USERNAME));
+        return isRemote && (setUsername || !isHasSetUsernameOption(connection));
     }
 
     public static synchronized Object getDB(NoSQLConnection connection) throws NoSQLServerException {
+        return getDB(connection, false);
+    }
+
+    public static synchronized Object getDB(NoSQLConnection connection, boolean useCache) throws NoSQLServerException {
+        if (useCache && graphDb != null) {
+            return graphDb;
+        }
+
         Object db = null;
 
         ClassLoader classLoader = NoSQLClassLoaderFactory.getClassLoader(connection);
@@ -103,7 +119,7 @@ public class Neo4jConnectionUtil {
                     ContextType contextType = ConnectionContextHelper.getContextTypeForContextMode(connection);
                     serverUrl = ContextParameterUtils.getOriginalValue(contextType, serverUrl);
                 }
-                if (isNeedAuthorization(connection.getAttributes().get(INeo4jAttributes.DB_VERSION))) {
+                if (isNeedAuthorization(connection)) {
                     String usename = StringUtils.trimToEmpty(connection.getAttributes().get(INeo4jAttributes.USERNAME));
                     String password = StringUtils.trimToEmpty(connection.getAttributes().get(INeo4jAttributes.PASSWORD));
                     if (connection.isContextMode()) {
@@ -136,7 +152,7 @@ public class Neo4jConnectionUtil {
         } catch (NoSQLReflectionException e) {
             throw new NoSQLServerException(e);
         }
-
+        
         return graphDb = db;
     }
 
@@ -153,7 +169,7 @@ public class Neo4jConnectionUtil {
         });
     }
 
-    private static void shutdownNeo4JDb(final Object db) {
+    public static void shutdownNeo4JDb(final Object db) {
         try {
             NoSQLReflection.invokeMethod(db, "shutdown", new Object[0]); //$NON-NLS-1$
         } catch (NoSQLReflectionException e) {
@@ -162,14 +178,16 @@ public class Neo4jConnectionUtil {
         }
     }
 
-    public static synchronized Iterator<Map<String, Object>> getResultIterator(NoSQLConnection connection, String cypher)
+    public static synchronized Iterator<Map<String, Object>> getResultIterator(NoSQLConnection connection, String cypher,
+            Object db1)
             throws NoSQLServerException {
         Iterator<Map<String, Object>> resultIterator = null;
-        Object db = getDB(connection);
-        ClassLoader classLoader = NoSQLClassLoaderFactory.getClassLoader(connection);
-        String isRemoteAttr = connection.getAttributes().get(INeo4jAttributes.REMOTE_SERVER);
-        boolean isRemote = isRemoteAttr == null ? false : Boolean.valueOf(isRemoteAttr);
+        Object db = db1;
         try {
+            db = getDB(connection, true);
+            ClassLoader classLoader = NoSQLClassLoaderFactory.getClassLoader(connection);
+            String isRemoteAttr = connection.getAttributes().get(INeo4jAttributes.REMOTE_SERVER);
+            boolean isRemote = isRemoteAttr == null ? false : Boolean.valueOf(isRemoteAttr);
             if (isRemote) {
                 Object queryResult = NoSQLReflection.invokeMethod(getQueryEngine(db, classLoader),
                         "query", new Object[] { cypher, null }, String.class, Map.class); //$NON-NLS-1$

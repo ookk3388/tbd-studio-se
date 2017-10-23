@@ -14,6 +14,7 @@
 package org.talend.hadoop.distribution.cdh550;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -37,6 +38,7 @@ import org.talend.hadoop.distribution.cdh550.modulegroup.CDH550SparkStreamingMod
 import org.talend.hadoop.distribution.cdh550.modulegroup.CDH550SqoopModuleGroup;
 import org.talend.hadoop.distribution.cdh550.modulegroup.node.mr.CDH550MRS3NodeModuleGroup;
 import org.talend.hadoop.distribution.cdh550.modulegroup.node.pigoutput.CDH550PigOutputNodeModuleGroup;
+import org.talend.hadoop.distribution.cdh550.modulegroup.node.sparkbatch.CDH550SparkBatchAzureNodeModuleGroup;
 import org.talend.hadoop.distribution.cdh550.modulegroup.node.sparkbatch.CDH550SparkBatchParquetNodeModuleGroup;
 import org.talend.hadoop.distribution.cdh550.modulegroup.node.sparkbatch.CDH550SparkBatchS3NodeModuleGroup;
 import org.talend.hadoop.distribution.cdh550.modulegroup.node.sparkstreaming.CDH550SparkStreamingFlumeNodeModuleGroup;
@@ -104,6 +106,13 @@ public class CDH550Distribution extends AbstractDistribution implements HDFSComp
 
         // Used to add a module group import for a specific node. The given node must have a HADOOP_LIBRARIES parameter.
         nodeModuleGroups = new HashMap<>();
+
+        // Azure
+        nodeModuleGroups.put(
+                new NodeComponentTypeBean(ComponentType.SPARKBATCH, SparkBatchConstant.AZURE_CONFIGURATION_COMPONENT),
+                CDH550SparkBatchAzureNodeModuleGroup.getModuleGroups(distribution, version));
+        nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.SPARKSTREAMING, SparkStreamingConstant.AZURE_CONFIGURATION_COMPONENT), 
+                CDH550SparkBatchAzureNodeModuleGroup.getModuleGroups(distribution, version));
 
         nodeModuleGroups.put(new NodeComponentTypeBean(ComponentType.MAPREDUCE, MRConstant.S3_INPUT_COMPONENT),
                 CDH550MRS3NodeModuleGroup.getModuleGroups(distribution, version));
@@ -312,8 +321,10 @@ public class CDH550Distribution extends AbstractDistribution implements HDFSComp
     }
 
     @Override
-    public ESparkVersion getSparkVersion() {
-        return ESparkVersion.SPARK_1_5;
+    public Set<ESparkVersion> getSparkVersions() {
+        Set<ESparkVersion> version = new HashSet<>();
+        version.add(ESparkVersion.SPARK_1_5);
+        return version;
     }
 
     @Override
@@ -389,5 +400,15 @@ public class CDH550Distribution extends AbstractDistribution implements HDFSComp
     @Override
     public boolean doSupportHDFSEncryption() {
         return true;
+    }
+
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return true;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
     }
 }

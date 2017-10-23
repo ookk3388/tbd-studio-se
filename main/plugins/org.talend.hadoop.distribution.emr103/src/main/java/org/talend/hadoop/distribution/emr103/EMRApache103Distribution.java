@@ -39,13 +39,13 @@ public class EMRApache103Distribution extends AbstractDistribution implements HD
 
     public static final String VERSION = "APACHE_1_0_3_EMR";
 
-    public static final String VERSION_DISPLAY = "Apache 1.0.3";
+    public static final String VERSION_DISPLAY = "Apache 1.0.3 - DEPRECATED";
 
-    public static final String VERSION_PIG_DISPLAY = "Apache 1.0.3 (Pig 0.9.2)";
+    public static final String VERSION_PIG_DISPLAY = "Apache 1.0.3 (Pig 0.9.2) - DEPRECATED";
 
-    public static final String VERSION_HBASE_DISPLAY = "Apache 1.0.3 (HBase 0.92.0)";
+    public static final String VERSION_HBASE_DISPLAY = "Apache 1.0.3 (HBase 0.92.0) - DEPRECATED";
 
-    public static final String VERSION_HIVE_DISPLAY = "Apache 1.0.3 (Hive 0.8.1)";
+    public static final String VERSION_HIVE_DISPLAY = "Apache 1.0.3 (Hive 0.8.1) - DEPRECATED";
 
     private static Map<ComponentType, Set<DistributionModuleGroup>> moduleGroups;
 
@@ -94,7 +94,7 @@ public class EMRApache103Distribution extends AbstractDistribution implements HD
 
     @Override
     public boolean doSupportKerberos() {
-        return true;
+        return false;
     }
 
     @Override
@@ -189,7 +189,27 @@ public class EMRApache103Distribution extends AbstractDistribution implements HD
     }
 
     @Override
+    public boolean doSupportOozie() {
+        return false;
+    }
+
+    @Override
     public ComponentCondition getDisplayCondition(ComponentType componentType) {
         return displayConditions.get(componentType);
     }
+
+    // Note :
+    // Azure Blob & Datalake support have been disabled for now on this distribution
+    // New versions of this distribution should be tested for Azure support and
+    // the changes backported to all earlier versions
+    @Override
+    public boolean doSupportAzureBlobStorage() {
+        return false;
+    }
+
+    @Override
+    public boolean doSupportAzureDataLakeStorage() {
+        return false;
+    }
+    // End
 }

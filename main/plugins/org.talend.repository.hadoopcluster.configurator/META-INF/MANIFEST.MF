@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Configurator
 Bundle-SymbolicName: org.talend.repository.hadoopcluster.configurator
-Bundle-Version: 6.3.3.qualifier
+Bundle-Version: 7.0.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: .,
  lib/cloudera-manager-api-5.4.0.jar,
@@ -19,4 +19,14 @@ Require-Bundle: org.talend.libraries.apache.common,
  org.talend.libraries.guava,
  org.talend.libraries.hadoop,
  org.talend.libraries.jackson,
- org.talend.libraries.servlet
+ org.talend.libraries.servlet,
+ org.talend.core,
+ org.talend.model,
+ org.talend.designer.core,
+ org.talend.core.ui;bundle-version="6.4.0",
+ org.eclipse.ui;bundle-version="3.106.0",
+ org.talend.components.api;bundle-version="0.18.0"
+Import-Package: org.eclipse.swt.widgets,
+ org.talend.designer.core.generic.model,
+ org.talend.designer.rowgenerator.shadow,
+ org.talend.hadoop.distribution.model

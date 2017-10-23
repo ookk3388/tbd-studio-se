@@ -20,6 +20,7 @@ import org.talend.core.model.metadata.builder.connection.Connection;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getDistribution <em>Distribution</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getDfVersion <em>Df Version</em>}</li>
@@ -41,6 +42,8 @@ import org.talend.core.model.metadata.builder.connection.Connection;
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getKeytabPrincipal <em>Keytab Principal</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getKeytab <em>Keytab</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getHadoopProperties <em>Hadoop Properties</em>}</li>
+ *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#isUseSparkProperties <em>Use Spark Properties</em>}</li>
+ *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getSparkProperties <em>Spark Properties</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getRmScheduler <em>Rm Scheduler</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getJobHistory <em>Job History</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getStagingDirectory <em>Staging Directory</em>}</li>
@@ -65,8 +68,8 @@ import org.talend.core.model.metadata.builder.connection.Connection;
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getMaprTHadoopLogin <em>Mapr THadoop Login</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#isPreloadAuthentification <em>Preload Authentification</em>}</li>
  *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getConfFile <em>Conf File</em>}</li>
+ *   <li>{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getConfFiles <em>Conf Files</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.talend.repository.model.hadoopcluster.HadoopClusterPackage#getHadoopClusterConnection()
  * @model
@@ -582,6 +585,58 @@ public interface HadoopClusterConnection extends Connection {
      * @generated
      */
     void setHadoopProperties(String value);
+
+    /**
+     * Returns the value of the '<em><b>Use Spark Properties</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Use Spark Properties</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Use Spark Properties</em>' attribute.
+     * @see #setUseSparkProperties(boolean)
+     * @see org.talend.repository.model.hadoopcluster.HadoopClusterPackage#getHadoopClusterConnection_UseSparkProperties()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @generated
+     */
+    boolean isUseSparkProperties();
+
+    /**
+     * Sets the value of the '{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#isUseSparkProperties <em>Use Spark Properties</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Use Spark Properties</em>' attribute.
+     * @see #isUseSparkProperties()
+     * @generated
+     */
+    void setUseSparkProperties(boolean value);
+
+    /**
+     * Returns the value of the '<em><b>Spark Properties</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Spark Properties</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Spark Properties</em>' attribute.
+     * @see #setSparkProperties(String)
+     * @see org.talend.repository.model.hadoopcluster.HadoopClusterPackage#getHadoopClusterConnection_SparkProperties()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @generated
+     */
+    String getSparkProperties();
+
+    /**
+     * Sets the value of the '{@link org.talend.repository.model.hadoopcluster.HadoopClusterConnection#getSparkProperties <em>Spark Properties</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Spark Properties</em>' attribute.
+     * @see #getSparkProperties()
+     * @generated
+     */
+    void setSparkProperties(String value);
 
     /**
      * Returns the value of the '<em><b>Rm Scheduler</b></em>' attribute.
@@ -1219,5 +1274,22 @@ public interface HadoopClusterConnection extends Connection {
      * @generated
      */
     void setConfFile(byte[] value);
+
+    /**
+     * Returns the value of the '<em><b>Conf Files</b></em>' map.
+     * The key is of type {@link java.lang.String},
+     * and the value is of type {@link byte[]},
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Conf Files</em>' map isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Conf Files</em>' map.
+     * @see org.talend.repository.model.hadoopcluster.HadoopClusterPackage#getHadoopClusterConnection_ConfFiles()
+     * @model mapType="org.talend.repository.model.hadoopcluster.HadoopConfJarEntry<org.eclipse.emf.ecore.xml.type.String, org.eclipse.emf.ecore.EByteArray>"
+     * @generated
+     */
+    EMap<String, byte[]> getConfFiles();
 
 } // HadoopClusterConnection
