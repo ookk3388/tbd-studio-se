@@ -77,7 +77,10 @@
 %>
 	sqoopOptions_<%=cid%>.setExportDir(<%=exportDir%>);
 	sqoopOptions_<%=cid%>.setUsername(<%=username%>); // __USERNAME__
-	sqoopOptions_<%=cid%>.setDriverClassName(<%=driverClass%>);//driver class name
+	
+	if (driverClass != null) {//TBD-5885
+		sqoopOptions_<%=cid%>.setDriverClassName(<%=driverClass%>);//driver class name
+	}
 	
 	<%if(!passwordStoredInFile || !sqoopDistrib.doJavaAPISupportStorePasswordInFile()) {%>
 		<%

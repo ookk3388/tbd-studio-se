@@ -62,7 +62,10 @@
         com.cloudera.sqoop.SqoopOptions needGenereateJarSqoopOptions_<%=cid%> = new com.cloudera.sqoop.SqoopOptions(configuration_<%=cid%>);
         needGenereateJarSqoopOptions_<%=cid%>.setConnectString(<%=connection%>); // __CONNECTION__
         needGenereateJarSqoopOptions_<%=cid%>.setUsername(<%=username%>);
-        needGenereateJarSqoopOptions_<%=cid%>.setDriverClassName(<%=driverClass%>);//driver class name
+        
+        if (driverClass != null) {//TBD-5885
+        	needGenereateJarSqoopOptions_<%=cid%>.setDriverClassName(<%=driverClass%>);//driver class name
+        }
         <%
         passwordFieldName = "__PASSWORD__";
         %>
