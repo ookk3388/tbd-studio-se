@@ -585,15 +585,9 @@
 			<!-- Cloudera_CDH5_1 -->
 			<IMPORT MODULE_GROUP="HDFS-LIB-CDH_5_1_LASTEST"
 				REQUIRED_IF="(DB_VERSION=='Cloudera_CDH5_1' OR DB_VERSION=='Cloudera_CDH5_1_MR1') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
-			<!-- Cloudera_CDH5_4 -->
-			<IMPORT MODULE_GROUP="HDFS-LIB-CDH_5_4_LASTEST"
-				REQUIRED_IF="(DB_VERSION=='Cloudera_CDH5_4') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
 			<!-- MAPR401 -->
 			<IMPORT MODULE_GROUP="HDFS-LIB-MAPR40X_LASTEST"
 				REQUIRED_IF="(DB_VERSION=='MAPR401') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
-			<!-- MAPR410 -->
-			<IMPORT MODULE_GROUP="HDFS-LIB-MAPR41X_LASTEST"
-				REQUIRED_IF="(DB_VERSION=='MAPR410') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
 			<!-- MAPR500 -->
 			<IMPORT MODULE_GROUP="HDFS-LIB-MAPR50X_LASTEST"
 				REQUIRED_IF="(DB_VERSION=='MAPR500') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
@@ -689,104 +683,6 @@
 			<IMPORT NAME="protobuf-java-2.4.1.jar" MODULE="protobuf-java-2.4.1.jar"
 				MVN="mvn:org.talend.libraries/protobuf-java-2.4.1/6.0.0"
 				REQUIRED_IF="(DB_VERSION=='MAPR310') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<!-- PIVOTAL_HD_1_0_1 -->
-			<IMPORT NAME="hadoop-hdfs-2.0.2-alpha-gphd-2.0.1.0.jar"
-				MODULE="hadoop-hdfs-2.0.2-alpha-gphd-2.0.1.0.jar"
-				MVN="mvn:org.talend.libraries/hadoop-hdfs-2.0.2-alpha-gphd-2.0.1.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.emc.pivotal.1.0/lib/hadoop-hdfs-2.0.2-alpha-gphd-2.0.1.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="hadoop-common-2.0.2-alpha-gphd-2.0.1.0.jar"
-				MODULE="hadoop-common-2.0.2-alpha-gphd-2.0.1.0.jar"
-				MVN="mvn:org.talend.libraries/hadoop-common-2.0.2-alpha-gphd-2.0.1.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.emc.pivotal.1.0/lib/hadoop-common-2.0.2-alpha-gphd-2.0.1.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="hadoop-auth-2.0.2-alpha-gphd-2.0.1.0.jar"
-				MODULE="hadoop-auth-2.0.2-alpha-gphd-2.0.1.0.jar"
-				MVN="mvn:org.talend.libraries/hadoop-auth-2.0.2-alpha-gphd-2.0.1.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.emc.pivotal.1.0/lib/hadoop-auth-2.0.2-alpha-gphd-2.0.1.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-configuration-1.6.jar" MODULE="commons-configuration-1.6.jar"
-				MVN="mvn:org.talend.libraries/commons-configuration-1.6/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-configuration-1.6.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-lang-2.5.jar" MODULE="commons-lang-2.5.jar"
-				MVN="mvn:org.talend.libraries/commons-lang-2.5/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-lang-2.5.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-logging-1.1.1.jar" MODULE="commons-logging-1.1.1.jar"
-				MVN="mvn:org.talend.libraries/commons-logging-1.1.1/6.0.0"
-				UrlPath="platform:/base/plugins/org.apache.commons.logging_1.1.1.v201101211721.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-cli-1.2.jar" MODULE="commons-cli-1.2.jar"
-				MVN="mvn:org.talend.libraries/commons-cli-1.2/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-cli-1.2.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="guava-11.0.2.jar" MODULE="guava-11.0.2.jar"
-				MVN="mvn:org.talend.libraries/guava-11.0.2/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.guava/lib/guava-11.0.2.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="protobuf-java-2.4.0a.jar" MODULE="protobuf-java-2.4.0a.jar"
-				MVN="mvn:org.talend.libraries/protobuf-java-2.4.0a/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.cloudera.cdh4/lib/protobuf-java-2.4.0a.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="slf4j-api-1.6.1.jar" MODULE="slf4j-api-1.6.1.jar"
-				MVN="mvn:org.talend.libraries/slf4j-api-1.6.1/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.slf4j/lib/slf4j-api-1.6.1.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="slf4j-log4j12-1.6.1.jar" MODULE="slf4j-log4j12-1.6.1.jar"
-				MVN="mvn:org.talend.libraries/slf4j-log4j12-1.6.1/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.slf4j/lib/slf4j-log4j12-1.6.1.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="avro-1.5.4.jar" MODULE="avro-1.5.4.jar"
-				MVN="mvn:org.talend.libraries/avro-1.5.4/6.0.0" REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_1_0_1') AND (DISTRIBUTION!='CUSTOM')" />
-			<!-- PIVOTAL_HD_2_0 -->
-			<IMPORT NAME="hadoop-hdfs-2.2.0-gphd-3.0.0.0.jar" MODULE="hadoop-hdfs-2.2.0-gphd-3.0.0.0.jar"
-				MVN="mvn:org.talend.libraries/hadoop-hdfs-2.2.0-gphd-3.0.0.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.emc.pivotal.2.0/lib/hadoop-hdfs-2.2.0-gphd-3.0.0.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="hadoop-common-2.2.0-gphd-3.0.0.0.jar" MODULE="hadoop-common-2.2.0-gphd-3.0.0.0.jar"
-				MVN="mvn:org.talend.libraries/hadoop-common-2.2.0-gphd-3.0.0.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.emc.pivotal.2.0/lib/hadoop-common-2.2.0-gphd-3.0.0.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="hadoop-auth-2.2.0-gphd-3.0.0.0.jar" MODULE="hadoop-auth-2.2.0-gphd-3.0.0.0.jar"
-				MVN="mvn:org.talend.libraries/hadoop-auth-2.2.0-gphd-3.0.0.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.emc.pivotal.2.0/lib/hadoop-auth-2.2.0-gphd-3.0.0.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-configuration-1.6.jar" MODULE="commons-configuration-1.6.jar"
-				MVN="mvn:org.talend.libraries/commons-configuration-1.6/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-configuration-1.6.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-lang-2.5.jar" MODULE="commons-lang-2.5.jar"
-				MVN="mvn:org.talend.libraries/commons-lang-2.5/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-lang-2.5.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-logging-1.1.1.jar" MODULE="commons-logging-1.1.1.jar"
-				MVN="mvn:org.talend.libraries/commons-logging-1.1.1/6.0.0"
-				UrlPath="platform:/base/plugins/org.apache.commons.logging_1.1.1.v201101211721.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="commons-cli-1.2.jar" MODULE="commons-cli-1.2.jar"
-				MVN="mvn:org.talend.libraries/commons-cli-1.2/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-cli-1.2.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="guava-11.0.2.jar" MODULE="guava-11.0.2.jar"
-				MVN="mvn:org.talend.libraries/guava-11.0.2/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.guava/lib/guava-11.0.2.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="protobuf-java-2.5.0.jar" MODULE="protobuf-java-2.5.0.jar"
-				MVN="mvn:org.talend.libraries/protobuf-java-2.5.0/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.hadoop.hdp.2.0/lib/protobuf-java-2.5.0.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="slf4j-api-1.6.1.jar" MODULE="slf4j-api-1.6.1.jar"
-				MVN="mvn:org.talend.libraries/slf4j-api-1.6.1/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.slf4j/lib/slf4j-api-1.6.1.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="slf4j-log4j12-1.6.1.jar" MODULE="slf4j-log4j12-1.6.1.jar"
-				MVN="mvn:org.talend.libraries/slf4j-log4j12-1.6.1/6.0.0"
-				UrlPath="platform:/plugin/org.talend.libraries.slf4j/lib/slf4j-log4j12-1.6.1.jar"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT NAME="avro-1.5.4.jar" MODULE="avro-1.5.4.jar"
-				MVN="mvn:org.talend.libraries/avro-1.5.4/6.0.0"
-				REQUIRED_IF="(DB_VERSION=='PIVOTAL_HD_2_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
 			<!-- HDP_2_0 -->
 			<IMPORT NAME="hadoop-hdfs-2.2.0.2.0.6.0-76.jar" MODULE="hadoop-hdfs-2.2.0.2.0.6.0-76.jar"
 				MVN="mvn:org.talend.libraries/hadoop-hdfs-2.2.0.2.0.6.0-76/6.0.0"
@@ -892,16 +788,6 @@
 			<IMPORT MODULE_GROUP="HDFS-LIB-HDP_2_2_LASTEST"
 				REQUIRED_IF="(DB_VERSION=='HDP_2_2') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
 
-			<!-- HDFS libraries for HDP_2_3 -->
-			<IMPORT MODULE_GROUP="HDFS-LIB-HDP_2_3"
-				REQUIRED_IF="(DB_VERSION=='HDP_2_3') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-
-			<!-- EMR_4_0_0 -->
-			<IMPORT MODULE_GROUP="HDFS-LIB-EMR_4_0_0_LATEST"
-				REQUIRED_IF="(DB_VERSION=='EMR_4_0_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-			<IMPORT MODULE_GROUP="AVRO-LIB-EMR_4_0_0_LATEST"
-				REQUIRED_IF="(DB_VERSION=='EMR_4_0_0') AND (DISTRIBUTION!='CUSTOM') AND (USE_EXISTING_CONNECTION=='false')" />
-
 			<IMPORT NAME="hadoop-conf-kerberos" MODULE="hadoop-conf-kerberos.jar"
 				MVN="mvn:org.talend.libraries/hadoop-conf-kerberos/6.0.0"
 				UrlPath="platform:/plugin/org.talend.libraries.hadoop.mapr2/lib/hadoop-conf-kerberos.jar"
@@ -909,14 +795,14 @@
 			<IMPORT NAME="jetty-util" MODULE="jetty-util-6.1.26.jar"
 				MVN="mvn:org.talend.libraries/jetty-util-6.1.26/6.0.0"
 				UrlPath="platform:/plugin/org.talend.libraries.jetty/lib/jetty-util-6.1.26.jar"
-				REQUIRED_IF="DISTRIB[DISTRIBUTION, DB_VERSION].doSupportOldImportMode[] AND (DB_VERSION=='HDP_1_2' OR DB_VERSION=='HDP_1_3' OR DB_VERSION=='HDP_2_0' OR DB_VERSION=='HDP_2_1' OR DB_VERSION=='APACHE_1_0_0' OR (DISTRIBUTION=='CLOUDERA') OR DB_VERSION=='PIVOTAL_HD_1_0_1' OR DB_VERSION=='PIVOTAL_HD_2_0') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
+				REQUIRED_IF="DISTRIB[DISTRIBUTION, DB_VERSION].doSupportOldImportMode[] AND (DB_VERSION=='HDP_1_2' OR DB_VERSION=='HDP_1_3' OR DB_VERSION=='HDP_2_0' OR DB_VERSION=='HDP_2_1' OR DB_VERSION=='APACHE_1_0_0' OR (DISTRIBUTION=='CLOUDERA')) AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
 			<IMPORT NAME="jersey-core" MODULE="jersey-core-1.8.jar"
 				MVN="mvn:org.talend.libraries/jersey-core-1.8/6.0.0"
-				REQUIRED_IF="(DB_VERSION=='HDP_1_2' OR DB_VERSION=='HDP_1_3' OR DB_VERSION=='HDP_2_0' OR DB_VERSION=='HDP_2_1' OR DB_VERSION=='APACHE_1_0_0' OR DB_VERSION=='Cloudera_CDH4' OR DB_VERSION=='Cloudera_CDH4_YARN' OR DB_VERSION=='PIVOTAL_HD_1_0_1' OR DB_VERSION=='PIVOTAL_HD_2_0') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
+				REQUIRED_IF="(DB_VERSION=='HDP_1_2' OR DB_VERSION=='HDP_1_3' OR DB_VERSION=='HDP_2_0' OR DB_VERSION=='HDP_2_1' OR DB_VERSION=='APACHE_1_0_0' OR DB_VERSION=='Cloudera_CDH4' OR DB_VERSION=='Cloudera_CDH4_YARN') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
 			<IMPORT NAME="commons-io" MODULE="commons-io-2.4.jar"
 				MVN="mvn:org.talend.libraries/commons-io-2.4/6.0.0"
 				UrlPath="platform:/plugin/org.talend.libraries.apache.common/lib/commons-io-2.4.jar"
-				REQUIRED_IF="DISTRIB[DISTRIBUTION, DB_VERSION].doSupportOldImportMode[] AND ((DISTRIBUTION=='CLOUDERA') OR DB_VERSION=='PIVOTAL_HD_1_0_1' OR DB_VERSION=='PIVOTAL_HD_2_0' OR DB_VERSION=='HDP_2_0' OR DB_VERSION=='HDP_2_1') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
+				REQUIRED_IF="DISTRIB[DISTRIBUTION, DB_VERSION].doSupportOldImportMode[] AND ((DISTRIBUTION=='CLOUDERA') OR DB_VERSION=='HDP_2_0' OR DB_VERSION=='HDP_2_1') AND (USE_EXISTING_CONNECTION=='false') AND (DISTRIBUTION!='CUSTOM')" />
 
 			<IMPORT NAME="jakarta-oro" MODULE="jakarta-oro-2.0.8.jar"
 				MVN="mvn:org.talend.libraries/jakarta-oro-2.0.8/6.0.0"
