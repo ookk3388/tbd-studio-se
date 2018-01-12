@@ -42,7 +42,7 @@ public class CDH5xSparkStreamingKafkaClientModuleGroup extends AbstractNodeModul
 
     private final static ComponentCondition spark21Condition = new SimpleComponentCondition(new LinkedNodeExpression(
             SparkStreamingConstant.KAFKA_SPARKCONFIGURATION_LINKEDPARAMETER, "SUPPORTED_SPARK_VERSION", EqualityOperator.EQ, //$NON-NLS-1$
-            ESparkVersion.SPARK_2_1.getSparkVersion()));
+            ESparkVersion.SPARK_2_2.getSparkVersion()));
 
     public Set<DistributionModuleGroup> getModuleGroups(String distribution, String version) throws Exception {
         Set<DistributionModuleGroup> hs = new HashSet<>();

@@ -770,6 +770,17 @@
 		},
 
 		{
+			"id": "kafka-clients",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.kafka",
+			"artifactId": "kafka-clients",
+			"version": "0.10.0-kafka-2.1.2",
+			"classifier": "",
+			"description": ""
+		},
+
+		{
 			"id": "netty-4.0.29.Final",
 			"type": "STANDARD",
 			"context": "{properties.context}",
@@ -963,6 +974,27 @@
 					"description": ""
 				},
 
+				{
+					"groupId": "xerces",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+
+		{
+			"id": "spark-streaming-kafka",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-streaming-kafka-0-10_2.11",
+			"version": "2.2.0.cloudera1",
+			"classifier": "",
+			"description": "",
+			"exclusions": 
+			[
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
@@ -1301,7 +1333,7 @@
 			"description": "",
 			"modules": 
 			[
-				"hadoop-client"
+				"spark-streaming-kafka"
 			]
 		},
 
@@ -1310,7 +1342,7 @@
 			"description": "",
 			"modules": 
 			[
-				"hadoop-client"
+				"spark-streaming-kafka"
 			]
 		},
 
@@ -1328,7 +1360,7 @@
 			"description": "",
 			"modules": 
 			[
-				"hadoop-client"
+				"kafka-clients"
 			]
 		},
 
@@ -1337,7 +1369,7 @@
 			"description": "",
 			"modules": 
 			[
-				"hadoop-client"
+				"kafka-clients"
 			]
 		},
 
@@ -1376,7 +1408,7 @@
 			"description": "",
 			"modules": 
 			[
-				"hadoop-client"
+				"graphframes"
 			]
 		},
 
