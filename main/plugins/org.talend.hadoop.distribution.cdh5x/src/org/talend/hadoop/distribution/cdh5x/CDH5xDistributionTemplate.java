@@ -156,6 +156,9 @@ public class CDH5xDistributionTemplate extends AbstractDistribution
         nodeModuleGroups.put(
                 new NodeComponentTypeBean(ComponentType.SPARKSTREAMING, SparkStreamingConstant.S3_CONFIGURATION_COMPONENT),
                 new CDH5xSparkStreamingS3NodeModuleGroup(pluginAdapter).getModuleGroups(distribution, versionId));
+        nodeModuleGroups.put(
+                new NodeComponentTypeBean(ComponentType.SPARKSTREAMING, SparkBatchConstant.AZURE_CONFIGURATION_COMPONENT),
+                new CDH5xSparkBatchAzureNodeModuleGroup(pluginAdapter).getModuleGroups(distribution, versionId));
 
         // Kinesis
         Set<DistributionModuleGroup> kinesisNodeModuleGroups = new CDH5xSparkStreamingKinesisNodeModuleGroup(pluginAdapter)
