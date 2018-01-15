@@ -30,8 +30,6 @@ public class CDH5xSparkBatchKuduNodeModuleGroup extends AbstractNodeModuleGroup 
     }
 
     public Set<DistributionModuleGroup> getModuleGroups(String distribution, String version, String condition) throws Exception {
-        // Set<DistributionModuleGroup> hs = new HashSet<>();
-
         DynamicPluginAdapter pluginAdapter = getPluginAdapter();
 
         String sparkKuduRequiredRuntimeId = pluginAdapter
