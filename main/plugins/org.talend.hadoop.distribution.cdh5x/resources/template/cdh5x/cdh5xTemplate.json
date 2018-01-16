@@ -256,6 +256,15 @@
 		},
 
 		{
+			"id": "graphframes",
+			"type": "STANDARD",
+			"context": "{properties.context}",
+			"jarName": "graphframes-0.5.0-spark2.1-s_2.11.jar",
+			"mvnUri": "mvn:graphframes/graphframes/0.5.0-spark2.1-s_2.11",
+			"description": ""
+		},
+
+		{
 			"id": "hadoop-client",
 			"type": "BASE",
 			"context": "{properties.context}",
@@ -1418,6 +1427,7 @@
 			"description": "",
 			"modules": 
 			[
+				"graphframes"
 			]
 		},
 
