@@ -993,6 +993,17 @@
 				}
 			]
 		},
+		
+		{
+			"id": "spark-streaming-flume",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-streaming-flume_2.11",
+			"version": "2.2.0.cloudera1",
+			"classifier": "",
+			"description": ""
+		},
 
 		{
 			"id": "spark-streaming-kafka",
@@ -1444,7 +1455,7 @@
 			"description": "",
 			"modules": 
 			[
-				"hadoop-client"
+				"spark-streaming-flume"
 			]
 		},
 
