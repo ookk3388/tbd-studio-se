@@ -978,12 +978,6 @@
 			]
 		},
 		{
-			"id": "HDFS-SPARK1_6-LIB-DYNAMIC",
-			"description": "",
-			"modules": [
-			]
-		},
-		{
 			"id": "HDFS-SPARK2_1-LIB-DYNAMIC",
 			"description": "",
 			"modules": [
@@ -1112,12 +1106,6 @@
 		},
 		{
 			"id": "SPARK-PARQUET-LIB-MRREQUIRED-DYNAMIC",
-			"description": "",
-			"modules": [
-			]
-		},
-		{
-			"id": "SPARK-LIB-DYNAMIC",
 			"description": "",
 			"modules": [
 			]
