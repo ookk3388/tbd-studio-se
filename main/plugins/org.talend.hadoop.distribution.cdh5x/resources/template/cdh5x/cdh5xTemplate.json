@@ -41,6 +41,17 @@
 				}
 			]
 		},
+		
+		{
+			"id": "commons-pool2",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.commons",
+			"artifactId": "commons-pool2",
+			"version": "2.4.2",
+			"classifier": "",
+			"description": ""
+		},
 
 		{
 			"id": "hadoop-azure",
@@ -1332,6 +1343,7 @@
 			"description": "",
 			"modules": 
 			[
+				"commons-pool2",
 				"emr-core-2.4.0",
 				"emr-ddb-hadoop-3.0.0",
 				"hadoop-client"
