@@ -769,23 +769,19 @@
 
 		{
 			"id": "jodd",
-			"type": "BASE",
+			"type": "STANDARD",
 			"context": "{properties.context}",
-			"groupId": "org.jodd",
-			"artifactId": "jodd-core",
-			"version": "3.5.2",
-			"classifier": "",
+			"jarName": "jodd-3.5.2.jar",
+			"mvnUri": "mvn:org.jodd/jodd/3.5.2",
 			"description": ""
 		},
 		
 		{
 			"id": "kafka-clients",
-			"type": "BASE",
+			"type": "STANDARD",
 			"context": "{properties.context}",
-			"groupId": "org.apache.kafka",
-			"artifactId": "kafka-clients",
-			"version": "0.10.0-kafka-2.1.2",
-			"classifier": "",
+			"jarName": "kafka-clients-0.10.0-kafka-2.1.2.jar",
+			"mvnUri": "mvn:org.apache.kafka/kafka-clients/0.10.0-kafka-2.1.2",
 			"description": ""
 		},
 
