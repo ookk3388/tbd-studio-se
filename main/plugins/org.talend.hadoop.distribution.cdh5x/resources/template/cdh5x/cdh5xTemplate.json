@@ -1147,7 +1147,7 @@
 
 		{
 			"id": "IMPALA-LIB-DYNAMIC",
-			"description": "",
+			"description": "TODO: This is for classloader only, to be improved later.",
 			"modules": 
 			[
 				"hadoop-client",
@@ -1296,7 +1296,7 @@
 
 		{
 			"id": "MAPREDUCE-PARQUET-LIB-MRREQUIRED-DYNAMIC",
-			"description": "",
+			"description": "TODO: to delete hadoop-client to test.",
 			"modules": 
 			[
 				"hadoop-client"
@@ -1363,7 +1363,7 @@
 
 		{
 			"id": "SPARK-KAFKA-AVRO-LIB-MRREQUIRED-DYNAMIC",
-			"description": "",
+			"description": "Using hadoop-client to load avro and jackson jars",
 			"modules": 
 			[
 				"hadoop-client"
@@ -1429,7 +1429,7 @@
 
 		{
 			"id": "SPARK-HIVE-LIB-MRREQUIRED-DYNAMIC",
-			"description": "",
+			"description": "TODO: to remove hadoop-client",
 			"modules": 
 			[
 				"hadoop-client"
@@ -1447,7 +1447,7 @@
 
 		{
 			"id": "SPARK-FLUME-LIB-MRREQUIRED-DYNAMIC",
-			"description": "",
+			"description": "TODO: to remove hadoop-client",
 			"modules": 
 			[
 				"hadoop-client"
