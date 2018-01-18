@@ -696,10 +696,12 @@
 		},
 		{
 			"id": "jodd",
-			"type": "STANDARD",
+			"type": "BASE",
 			"context": "{properties.context}",
-			"jarName": "jodd-3.5.2.jar",
-			"mvnUri": "mvn:org.jodd/jodd/3.5.2",
+			"groupId": "org.jodd",
+			"artifactId": "jodd-core",
+			"version": "3.5.2",
+			"classifier": "",
 			"description": ""
 		},
 		{
