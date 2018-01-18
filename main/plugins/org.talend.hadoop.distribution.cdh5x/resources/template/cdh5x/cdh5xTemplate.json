@@ -1159,8 +1159,7 @@
 		{
 			"id": "SPARK-DYNAMODB-LIB-MRREQUIRED-DYNAMIC",
 			"description": "",
-			"modules": 
-			[
+			"modules": [
 				"commons-pool2",
 				"emr-core-2.4.0",
 				"emr-ddb-hadoop-3.0.0",
@@ -1266,8 +1265,7 @@
 		{
 			"id": "SPARK-FLUME-LIB-MRREQUIRED-DYNAMIC",
 			"description": "TODO: to remove hadoop-client",
-			"modules": 
-			[
+			"modules": [
 				"spark-streaming-flume_2.11"
 			]
 		},
