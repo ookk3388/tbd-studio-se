@@ -3,7 +3,7 @@
 	"name": "Cloudera CDH5.X.2 template",
 	"distribution": "CLOUDERA",
 	"templateId": "CDH5xDistributionTemplate",
-	"baseVersion": "5.13.0",
+	"baseVersion": "5.11.0",
 	"topVersion": "6.0.0",
 	"dynamicVersion": "will be filled during runtime",
 	"properties": {
@@ -35,6 +35,16 @@
 					"description": ""
 				}
 			]
+		},
+		{
+			"id": "commons-pool2",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.commons",
+			"artifactId": "commons-pool2",
+			"version": "2.4.2",
+			"classifier": "",
+			"description": ""
 		},
 		{
 			"id": "hadoop-azure",
@@ -894,6 +904,16 @@
 			]
 		},
 		{
+			"id": "spark-streaming-flume",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-streaming-flume_2.11",
+			"version": "2.2.0.cloudera1",
+			"classifier": "",
+			"description": ""
+		},
+		{
 			"id": "spark-streaming-kafka",
 			"type": "BASE",
 			"context": "{properties.context}",
@@ -1137,7 +1157,9 @@
 		{
 			"id": "SPARK-DYNAMODB-LIB-MRREQUIRED-DYNAMIC",
 			"description": "",
-			"modules": [
+			"modules": 
+			[
+				"commons-pool2",
 				"emr-core-2.4.0",
 				"emr-ddb-hadoop-3.0.0",
 				"hadoop-client"
@@ -1242,8 +1264,9 @@
 		{
 			"id": "SPARK-FLUME-LIB-MRREQUIRED-DYNAMIC",
 			"description": "TODO: to remove hadoop-client",
-			"modules": [
-				"hadoop-client"
+			"modules": 
+			[
+				"spark-streaming-flume"
 			]
 		},
 		{
