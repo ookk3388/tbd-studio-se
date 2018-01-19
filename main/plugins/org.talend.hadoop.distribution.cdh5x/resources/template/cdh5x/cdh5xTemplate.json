@@ -38,12 +38,10 @@
 		},
 		{
 			"id": "commons-pool2",
-			"type": "BASE",
+			"type": "STANDARD",
 			"context": "{properties.context}",
-			"groupId": "org.apache.commons",
-			"artifactId": "commons-pool2",
-			"version": "2.4.2",
-			"classifier": "",
+			"jarName": "commons-pool2-2.4.2.jar",
+			"mvnUri": "mvn:org.apache.commons/commons-pool2/2.4.2",
 			"description": ""
 		},
 		{
