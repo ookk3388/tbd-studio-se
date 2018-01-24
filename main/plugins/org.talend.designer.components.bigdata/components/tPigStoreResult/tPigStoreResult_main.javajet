@@ -54,11 +54,14 @@
 	}
 	
 
+   	String function = ElementParameterParser.getValue(node, "__STORE__");
 	String distribution = ElementParameterParser.getValue(node, "__DISTRIBUTION__");
 	String pigVersion = ElementParameterParser.getValue(node, "__HBASE_VERSION__");
 	org.talend.hadoop.distribution.component.PigComponent pigDistrib = null;
 	try {
-		if ((distribution != null) && !"".equals(distribution)) {
+		boolean initDistro = "HCatStorer".equals(function) || "HBaseStorage".equals(function) || "RCFilePigStorage".equals(function) || "AvroStorage".equals(function);
+		
+		if (initDistro && (distribution != null) && !"".equals(distribution)) {
 		    pigDistrib = (org.talend.hadoop.distribution.component.PigComponent) org.talend.hadoop.distribution.DistributionFactory.buildDistribution(distribution, pigVersion);
 		}
 	} catch (java.lang.Exception e) {
@@ -72,7 +75,6 @@
 	boolean isS3Location = "true".equals(ElementParameterParser.getValue(node, "__S3_LOCATION__"));
     String s3bucket = ElementParameterParser.getValue(node, "__S3_BUCKET__");
     String s3username = ElementParameterParser.getValue(node, "__S3_USERNAME__");
-   	String function = ElementParameterParser.getValue(node, "__STORE__");
 	String fieldSeparator = ElementParameterParser.getValue(node, "__FIELD_SEPARATOR_CHAR__");
 	boolean rmResultDir = "true".equals(ElementParameterParser.getValue(node, "__RM_OUTPUT__"));
 	
