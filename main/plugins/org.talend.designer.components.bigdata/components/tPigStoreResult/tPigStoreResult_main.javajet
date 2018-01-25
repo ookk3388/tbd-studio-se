@@ -54,11 +54,11 @@
 	}
 	
 
-   	String function = ElementParameterParser.getValue(node, "__STORE__");
 	String resultFile = ElementParameterParser.getValue(node, "__OUTPUT_FILENAME__");
 	boolean isS3Location = "true".equals(ElementParameterParser.getValue(node, "__S3_LOCATION__"));
     String s3bucket = ElementParameterParser.getValue(node, "__S3_BUCKET__");
     String s3username = ElementParameterParser.getValue(node, "__S3_USERNAME__");
+   	String function = ElementParameterParser.getValue(node, "__STORE__");
 	String fieldSeparator = ElementParameterParser.getValue(node, "__FIELD_SEPARATOR_CHAR__");
 	boolean rmResultDir = "true".equals(ElementParameterParser.getValue(node, "__RM_OUTPUT__"));
 	
