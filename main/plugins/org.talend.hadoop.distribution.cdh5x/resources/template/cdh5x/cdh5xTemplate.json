@@ -1099,6 +1099,13 @@
 			]
 		},
 		{
+			"id": "MAPREDUCE-AVRO-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"avro-mapred"
+			]
+		},
+		{
 			"id": "MAPREDUCE-PARQUET-LIB-DYNAMIC",
 			"description": "",
 			"modules": [
