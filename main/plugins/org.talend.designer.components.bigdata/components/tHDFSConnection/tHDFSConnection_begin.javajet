@@ -113,7 +113,12 @@
 				org.apache.hadoop.security.UserGroupInformation.loginUserFromKeytab(tldKerberosKtPrincipal_<%=cid%>, tldKerberosKtPath_<%=cid%>);
 			}
 		}
-<%
+		<%
+		if (hdfsDistrib.doSupportUseDatanodeHostname() && mrUseDatanodeHostname) {
+		%>
+			conf_<%=cid%>.set("dfs.client.use.datanode.hostname", "true");
+		<%
+		}
 	}else{
 %>
 		org.apache.hadoop.conf.Configuration conf_<%=cid%> = new org.apache.hadoop.conf.Configuration();
