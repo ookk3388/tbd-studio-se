@@ -190,7 +190,6 @@
       <import plugin="org.talend.libraries.csv"/>
       <import plugin="org.eclipse.nebula.widgets.nattable.core"/>
       <import plugin="org.eclipse.nebula.widgets.nattable.extension.glazedlists"/>
-      <import plugin="org.talend.libraries.nattable"/>
       <import plugin="org.eclipse.ui.intro"/>
       <import plugin="org.apache.xalan"/>
       <import plugin="org.eclipse.ui.cheatsheets"/>
