@@ -77,4 +77,5 @@ public interface MRComponent extends HadoopComponent {
     public boolean doSupportAvroDeflateProperties();
     
     public boolean useOldAWSAPI();
+
 }
