@@ -25,17 +25,5 @@ public class QuboleHiveModuleGroup {
         moduleGroups.add(new DistributionModuleGroup(QuboleConstant.HIVE_MODULE_GROUP.getModuleName()));
         moduleGroups.add(new DistributionModuleGroup(QuboleConstant.BIGDATALAUNCHER_MODULE_GROUP.getModuleName()));
         return moduleGroups;
-
-//        moduleGroups.add(new DistributionModuleGroup(QuboleConstant.HDFS_MODULE_GROUP.getModuleName()));
-        //moduleGroups.add(new DistributionModuleGroup(QuboleConstant.MAPREDUCE_MODULE_GROUP.getModuleName()));
-
-        // The following condition instance stands for:
-        // (isShow[STORE_BY_HBASE] AND STORE_BY_HBASE=='true')
-//        ComponentCondition hbaseLoaderCondition = new MultiComponentCondition(new SimpleComponentCondition(new BasicExpression(
-//                HiveConstant.HIVE_CONFIGURATION_COMPONENT_HBASEPARAMETER)), //
-//                BooleanOperator.AND, //
-//                new SimpleComponentCondition(new ShowExpression(HiveConstant.HIVE_CONFIGURATION_COMPONENT_HBASEPARAMETER)));
-        // The Hive components need to import some hbase libraries if the "Use HBase storage" is checked.
-        //hs.add(new DistributionModuleGroup(QuboleConstant.HIVE_HBASE_MODULE_GROUP.getModuleName(), false, hbaseLoaderCondition));
     }
 }

@@ -334,7 +334,7 @@
 	try (org.talend.bigdata.launcher.qubole.QubolePigJob quboleJob_<%=cid%> =
 			new org.talend.bigdata.launcher.qubole.QubolePigJob.Builder()
 			.setApiKey(api_token_<%=cid%>)
-			<% if (quboleEndpoint != "") {%> .setApiEndpoint(<%=quboleEndpoint%>) <%} %>
+			<% if (!"".equals(quboleEndpoint)) {%> .setApiEndpoint(<%=quboleEndpoint%>) <%} %>
 			.build()) {
 		StringBuilder statements_<%=cid%> = new StringBuilder();
 		<% if (ElementParameterParser.getBooleanValue(node, "__QUBOLE_S3__")) { %>
@@ -400,12 +400,6 @@
 			String wasbPath_<%=cid%> = azureFs_<%=cid%>.getFileSystemPrefix() + "/"	+ instance_<%=cid%>.getRemoteFolder()	+ "/libjars/";
 <%
 		} // END IF02
-		
-		if (inMain && isQuboleDistribution) {
-		%>
-		<%
-		}
-
 		// BEGIN IF03
 		if(isLocal) { // LOCAL mode
 %>

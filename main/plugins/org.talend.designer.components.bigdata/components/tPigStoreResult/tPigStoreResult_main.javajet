@@ -344,7 +344,7 @@
 			<% if(isLog4jEnabled) {%>
 				log.info("<%=cid%> - deleting " + <%=resultFile%> + " on hdfs.");
 			<%}
-			if (quboleClusterLabel == "") {%>
+			if ("".equals(quboleClusterLabel)) {%>
 			quboleJob_<%=start_node%>.execShell("hadoop fs -rm -r -f " + <%=resultFile%>);
 			<%
 			} else {

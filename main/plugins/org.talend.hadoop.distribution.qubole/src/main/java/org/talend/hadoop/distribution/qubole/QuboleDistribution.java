@@ -39,7 +39,7 @@ public class QuboleDistribution extends AbstractDistribution implements HDFSComp
 
     public final static String VERSION = "Qubole";
 
-    public static final String VERSION_DISPLAY = "Qubole Java SDK 0.9.1";
+    public static final String VERSION_DISPLAY = "Qubole Java SDK";
 
     private final static String YARN_APPLICATION_CLASSPATH = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,$YARN_HOME/*,$YARN_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*"; //$NON-NLS-1$
 
@@ -85,7 +85,6 @@ public class QuboleDistribution extends AbstractDistribution implements HDFSComp
      */
     protected Map<NodeComponentTypeBean, Set<DistributionModuleGroup>> buildNodeModuleGroups(String distribution, String version) {
         Map<NodeComponentTypeBean, Set<DistributionModuleGroup>> nodesMap = new HashMap<>();
-//        nodesMap.put(new NodeComponentTypeBean(ComponentType.PIG, PigConstant.PIGLOAD_COMPONENT), QubolePigModuleGroup.getModuleGroups());
         nodesMap.put(new NodeComponentTypeBean(ComponentType.PIG, PigOutputConstant.PIGSTORE_COMPONENT), QubolePigOutputModuleGroup.getModuleGroups());
         return nodesMap;
     }
@@ -170,7 +169,6 @@ public class QuboleDistribution extends AbstractDistribution implements HDFSComp
 
     @Override
     public boolean doSupportCrossPlatformSubmission() {
-        // TODO Auto-generated method stub ?
         return false;
     }
 
@@ -216,37 +214,31 @@ public class QuboleDistribution extends AbstractDistribution implements HDFSComp
 
 	@Override
 	public boolean doSupportHive1() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportHive2() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportTezForHive() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportHBaseForHive() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportSSL() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportORCFormat() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -267,25 +259,21 @@ public class QuboleDistribution extends AbstractDistribution implements HDFSComp
 
 	@Override
 	public boolean doSupportHCatalog() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportHBase() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean pigVersionPriorTo_0_12() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean doSupportSequenceFileShortType() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	

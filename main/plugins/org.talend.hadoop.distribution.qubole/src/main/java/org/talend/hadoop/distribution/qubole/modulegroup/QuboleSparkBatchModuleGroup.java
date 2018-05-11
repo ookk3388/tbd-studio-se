@@ -37,13 +37,7 @@ public class QuboleSparkBatchModuleGroup {
     public static Set<DistributionModuleGroup> getModuleGroups() {
         Set<DistributionModuleGroup> hs = new HashSet<>();
         hs.add(new DistributionModuleGroup(QuboleConstant.HDFS_MODULE_GROUP.getModuleName(), false, condition));
-        /*hs.add(new DistributionModuleGroup(QuboleConstant.MAPREDUCE_MODULE_GROUP.getModuleName(), false, condition));
-        hs.add(new DistributionModuleGroup(QuboleConstant.SPARK_MODULE_GROUP.getModuleName(), false, condition));
-        hs.add(new DistributionModuleGroup(QuboleConstant.SPARK_S3_MRREQUIRED_MODULE_GROUP.getModuleName(), true, conditionS3));
-        hs.add(new DistributionModuleGroup(QuboleConstant.SPARK_AZURE_MRREQUIRED_MODULE_GROUP.getModuleName(), true,
-                conditionAzureFS));*/
         hs.add(new DistributionModuleGroup(QuboleConstant.BIGDATALAUNCHER_MODULE_GROUP.getModuleName(), true, condition));
-        //hs.add(new DistributionModuleGroup(QuboleConstant.GRAPHFRAMES_MRREQUIRED_MODULE_GROUP.getModuleName(), true, condition));
         return hs;
     }
 }
