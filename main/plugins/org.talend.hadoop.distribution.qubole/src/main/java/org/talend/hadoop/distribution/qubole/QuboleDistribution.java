@@ -179,12 +179,12 @@ public class QuboleDistribution extends AbstractDistribution implements HDFSComp
 
     @Override
     public boolean doSupportS3() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean doSupportS3V4() {
-        return false;
+        return true;
     }
 
     @Override
