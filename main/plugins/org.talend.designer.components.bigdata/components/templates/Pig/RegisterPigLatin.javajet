@@ -4,8 +4,10 @@
 <%
 	if(inMain) {
 %>
+		<%if (isQuboleDistribution && isQuboleS3Resource) {%>
         java.util.List<com.amazonaws.services.s3.model.S3ObjectSummary> s3Objects_<%=cid%> = s3Client_<%=start_node%>.listObjectsV2(<%=quboleS3ResourceBucketName%>).getObjectSummaries();
         java.util.Set<String> s3Keys_<%=cid%> = s3Objects_<%=cid%>.stream().map(obj -> obj.getKey()).collect(java.util.stream.Collectors.toSet());
+        <%}%>
 
 		for(String[] pigLatin_<%=cid%> : pigLatins_<%=cid%>) {
 			String type_<%=cid%> = pigLatin_<%=cid%>[0];
@@ -36,6 +38,7 @@
 					libjars_<%=start_node%>.append(pigLatin_<%=cid%>[1] + ",");
 <%					
 				} else if (isQuboleDistribution) {
+					if (isQuboleS3Resource) {
 				%>
 					String jarName_<%=start_node%> = new String();
 					String[] pathSplit = pigLatin_<%=cid%>[1].split("/");
@@ -51,8 +54,8 @@
 					statements_<%=start_node%>.append("REGISTER s3a://" + <%=quboleS3ResourceBucketName%> + "/" + <%=quboleS3ResourceBucketKey%>.replaceAll("^/+|/+$", "") + "/" + jarName_<%=start_node%> + ";");
 					<%if(isLog4jEnabled){%>
 						log.info("<%=cid%> - jar uploaded: " + pigLatin_<%=cid%>[1] + " --> s3a://" + <%=quboleS3ResourceBucketName%> + "/" + <%=quboleS3ResourceBucketKey%>.replaceAll("^/+|/+$", "") + "/" + jarName_<%=start_node%>);
-					<%}%>
-				<%
+					<%}
+					}
 				} else {
 %>
 					pigServer_<%=start_node%>.registerJar(pigLatin_<%=cid%>[1]);

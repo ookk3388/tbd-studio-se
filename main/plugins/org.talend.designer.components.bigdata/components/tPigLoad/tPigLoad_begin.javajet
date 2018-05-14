@@ -96,10 +96,10 @@
 	if (isQuboleDistribution && ElementParameterParser.getBooleanValue(node, "__QUBOLE_ENDPOINT__")) {
 		quboleEndpoint = ElementParameterParser.getValue(node, "__QUBOLE_ENDPOINT_URL__");
 	}
-	boolean isQuboleS3Resource = false;
+	boolean isQuboleS3Resource = ElementParameterParser.getBooleanValue(node, "__QUBOLE_S3__");
 	String quboleS3ResourceBucketName = new String();
 	String quboleS3ResourceBucketKey = new String();
-	if (isQuboleDistribution && ElementParameterParser.getBooleanValue(node, "__QUBOLE_S3__")) {
+	if (isQuboleDistribution && isQuboleS3Resource) {
 		quboleS3ResourceBucketName = ElementParameterParser.getValue(node, "__QUBOLE_S3_BUCKET_NAME__");
 		quboleS3ResourceBucketKey = ElementParameterParser.getValue(node, "__QUBOLE_S3_BUCKET_KEY__");
 	}
@@ -199,6 +199,7 @@
 
 		if(generateRegisterJarCodeForParquetFile) {
 			jarsToRegister.add("parquet-pig-bundle");
+			jarsToRegister.add("parquet-pig");
 			jarsToRegister.add("snappy-java");
 		}
 
@@ -819,15 +820,17 @@
 %>
 
 		StringBuilder sb_<%=cid%> = new StringBuilder();
-
+		java.util.regex.Pattern jarPattern_<%=cid%> = java.util.regex.Pattern.compile(".*\\.jar");
 <%
 		if(generateRegisterJarCodeForAll) {
-			for(int i=0; i<jarsToRegister.size(); i++) {
+			for(int i = 0; i < jarsToRegister.size(); i++) {
 				String jarToRegister = jarsToRegister.get(i);
 				for(int j=0; j<jars.size(); j++) {
 					if(jars.get(j).contains(jarToRegister) && jars.get(j).endsWith(".jar")) {
 %>
+					if (jarPattern_<%=cid%>.matcher(getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>")).matches()) {
 						helper_<%=cid%>.add("jar", getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>"));
+					}
 <%
 					}
 				}
@@ -1024,11 +1027,11 @@
 	                if (isS3Location) {
 	                    %>
 	                    sb_<%=cid%>.append("<%=cid%>_<%=outputConnectionName%>_RESULT = LOAD '" + "s3n://" + <%=s3username%> +":" + decryptedS3Password_<%=cid%> + "@" + <%=s3bucket%>
-	                        + "' using parquet.pig.ParquetLoader");
+	                        + "' using parquet.pig.ParquetLoader('");
 	                    <%
 	                } else {
 	                    %>
-	                    sb_<%=cid%>.append("<%=cid%>_<%=outputConnectionName%>_RESULT = LOAD '"+<%=inputFilename%>+"' using parquet.pig.ParquetLoader");
+	                    sb_<%=cid%>.append("<%=cid%>_<%=outputConnectionName%>_RESULT = LOAD '"+<%=inputFilename%>+"' using parquet.pig.ParquetLoader('");
 	                    <%
 	                }
 				} else {
@@ -1053,14 +1056,20 @@
 
 				if(metadata!=null) {
 					if(metadata.getListColumns() != null && metadata.getListColumns().size() > 0) {
+						if (!isParquet) {
 %>
-						sb_<%=cid%>.append(" AS (");
+							sb_<%=cid%>.append(" AS (");
 <%
+						}
 						for(int i=0; i<metadata.getListColumns().size(); i++) {
 %>
 							sb_<%=cid%>.append("<%=i!=0?", ":""%><%=metadata.getListColumns().get(i).getLabel()%>:<%=Java2STLangTypesHelper.getPigType(metadata, metadata.getListColumns().get(i).getLabel())%>");
 <%
-
+						}
+						if (isParquet) {
+						%>
+							sb_<%=cid%>.append("'");
+						<%
 						}
 %>
 						sb_<%=cid%>.append(")");

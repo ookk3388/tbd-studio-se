@@ -60,7 +60,8 @@
 			if (isQuboleDistribution && ElementParameterParser.getBooleanValue(loadNode, "__QUBOLE_CLUSTER__")) {
 				quboleClusterLabel = ElementParameterParser.getValue(loadNode, "__QUBOLE_CLUSTER_LABEL__");
 			}
-			if (isQuboleDistribution && ElementParameterParser.getBooleanValue(loadNode, "__QUBOLE_S3__")) {
+			isQuboleS3Resource = ElementParameterParser.getBooleanValue(loadNode, "__QUBOLE_S3__");
+			if (isQuboleDistribution && isQuboleS3Resource) {
 				quboleS3ResourceBucketName = ElementParameterParser.getValue(loadNode, "__QUBOLE_S3_BUCKET_NAME__");
 				quboleS3ResourceBucketKey = ElementParameterParser.getValue(loadNode, "__QUBOLE_S3_BUCKET_KEY__");
 			}
@@ -363,6 +364,7 @@
 	routines.system.PigHelper helper_<%=cid%> = new routines.system.PigHelper();
 	
 	StringBuilder sb_<%=cid%> = new StringBuilder();
+	java.util.regex.Pattern jarPattern_<%=cid%> = java.util.regex.Pattern.compile(".*\\.jar");
 <%	
 	if(generateRegisterJarCodeForAll) {
 		for(int i=0; i<jarsToRegister.size(); i++) {
@@ -370,7 +372,9 @@
 			for(int j=0; j<jars.size(); j++) {
 				if(jars.get(j).contains(jarToRegister)) {
 %>
-					helper_<%=cid%>.add("jar", getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>"));
+					if (jarPattern_<%=cid%>.matcher(getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>")).matches()) {
+						helper_<%=cid%>.add("jar", getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>"));
+					}
 <%
 				}
 			}
