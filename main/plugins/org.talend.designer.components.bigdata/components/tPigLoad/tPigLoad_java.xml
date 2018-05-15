@@ -317,10 +317,24 @@
 			<DEFAULT>""</DEFAULT>
 		</PARAMETER>
 
-		<PARAMETER NAME="QUBOLE_S3_REGION" FIELD="TEXT" NUM_ROW="17" REQUIRED="true" GROUP="QUBOLE_CONF" REPOSITORY_VALUE="QUBOLE_S3_REGION"
+		<PARAMETER NAME="QUBOLE_S3_REGION" FIELD="OPENED_LIST" RAW="true" NUM_ROW="17" REQUIRED="true" GROUP="QUBOLE_CONF" REPOSITORY_VALUE="QUBOLE_S3_REGION"
 			SHOW_IF="(isShow[QUBOLE_S3] AND QUBOLE_S3 == 'true')">
-			<DEFAULT>""</DEFAULT>
-		</PARAMETER>
+     	<ITEMS DEFAULT="DEFAULT">
+        	<ITEM NAME="DEFAULT" VALUE="com.amazonaws.regions.Regions.DEFAULT_REGION" />
+        	<ITEM NAME="AP_SOUTH_1" VALUE="&quot;ap-south-1&quot;" />
+         	<ITEM NAME="AP_SOUTHEAST_1" VALUE="&quot;ap-southeast-1&quot;" />
+	        <ITEM NAME="AP_SOUTHEAST_2" VALUE="&quot;ap-southeast-2&quot;" />
+	        <ITEM NAME="AP_NORTHEAST_1" VALUE="&quot;ap-northeast-1&quot;" />
+	        <ITEM NAME="CN_NORTH_1" VALUE="&quot;cn-north-1&quot;" />
+	        <ITEM NAME="EU_WEST_1" VALUE="&quot;eu-west-1&quot;" />
+	        <ITEM NAME="EU_CENTRAL_1" VALUE="&quot;eu-central-1&quot;" />
+	        <ITEM NAME="GovCloud" VALUE="&quot;us-gov-west-1&quot;" />
+	        <ITEM NAME="SA_EAST_1" VALUE="&quot;sa-east-1&quot;" />
+	        <ITEM NAME="US_EAST_1" VALUE="&quot;us-east-1&quot;" />
+	        <ITEM NAME="US_WEST_1" VALUE="&quot;us-west-1&quot;" />
+	        <ITEM NAME="US_WEST_2" VALUE="&quot;us-west-2&quot;" />
+    	</ITEMS>
+    	</PARAMETER>
 		<!-- -->
 
 		<PARAMETER NAME="USE_KRB" FIELD="CHECK" NUM_ROW="25"

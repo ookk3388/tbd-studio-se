@@ -97,9 +97,13 @@
 		quboleEndpoint = ElementParameterParser.getValue(node, "__QUBOLE_ENDPOINT_URL__");
 	}
 	boolean isQuboleS3Resource = ElementParameterParser.getBooleanValue(node, "__QUBOLE_S3__");
+	String quboleS3ResourceAccessKey = new String();
+	String quboleS3ResourceSecretKey = new String();
 	String quboleS3ResourceBucketName = new String();
 	String quboleS3ResourceBucketKey = new String();
 	if (isQuboleDistribution && isQuboleS3Resource) {
+		quboleS3ResourceAccessKey = ElementParameterParser.getValue(node, "__QUBOLE_S3_ACCESS_KEY__");
+		quboleS3ResourceSecretKey = ElementParameterParser.getValue(node, "__QUBOLE_S3_SECRET_KEY__");
 		quboleS3ResourceBucketName = ElementParameterParser.getValue(node, "__QUBOLE_S3_BUCKET_NAME__");
 		quboleS3ResourceBucketKey = ElementParameterParser.getValue(node, "__QUBOLE_S3_BUCKET_KEY__");
 	}
@@ -338,10 +342,9 @@
 			<% if (!"".equals(quboleEndpoint)) {%> .setApiEndpoint(<%=quboleEndpoint%>) <%} %>
 			.build()) {
 		StringBuilder statements_<%=cid%> = new StringBuilder();
-		<% if (ElementParameterParser.getBooleanValue(node, "__QUBOLE_S3__")) { %>
+		<% if (isQuboleS3Resource) { %>
 			com.amazonaws.auth.BasicAWSCredentials awsCredentials_<%=cid%> = new com.amazonaws.auth.BasicAWSCredentials(
-				<%= ElementParameterParser.getValue(node, "__QUBOLE_S3_ACCESS_KEY__")%>,
-				routines.system.PasswordEncryptUtil.decryptPassword(<%= ElementParameterParser.getValue(node, "__QUBOLE_S3_SECRET_KEY__")%>));
+				<%=quboleS3ResourceAccessKey%>, routines.system.PasswordEncryptUtil.decryptPassword(<%=quboleS3ResourceSecretKey%>));
 			com.amazonaws.services.s3.AmazonS3 s3Client_<%=cid%> = com.amazonaws.services.s3.AmazonS3ClientBuilder.standard()
                 .withRegion(<%= ElementParameterParser.getValue(node, "__QUBOLE_S3_REGION__")%>)
                 .withCredentials(new com.amazonaws.auth.AWSStaticCredentialsProvider(awsCredentials_<%=cid%>))
