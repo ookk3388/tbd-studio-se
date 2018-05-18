@@ -3,7 +3,7 @@
 <plugin>
     <extension point="org.talend.core.runtime.librariesNeeded">
         
-        <libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="talend-bigdata-launcher-1.2.3-20180501.jar" name="talend-bigdata-launcher-1.2.3-20180501.jar" mvn_uri="mvn:org.talend.libraries/talend-bigdata-launcher-1.2.3-20180501/7.1.0" />
+        <libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="talend-bigdata-launcher-qubole-1.2.3-20180501.jar" name="talend-bigdata-launcher-qubole-1.2.3-20180501.jar" mvn_uri="mvn:org.talend.libraries/talend-bigdata-launcher-qubole-1.2.3-20180501/7.1.0" />
 
 		<!-- Qubole SDK 0.9.1 and it's dependencies -->
         <libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="qds-sdk-java-0.9.1.jar" name="qds-sdk-java-0.9.1.jar" mvn_uri="mvn:com.qubole.qds-sdk-java/qds-sdk-java/0.9.1" />
@@ -36,10 +36,10 @@
 		<libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="asm-all-repackaged-2.2.0-b21.jar" name="asm-all-repackaged-2.2.0-b21.jar" mvn_uri="mvn:org.glassfish.hk2.external/asm-all-repackaged/2.2.0-b21" />
 		<libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="commons-codec-1.3.jar" name="commons-codec-1.3.jar" mvn_uri="mvn:commons-codec/commons-codec/1.3" />
 		-->
-		<libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="parquet-pig-1.6.0.jar" name="parquet-pig-1.6.0.jar" mvn_uri="mvn:com.twitter/parquet-pig/1.6.0" />
+		<libraryNeeded context="plugin:org.talend.hadoop.distribution.qubole" id="parquet-pig-1.5.0.jar" name="parquet-pig-1.5.0.jar" mvn_uri="mvn:com.twitter/parquet-pig/1.5.0" />
 
 		<!-- Talend nexus jars -->
-		<libraryNeeded context="plugin:org.talend.libraries.pig" id="parquet-pig-bundle-1.6.0.jar" name="parquet-pig-bundle-1.6.0.jar" mvn_uri="mvn:org.talend.libraries/parquet-pig-bundle-1.6.0/6.2.0" />
+		<libraryNeeded context="plugin:org.talend.libraries.pig" id="parquet-pig-bundle-1.5.0.jar" name="parquet-pig-bundle-1.5.0.jar" mvn_uri="mvn:org.talend.libraries/parquet-pig-bundle-1.5.0-cdh5.12.1/6.0.0" />
 		<libraryNeeded context="plugin:org.talend.libraries.pig" id="avro-1.7.6.jar" name="avro-1.7.6.jar" mvn_uri="mvn:org.talend.libraries/avro-1.7.6/6.0.0" />
 		<libraryNeeded context="plugin:org.talend.libraries.pig" id="json-simple-1.1.jar" name="json-simple-1.1.jar" mvn_uri="mvn:org.talend.libraries/json-simple-1.1/6.0.0" />
         <libraryNeeded
@@ -135,31 +135,31 @@
 
         <!-- Big Data launcher module group -->
         <libraryNeededGroup description="big-data launcher jar and the wrapped qubole sdk" id="BIGDATA-LAUNCHER-LIB-QUBOLE" name="BIGDATA-LAUNCHER-LIB-QUBOLE ">
-            <library id="talend-bigdata-launcher-1.2.3-20180501.jar" />
+            <library id="talend-bigdata-launcher-qubole-1.2.3-20180501.jar" />
             <library id="qds-sdk-java-0.9.1.jar" />
-        </libraryNeededGroup>
-
-        <!-- Supplement jars for hive jobs -->
-        <libraryNeededGroup description="Pig libraries for tPigLoad" id="HIVE-LIB-QUBOLE" name="HIVE-LIB-QUBOLE">
-        </libraryNeededGroup>
-
-        <!-- These jars are used to run qubole sdk for pig job (To be moved to Big Data launcher group if it's the same for other kind of jobs) -->
-        <libraryNeededGroup description="Pig libraries for tPigLoad" id="PIG-LIB-QUBOLE" name="PIG-LIB-QUBOLE">
             <library id="javax.ws.rs-api-2.0.jar" />
             <library id="jersey-client-2.5.jar" />
             <library id="guava-16.0.1.jar" />
             <library id="hk2-api-2.2.0-b21.jar" />
+            <library id="hk2-locator-2.2.0-b21.jar" />
+            <library id="hk2-utils-2.2.0-b21.jar" />
             <library id="jersey-common-2.5.jar" />
             <library id="jackson-mapper-asl-1.9.13.jar" />
             <library id="jackson-core-asl-1.9.13.jar" />
             <library id="jersey-media-json-jackson-2.5.jar" />
             <library id="javax.annotation-api-1.2.jar" />
-            <library id="hk2-locator-2.2.0-b21.jar" />
-            <library id="hk2-utils-2.2.0-b21.jar" />
             <library id="cglib-2.2.0-b21.jar" />
             <library id="jackson-jaxrs-1.9.13.jar" />
             <library id="jackson-xc-1.9.13.jar" />
             <library id="javax.inject-2.2.0-b21.jar" />
+        </libraryNeededGroup>
+
+        <!-- Supplement jars for hive jobs -->
+        <libraryNeededGroup description="Pig libraries for hive" id="HIVE-LIB-QUBOLE" name="HIVE-LIB-QUBOLE">
+        </libraryNeededGroup>
+
+        <!-- These jars are used to run qubole sdk for pig job (To be moved to Big Data launcher group if it's the same for other kind of jobs) -->
+        <libraryNeededGroup description="Pig libraries for tPigLoad" id="PIG-LIB-QUBOLE" name="PIG-LIB-QUBOLE">
         </libraryNeededGroup>
 
         <!-- AWS S3 sdk module group -->
@@ -177,11 +177,11 @@
 
         <!-- Jars for pig parquet loader/storer -->
         <libraryNeededGroup description="Jars for pig parquet loader/storer" id="PIG-PARQUET-LIB-QUBOLE" name="PIG-PARQUET-LIB-QUBOLE">
-            <library id="parquet-pig-bundle-1.6.0.jar" />
-            <library id="parquet-pig-1.6.0.jar" />
+            <library id="parquet-pig-bundle-1.5.0.jar" />
+            <library id="parquet-pig-1.5.0.jar" />
         </libraryNeededGroup>
 
-        <!-- Jars for pig parquet loader/storer -->
+        <!-- Jars for pig avro loader/storer -->
         <libraryNeededGroup description="Jars for pig avro loader/storer" id="PIG-AVRO-LIB-QUBOLE" name="PIG-AVRO-LIB-QUBOLE">
             <library id="piggybank-cdh5.4.jar"/>
             <library id="avro-1.7.6.jar"/>

@@ -22,8 +22,8 @@ public class QuboleHiveModuleGroup {
 
     public static Set<DistributionModuleGroup> getModuleGroups() {
         Set<DistributionModuleGroup> moduleGroups = new HashSet<>();
-        moduleGroups.add(new DistributionModuleGroup(QuboleConstant.HIVE_MODULE_GROUP.getModuleName()));
         moduleGroups.add(new DistributionModuleGroup(QuboleConstant.BIGDATALAUNCHER_MODULE_GROUP.getModuleName()));
+        moduleGroups.add(new DistributionModuleGroup(QuboleConstant.HIVE_MODULE_GROUP.getModuleName()));
         return moduleGroups;
     }
 }

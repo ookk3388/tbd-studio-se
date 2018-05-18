@@ -86,13 +86,17 @@ imports="
             }
 <%
         }
-    } else if(hiveDistrib.isGoogleDataprocDistribution()) {
+    } else if (hiveDistrib.isGoogleDataprocDistribution()) {
 %>
         <%@ include file="@{org.talend.designer.components.localprovider}/components/templates/Hive/GetDataprocConnection.javajet"%>
 <%
+    } else if (hiveDistrib.isQuboleDistribution()) {
+%>
+		<%@ include file="@{org.talend.designer.components.localprovider}/components/templates/Hive/GetQuboleConnection.javajet"%>
+<%
     } else { // normal mode
 %>
-    <%@ include file="@{org.talend.designer.components.localprovider}/components/templates/Hive/GetConnection.javajet"%>
+    	<%@ include file="@{org.talend.designer.components.localprovider}/components/templates/Hive/GetConnection.javajet"%>
 <%
     }
 
