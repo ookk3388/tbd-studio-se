@@ -195,7 +195,6 @@
 		}
 		
 		if(generateRegisterJarCodeForParquetFile) {
-			jarsToRegister.add("parquet-pig-bundle");
 			jarsToRegister.add("parquet-pig");
 			jarsToRegister.add("snappy-java");
 		}
