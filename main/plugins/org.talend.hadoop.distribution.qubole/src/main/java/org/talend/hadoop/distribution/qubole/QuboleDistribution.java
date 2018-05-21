@@ -37,9 +37,9 @@ import org.talend.hadoop.distribution.qubole.modulegroup.QubolePigOutputModuleGr
 
 public class QuboleDistribution extends AbstractDistribution implements HDFSComponent, PigComponent, HiveComponent, IQuboleDistribution {
 
-    public final static String VERSION = "Qubole";
+    public final static String VERSION = "Qubole cloud distribution";
 
-    public static final String VERSION_DISPLAY = "Qubole Java SDK";
+    public static final String VERSION_DISPLAY = "Qubole cloud distribution";
 
     private final static String YARN_APPLICATION_CLASSPATH = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,$YARN_HOME/*,$YARN_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*"; //$NON-NLS-1$
 
