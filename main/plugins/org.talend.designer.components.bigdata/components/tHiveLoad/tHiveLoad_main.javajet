@@ -214,7 +214,7 @@ imports="
                     String jarToRegister = jarsToRegister.get(i);
                     for(int j=0; j<jars.size(); j++) {
                         if(jars.get(j).contains(jarToRegister)) {
-                            if(!hiveDistrib.isExecutedThroughWebHCat()) { // Then we use the created SQL statement to add the jars.
+                            if(!hiveDistrib.useCloudLauncher()) { // Then we use the created SQL statement to add the jars.
 %>
                                 addJar_<%=cid%> = conn_<%=cid%>.createStatement();
                                 try {
@@ -230,6 +230,10 @@ imports="
 %>
                                     bw_<%=cid%>.write("ADD JAR " + wasbPath_<%=cid%> + new java.io.File(getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>")).getName() + ";");
                                     libjars_<%=cid%>.append(getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>") + ",");
+<%
+                            	} else if (hiveDistrib.isQuboleDistribution()) {
+%>
+                                	// Qubole hive 1.2 supports parquet by default.
 <%
                                 } else { // dataproc
                                     if(isLog4jEnabled) {

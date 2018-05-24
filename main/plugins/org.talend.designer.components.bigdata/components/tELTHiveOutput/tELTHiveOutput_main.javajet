@@ -706,9 +706,9 @@ imports="
                                     bw_<%=cid%>.write("ADD JAR " + wasbPath_<%=cid%> + new java.io.File(getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>")).getName() + ";");
                                     libjars_<%=cid%>.append(getJarsToRegister_<%=cid %>.replaceJarPaths("<%=jars.get(j)%>") + ",");
 <%
-                                } else if (hiveDistrib.isQuboleDistribution()) { // qubole add jar
+                                } else if (hiveDistrib.isQuboleDistribution()) {
                                 %>
-                                	// Add jar is currently not supported on qubole.
+                                	// Qubole hive 1.2 supports parquet by default.
                                 <%
                                 } else { // dataproc
                                     if(isLog4jEnabled) {
