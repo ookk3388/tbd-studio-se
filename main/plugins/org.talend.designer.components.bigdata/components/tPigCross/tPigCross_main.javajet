@@ -86,8 +86,34 @@
 	routines.system.PigHelper helper_<%=cid%> = new routines.system.PigHelper();
 	
 	StringBuilder sb_<%=cid%> = new StringBuilder();
-	sb_<%=cid%>.append("<%=cid%>_CROSS_FILE = LOAD '"+<%=crossFilename%>+"' using PigStorage('"+<%=fieldSeparator%>+"')");
+	
+<%	
+	boolean isS3Location = "true".equals(ElementParameterParser.getValue(node, "__S3_LOCATION_LOAD__"));
+	
+	if (isS3Location) {
+		String s3bucket = ElementParameterParser.getValue(node, "__S3_BUCKET_LOAD__");
+		String s3username = ElementParameterParser.getValue(node, "__S3_USERNAME_LOAD__");
+		String passwordFieldName = "__S3_PASSWORD_LOAD__";
+    	
+        if (ElementParameterParser.canEncrypt(node, passwordFieldName)) {
+%>
+			String decryptedS3Password_<%=cid%> = routines.system.PasswordEncryptUtil.decryptPassword(<%=ElementParameterParser.getEncryptedValue(node, passwordFieldName)%>);
 <%
+        } else {
+%>
+            String decryptedS3Password_<%=cid%> = <%=ElementParameterParser.getValue(node, passwordFieldName)%>;
+<%
+        }
+%>
+		sb_<%=cid%>.append("<%=cid%>_CROSS_FILE = LOAD '" + "s3a://" + <%=s3username%> +":" + decryptedS3Password_<%=cid%> + 
+					"@" + <%=s3bucket%> + "' using PigStorage('"+<%=fieldSeparator%>+"')");
+<%
+    } else {
+%>
+		sb_<%=cid%>.append("<%=cid%>_CROSS_FILE = LOAD '"+<%=crossFilename%>+"' using PigStorage('"+<%=fieldSeparator%>+"')");
+<%
+    }
+	
 	List<IMetadataTable> metadatas = node.getMetadataList();
 	IMetadataTable metadata = null;
 	if(metadatas != null && metadatas.size() > 0) {

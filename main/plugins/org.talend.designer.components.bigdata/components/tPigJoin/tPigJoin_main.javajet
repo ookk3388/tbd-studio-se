@@ -96,8 +96,35 @@
 		StringBuilder sb_<%=cid%> = new StringBuilder();		
 		
 		sb_<%=cid%> = new StringBuilder();
-		
+
+<%	
+	boolean isS3Location = "true".equals(ElementParameterParser.getValue(node, "__S3_LOCATION_LOAD__"));
+	
+	if (isS3Location) {
+		String s3bucket = ElementParameterParser.getValue(node, "__S3_BUCKET_LOAD__");
+		String s3username = ElementParameterParser.getValue(node, "__S3_USERNAME_LOAD__");
+		String passwordFieldName = "__S3_PASSWORD_LOAD__";
+    	
+        if (ElementParameterParser.canEncrypt(node, passwordFieldName)) {
+%>
+			String decryptedS3Password_<%=cid%> = routines.system.PasswordEncryptUtil.decryptPassword(<%=ElementParameterParser.getEncryptedValue(node, passwordFieldName)%>);
+<%
+        } else {
+%>
+            String decryptedS3Password_<%=cid%> = <%=ElementParameterParser.getValue(node, passwordFieldName)%>;
+<%
+        }
+%>
+		sb_<%=cid%>.append("<%=cid%>_LOOKUP = LOAD '" + "s3a://" + <%=s3username%> +":" + decryptedS3Password_<%=cid%> + 
+					"@" + <%=s3bucket%> + "' using PigStorage('"+<%=lookup_separator%>+"')");
+<%
+    } else {
+%>
 		sb_<%=cid%>.append("<%=cid%>_LOOKUP = load '"+<%=lookup_filename%>+"' using PigStorage('"+<%=lookup_separator%>+"')");
+<%
+    }
+%>
+		
 		String schema_<%=cid%>="";
 <%
 		List<IMetadataTable> metadatas = node.getMetadataList();
