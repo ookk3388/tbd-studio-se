@@ -202,7 +202,6 @@
 		}
 
 		if(generateRegisterJarCodeForParquetFile) {
-			jarsToRegister.add("parquet-pig-bundle");
 			jarsToRegister.add("parquet-pig");
 			jarsToRegister.add("snappy-java");
 		}
@@ -1057,7 +1056,7 @@
                     }
 				}
 
-				if(metadata!=null) {
+				if (metadata != null) {
 					if(metadata.getListColumns() != null && metadata.getListColumns().size() > 0) {
 						if (!isParquet) {
 %>
@@ -1077,6 +1076,20 @@
 %>
 						sb_<%=cid%>.append(")");
 <%
+					} else {
+						if (isParquet) {
+						%>
+							sb_<%=cid%>.deleteCharAt(sb_<%=cid%>.length() - 1);
+							sb_<%=cid%>.append(")");
+						<%
+						}
+					}
+				} else {
+					if (isParquet) {
+				%>
+						sb_<%=cid%>.deleteCharAt(sb_<%=cid%>.length() - 1);
+						sb_<%=cid%>.append(")");
+				<%
 					}
 				}
 			}
