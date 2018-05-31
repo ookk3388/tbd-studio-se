@@ -21,10 +21,10 @@ import org.talend.hadoop.distribution.qubole.QuboleConstant;
 public class QuboleHDFSModuleGroup {
 
     public static Set<DistributionModuleGroup> getModuleGroups() {
-        Set<DistributionModuleGroup> hs = new HashSet<>();
-        DistributionModuleGroup dmg = new DistributionModuleGroup(QuboleConstant.HDFS_MODULE_GROUP.getModuleName());
-        hs.add(dmg);
-        return hs;
+        Set<DistributionModuleGroup> moduleGroups = new HashSet<>();
+        DistributionModuleGroup moduleGroup = new DistributionModuleGroup(QuboleConstant.HDFS_MODULE_GROUP.getModuleName());
+        moduleGroups.add(moduleGroup);
+        return moduleGroups;
     }
 
 }
