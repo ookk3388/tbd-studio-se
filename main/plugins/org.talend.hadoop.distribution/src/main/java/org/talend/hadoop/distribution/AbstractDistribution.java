@@ -337,4 +337,8 @@ public abstract class AbstractDistribution {
     public boolean useOldAWSAPI() {
         return true;
     }
+
+    public String getWinUtilsName() {
+    	return EWinUtilsName.WINUTILS_HADOOP_2_6.toString();
+    };
 }
