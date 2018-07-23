@@ -3,7 +3,7 @@
 	"name": "Hortonworks HDP2.X.X template",
 	"distribution": "HORTONWORKS",
 	"templateId": "HDP2xxDistributionTemplate",
-	"baseVersion": "2.4.0",
+	"baseVersion": "2.5.0",
 	"topVersion": "3.0.0",
 	"dynamicVersion": "will be filled during runtime",
 	"properties": {
@@ -11,6 +11,7 @@
 	},
 	"description": "",
 	"supportedSparkVersions": [
+        "SPARK_2_0",
         "SPARK_2_1",
         "SPARK_2_2",
         "SPARK_2_3"
@@ -50,6 +51,24 @@
 				{
 					"groupId": "org.mortbay.jetty",
 					"artifactId": "jetty-sslengine",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
+			"id": "hadoop-aws",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.hadoop",
+			"artifactId": "hadoop-aws",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -522,17 +541,100 @@
 			"description": "",
 			"exclusions": [
 			]
+		},
+		{
+			"id": "spark-yarn_2.11",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-yarn_2.11",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
+			"id": "spark-hive_2.11",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-hive_2.11",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
+			"id": "spark-mllib_2.11",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-mllib_2.11",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
+			"id": "aws-java-sdk-dynamodb",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "com.amazonaws",
+			"artifactId": "aws-java-sdk-dynamodb",
+			"version": "1.10.6",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+			]
+		},
+		{
+			"id": "emr-core-2.4.0",
+			"type": "STANDARD",
+			"context": "{properties.context}",
+			"jarName": "emr-core-2.4.0.jar",
+			"mvnUri": "mvn:org.talend.libraries/emr-core-2.4.0/6.0.0",
+			"useStudioRepository": "true",
+			"description": ""
+		},
+		{
+			"id": "emr-ddb-hadoop-3.0.0",
+			"type": "STANDARD",
+			"context": "{properties.context}",
+			"jarName": "emr-ddb-hadoop-3.0.0.jar",
+			"mvnUri": "mvn:org.talend.libraries/emr-ddb-hadoop-3.0.0/6.2.0",
+			"useStudioRepository": "true",
+			"description": ""
 		}
 	],
 	"moduleGroups": [
 		{
-			"id": "EXAMPLE-SPARK-RELATED-MODULE-GROUP-DYNAMIC",
+			"id": "SPARK-LIB-SPARK2-DYNAMIC",
 			"description": "",
-			"supportedSparkVersions": [
-                "SPARK_2_2",
-                "SPARK_2_3"
-            ],
 			"modules": [
+				"spark-hive_2.11",
+				"spark-mllib_2.11",
+				"spark-yarn_2.11"
 			]
 		},
 		{
@@ -540,7 +642,8 @@
 			"description": "jars for hdfs, only module.id permitted",
 			"modules": [
 				"commons-lang3-3.4",
-				"hadoop-client"
+				"hadoop-client",
+				"hadoop-aws"
 			]
 		},
 		{
@@ -674,6 +777,15 @@
 			"modules": [
 				"tez-dag",
 				"tez-mapreduce"
+			]
+		},
+		{
+			"id": "SPARK-DYNAMODB-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"emr-core-2.4.0",
+				"emr-ddb-hadoop-3.0.0",
+				"aws-java-sdk-dynamodb"
 			]
 		}
 	],

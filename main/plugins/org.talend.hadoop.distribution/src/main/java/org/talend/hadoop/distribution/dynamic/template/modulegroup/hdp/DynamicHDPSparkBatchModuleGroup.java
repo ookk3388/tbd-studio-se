@@ -44,7 +44,9 @@ public class DynamicHDPSparkBatchModuleGroup extends DynamicSparkBatchModuleGrou
             moduleGroups.addAll(moduleGroupsFromSuper);
         }
         DynamicPluginAdapter pluginAdapter = getPluginAdapter();
-
+        
+        String spark2RuntimeId = pluginAdapter
+                .getRuntimeModuleGroupIdByTemplateId(DynamicModuleGroupConstant.SPARK2_MODULE_GROUP.getModuleName());
         String sparkMRRequiredRuntimeId = pluginAdapter
                 .getRuntimeModuleGroupIdByTemplateId(DynamicModuleGroupConstant.SPARK_MRREQUIRED_MODULE_GROUP.getModuleName());
         String hdfsRuntimeId = pluginAdapter
@@ -56,6 +58,7 @@ public class DynamicHDPSparkBatchModuleGroup extends DynamicSparkBatchModuleGrou
         String atlasSpark2RuntimeId = pluginAdapter
                 .getRuntimeModuleGroupIdByTemplateId(DynamicModuleGroupConstant.ATLAS_SPARK_2_MODULE_GROUP.getModuleName());
 
+        checkRuntimeId(spark2RuntimeId);
         checkRuntimeId(sparkMRRequiredRuntimeId);
         checkRuntimeId(hdfsRuntimeId);
         checkRuntimeId(mapReduceRuntimeId);
@@ -66,6 +69,7 @@ public class DynamicHDPSparkBatchModuleGroup extends DynamicSparkBatchModuleGrou
         ComponentCondition atlasSpark1x = new MultiComponentCondition(useAtlas, BooleanOperator.AND, conditionSpark1);
         ComponentCondition atlasSpark2x = new MultiComponentCondition(useAtlas, BooleanOperator.AND, conditionSpark2);
 
+        moduleGroups.add(new DistributionModuleGroup(spark2RuntimeId, true, null));
         moduleGroups.add(new DistributionModuleGroup(sparkMRRequiredRuntimeId, true, conditionSpark1));
         moduleGroups.add(new DistributionModuleGroup(sparkMRRequiredRuntimeId, true, conditionSpark2));
         moduleGroups.add(new DistributionModuleGroup(hdfsRuntimeId, false, conditionSpark1));
