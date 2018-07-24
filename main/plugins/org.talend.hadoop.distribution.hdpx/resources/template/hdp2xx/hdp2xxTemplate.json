@@ -50,7 +50,7 @@
 			"exclusions": [
 				{
 					"groupId": "org.mortbay.jetty",
-					"artifactId": "jetty-sslengine",
+					"artifactId": "*",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -68,6 +68,13 @@
 			"exclusions": [
 				{
 					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "org.mortbay.jetty",
 					"artifactId": "*",
 					"classifier": "",
 					"extension": "",
