@@ -632,6 +632,31 @@
 			"mvnUri": "mvn:org.talend.libraries/emr-ddb-hadoop-3.0.0/6.2.0",
 			"useStudioRepository": "true",
 			"description": ""
+		},
+		{
+			"id": "hadoop-azure-datalake",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.hadoop",
+			"artifactId": "hadoop-azure-datalake",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
 		}
 	],
 	"moduleGroups": [
@@ -793,6 +818,13 @@
 				"emr-core-2.4.0",
 				"emr-ddb-hadoop-3.0.0",
 				"aws-java-sdk-dynamodb"
+			]
+		},
+		{
+			"id": "SPARK-AZURE-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"hadoop-azure-datalake"
 			]
 		}
 	],
