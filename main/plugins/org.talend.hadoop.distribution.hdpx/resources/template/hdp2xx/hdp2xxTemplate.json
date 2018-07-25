@@ -582,6 +582,32 @@
 			]
 		},
 		{
+			"id": "spark-streaming-kinesis-asl_2.11",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-streaming-kinesis-asl_2.11",
+			"version": "2.1.0",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
 			"id": "spark-hive_2.11",
 			"type": "BASE",
 			"context": "{properties.context}",
@@ -684,6 +710,18 @@
 					"extension": "",
 					"description": ""
 				}
+			]
+		},
+		{
+			"id": "amazon-kinesis-client",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "com.amazonaws",
+			"artifactId": "amazon-kinesis-client",
+			"version": "1.6.2",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
 			]
 		}
 	],
@@ -853,6 +891,14 @@
 			"description": "",
 			"modules": [
 				"hadoop-azure-datalake"
+			]
+		},
+		{
+			"id": "SPARK2-KINESIS-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"spark-streaming-kinesis-asl_2.11",
+				"amazon-kinesis-client"
 			]
 		}
 	],
