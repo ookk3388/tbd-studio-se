@@ -547,6 +547,13 @@
 			"classifier": "",
 			"description": "",
 			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
 			]
 		},
 		{
@@ -558,6 +565,13 @@
 			"classifier": "",
 			"description": "",
 			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
 				{
 					"groupId": "jdk.tools",
 					"artifactId": "*",
@@ -577,6 +591,13 @@
 			"description": "",
 			"exclusions": [
 				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
 					"groupId": "jdk.tools",
 					"artifactId": "*",
 					"classifier": "",
@@ -594,6 +615,13 @@
 			"classifier": "",
 			"description": "",
 			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
 				{
 					"groupId": "jdk.tools",
 					"artifactId": "*",
