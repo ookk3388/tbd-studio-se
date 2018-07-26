@@ -267,9 +267,9 @@
         <!-- Third parties libraries -->
         <libraryNeeded
             context="plugin:org.talend.hadoop.distribution.cdh570"
-            id="avro-cdh5.7.0"
-            name="avro-1.7.6-cdh5.7.0.jar"
-            mvn_uri="mvn:org.talend.libraries/avro-1.7.6-cdh5.7.0/6.1.0">
+            id="avro-cdh5.7.1"
+            name="avro-1.7.6-cdh5.7.1.jar"
+            mvn_uri="mvn:org.apache.avro/avro/1.7.6-cdh5.7.1">
         </libraryNeeded>
         
         <libraryNeeded
@@ -548,7 +548,7 @@
              <library id="commons-cli-1.2.jar" />
              <library id="commons-collections-3.2.2.jar" />
              <library id="commons-codec-1.9.jar" /> <!-- This jar is required for HDFS SSL connection-->
-             <library id="avro-cdh5.7.0" />
+             <library id="avro-cdh5.7.1" />
              <library id="guava-12.0.1.jar" />
              <library id="protobuf-java-2.5.0.jar" />
              <library id="slf4j-api-1.7.5.jar" />
@@ -683,7 +683,7 @@
                 description="Pig Avro libraries for CDH 5.5"
                 id="PIG-AVRO-LIB-CDH_5_7"
                 name="PIG-AVRO-LIB-CDH_5_7">
-            <library id="avro-cdh5.7.0" />
+            <library id="avro-cdh5.7.1" />
             <library id="commons-io-2.4.jar"/>
             <library id="piggybank-cdh5.4.jar"/>
         </libraryNeededGroup>
@@ -887,7 +887,7 @@
                 description="Spark Kafka Avro libraries for CDH 5.5 that are MRREQUIRED"
                 id="SPARK-KAFKA-AVRO-LIB-MRREQUIRED-CDH_5_7"
                 name="SPARK-KAFKA-AVRO-LIB-MRREQUIRED-CDH_5_7">
-            <library id="avro-cdh5.7.0"/>
+            <library id="avro-cdh5.7.1"/>
             <library id="jackson-mapper-asl-1.8.8.jar" />
             <library id="jackson-core-asl-1.8.8.jar" />
         </libraryNeededGroup>
