@@ -658,6 +658,31 @@
 			]
 		},
 		{
+			"id": "spark-streaming-kafka",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.spark",
+			"artifactId": "spark-streaming-kafka-0-10_2.11",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
 			"id": "aws-java-sdk-dynamodb",
 			"type": "BASE",
 			"context": "{properties.context}",
@@ -713,6 +738,31 @@
 			]
 		},
 		{
+			"id": "hadoop-azure",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.hadoop",
+			"artifactId": "hadoop-azure",
+			"classifier": "",
+			"description": "",
+			"exclusions": [
+				{
+					"groupId": "org.mortbay.jetty",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
+			]
+		},
+		{
 			"id": "amazon-kinesis-client",
 			"type": "BASE",
 			"context": "{properties.context}",
@@ -723,6 +773,25 @@
 			"description": "",
 			"exclusions": [
 			]
+		},
+		{
+			"id": "kafka-clients",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.kafka",
+			"artifactId": "kafka-clients",
+			"classifier": "",
+			"description": ""
+		},
+		{
+			"id": "jetty-util",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.mortbay.jetty",
+			"artifactId": "jetty-util",
+			"version": "6.1.21",
+			"classifier": "",
+			"description": ""
 		}
 	],
 	"moduleGroups": [
@@ -732,7 +801,10 @@
 			"modules": [
 				"spark-hive_2.11",
 				"spark-mllib_2.11",
-				"spark-yarn_2.11"
+				"spark-yarn_2.11",
+				"hadoop-azure-datalake",
+				"hadoop-azure",
+				"jetty-util"
 			]
 		},
 		{
@@ -899,6 +971,20 @@
 			"modules": [
 				"spark-streaming-kinesis-asl_2.11",
 				"amazon-kinesis-client"
+			]
+		},
+		{
+			"id": "SPARK-KAFKA-ASSEMBLY-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"spark-streaming-kafka"
+			]
+		},
+		{
+			"id": "SPARK-KAFKA-CLIENT-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"kafka-clients"
 			]
 		}
 	],
