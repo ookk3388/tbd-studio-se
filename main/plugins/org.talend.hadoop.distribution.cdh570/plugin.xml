@@ -229,9 +229,9 @@
         <!-- Spark libraries -->
         <libraryNeeded
             context="plugin:org.talend.hadoop.distribution.cdh570"
-            id="spark-assembly-cdh5.7.0"
-            name="talend-spark-assembly-1.6.0-hadoop2.6.0-cdh5.7.0.jar"
-            mvn_uri="mvn:org.talend.libraries/talend-spark-assembly-1.6.0-hadoop2.6.0-cdh5.7.0/6.1.0">
+            id="spark-assembly-cdh5.7.1"
+            name="talend-spark-assembly-1.6.0-hadoop2.6.0-cdh5.7.1-with-hive-07272018-6.1.0.jar"
+            mvn_uri="mvn:org.talend.libraries/talend-spark-assembly-1.6.0-hadoop2.6.0-cdh5.7.1-with-hive-07272018/6.1.0">
         </libraryNeeded>
         
         <libraryNeeded
@@ -246,7 +246,7 @@
             context="plugin:org.talend.libraries.apache"
             id="avro-mapred-cdh5.7.1"
             name="avro-mapred-1.7.6-cdh5.7.1-hadoop2.jar"
-            mvn_uri="mvn:org.apache.avro/aavro-mapred/1.7.6-cdh5.7.1">
+            mvn_uri="mvn:org.apache.avro/avro-mapred/1.7.6-cdh5.7.1">
         </libraryNeeded>        
         
         <libraryNeeded
@@ -767,7 +767,7 @@
                 description="Spark libraries for CDH 5.5"
                 id="SPARK-LIB-CDH_5_7"
                 name="SPARK-LIB-CDH_5_7">
-             <library id="spark-assembly-cdh5.7.0" />
+             <library id="spark-assembly-cdh5.7.1" />
              <library id="jersey-server-1.14.jar" />
              <library id="jersey-servlet-1.14.jar" />
              <library id="jackson-databind-2.3.1.jar" />
