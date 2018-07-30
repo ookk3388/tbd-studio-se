@@ -17,6 +17,13 @@ import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.talend.hadoop.distribution.DistributionModuleGroup;
+import org.talend.hadoop.distribution.ESparkVersion;
+import org.talend.hadoop.distribution.condition.BooleanOperator;
+import org.talend.hadoop.distribution.condition.EqualityOperator;
+import org.talend.hadoop.distribution.condition.LinkedNodeExpression;
+import org.talend.hadoop.distribution.condition.MultiComponentCondition;
+import org.talend.hadoop.distribution.condition.NestedComponentCondition;
+import org.talend.hadoop.distribution.condition.SimpleComponentCondition;
 import org.talend.hadoop.distribution.condition.common.SparkStreamingLinkedNodeCondition;
 import org.talend.hadoop.distribution.constants.SparkStreamingConstant;
 import org.talend.hadoop.distribution.dynamic.adapter.DynamicPluginAdapter;
@@ -31,6 +38,14 @@ public class DynamicHDPSparkStreamingKinesisNodeModuleGroup extends DynamicSpark
 
     public DynamicHDPSparkStreamingKinesisNodeModuleGroup(DynamicPluginAdapter pluginAdapter) {
         super(pluginAdapter);
+    }
+    
+    @Override
+    protected void init() {
+        spark2Condition = new SimpleComponentCondition(
+                new LinkedNodeExpression(SparkStreamingConstant.SPARK_STREAMING_SPARKCONFIGURATION_LINKEDPARAMETER,
+                        "SUPPORTED_SPARK_VERSION", EqualityOperator.EQ, //$NON-NLS-1$
+                        ESparkVersion.SPARK_2_1.getSparkVersion()));
     }
 
     @Override
@@ -47,11 +62,11 @@ public class DynamicHDPSparkStreamingKinesisNodeModuleGroup extends DynamicSpark
 
         checkRuntimeId(spark2KinesisMrRequiredRuntimeId);
 
-        if (StringUtils.isNotBlank(spark1KinesisMrRequiredRuntimeId)) {
-            DistributionModuleGroup dmgSpark1 = new DistributionModuleGroup(spark1KinesisMrRequiredRuntimeId, true,
+        if (StringUtils.isNotBlank(spark2KinesisMrRequiredRuntimeId)) {
+            DistributionModuleGroup dmgSpark1 = new DistributionModuleGroup(spark2KinesisMrRequiredRuntimeId, true,
                     new NestedComponentCondition(new MultiComponentCondition(
                             new SparkStreamingLinkedNodeCondition(distribution, version).getCondition(), BooleanOperator.AND,
-                            spark1Condition)));
+                            spark2Condition)));
             moduleGroups.add(dmgSpark1);
         }
         return moduleGroups;

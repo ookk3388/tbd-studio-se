@@ -801,10 +801,7 @@
 			"modules": [
 				"spark-hive_2.11",
 				"spark-mllib_2.11",
-				"spark-yarn_2.11",
-				"hadoop-azure-datalake",
-				"hadoop-azure",
-				"jetty-util"
+				"spark-yarn_2.11"
 			]
 		},
 		{
@@ -962,7 +959,9 @@
 			"id": "SPARK-AZURE-LIB-MRREQUIRED-DYNAMIC",
 			"description": "",
 			"modules": [
-				"hadoop-azure-datalake"
+				"hadoop-azure-datalake",
+				"hadoop-azure",
+				"jetty-util"
 			]
 		},
 		{
