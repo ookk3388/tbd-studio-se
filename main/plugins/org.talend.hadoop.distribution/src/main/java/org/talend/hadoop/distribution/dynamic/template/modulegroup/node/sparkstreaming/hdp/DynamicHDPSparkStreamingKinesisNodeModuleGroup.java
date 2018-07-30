@@ -15,6 +15,7 @@ package org.talend.hadoop.distribution.dynamic.template.modulegroup.node.sparkst
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.talend.hadoop.distribution.DistributionModuleGroup;
 import org.talend.hadoop.distribution.condition.common.SparkStreamingLinkedNodeCondition;
 import org.talend.hadoop.distribution.constants.SparkStreamingConstant;
@@ -46,10 +47,13 @@ public class DynamicHDPSparkStreamingKinesisNodeModuleGroup extends DynamicSpark
 
         checkRuntimeId(spark2KinesisMrRequiredRuntimeId);
 
-        DistributionModuleGroup dmgSpark2 = new DistributionModuleGroup(spark2KinesisMrRequiredRuntimeId, true, 
-                new SparkStreamingLinkedNodeCondition(
-                        distribution, version, SparkStreamingConstant.KAFKA_SPARKCONFIGURATION_LINKEDPARAMETER).getCondition());
-        moduleGroups.add(dmgSpark2);
+        if (StringUtils.isNotBlank(spark1KinesisMrRequiredRuntimeId)) {
+            DistributionModuleGroup dmgSpark1 = new DistributionModuleGroup(spark1KinesisMrRequiredRuntimeId, true,
+                    new NestedComponentCondition(new MultiComponentCondition(
+                            new SparkStreamingLinkedNodeCondition(distribution, version).getCondition(), BooleanOperator.AND,
+                            spark1Condition)));
+            moduleGroups.add(dmgSpark1);
+        }
         return moduleGroups;
     }
 }
