@@ -347,6 +347,11 @@
             <library id="jackson-xc-1.9.13.jar" />
             <library id="javax.inject-2.2.0-b21.jar" />
         </libraryNeededGroup>
+        
+        <!-- MapReduce group -->
+        <libraryNeededGroup description="MapReduce libraries for Qubole" id="MAP-REDUCE-LIB-QUBOLE" name="MAP-REDUCE-LIB-QUBOLE">
+            
+        </libraryNeededGroup>
 
         <!-- S3 sdk group -->
         <libraryNeededGroup description="s3 sdk and its dependencies" id="S3-LIB-QUBOLE" name="S3-LIB-QUBOLE">

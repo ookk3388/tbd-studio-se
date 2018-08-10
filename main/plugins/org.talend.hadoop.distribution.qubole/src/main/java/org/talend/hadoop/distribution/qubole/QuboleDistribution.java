@@ -25,6 +25,7 @@ import org.talend.hadoop.distribution.EHadoopVersion;
 import org.talend.hadoop.distribution.ESparkVersion;
 import org.talend.hadoop.distribution.NodeComponentTypeBean;
 import org.talend.hadoop.distribution.component.HiveComponent;
+import org.talend.hadoop.distribution.component.MRComponent;
 import org.talend.hadoop.distribution.component.PigComponent;
 import org.talend.hadoop.distribution.component.SparkBatchComponent;
 import org.talend.hadoop.distribution.component.SparkStreamingComponent;
@@ -34,16 +35,19 @@ import org.talend.hadoop.distribution.constants.SparkBatchConstant;
 import org.talend.hadoop.distribution.constants.SparkStreamingConstant;
 import org.talend.hadoop.distribution.constants.qubole.IQuboleDistribution;
 import org.talend.hadoop.distribution.qubole.modulegroup.QuboleHiveModuleGroup;
+import org.talend.hadoop.distribution.qubole.modulegroup.QuboleMapReduceModuleGroup;
 import org.talend.hadoop.distribution.qubole.modulegroup.QubolePigModuleGroup;
 import org.talend.hadoop.distribution.qubole.modulegroup.QubolePigOutputModuleGroup;
 import org.talend.hadoop.distribution.qubole.modulegroup.QuboleSparkBatchModuleGroup;
 import org.talend.hadoop.distribution.qubole.modulegroup.QuboleSparkStreamingModuleGroup;
 
-public class QuboleDistribution extends AbstractDistribution implements SparkBatchComponent, SparkStreamingComponent, PigComponent, HiveComponent, IQuboleDistribution {
+public class QuboleDistribution extends AbstractDistribution implements MRComponent, SparkBatchComponent, SparkStreamingComponent, 
+                                        PigComponent, HiveComponent, IQuboleDistribution {
 
     private final static String YARN_APPLICATION_CLASSPATH = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,$YARN_HOME/*,$YARN_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*";
     public final static String VERSION = "Qubole cloud distribution";
     public static final String VERSION_DISPLAY = "Qubole cloud distribution";
+    public static final String MAPREDUCE_VERSION = "Qubole Hadoop 2 MapReduce";
     public static final String HIVE_VERSION = "Qubole Hadoop 2 (Hive 2.1.1 Beta)";
     public static final String PIG_VERSION = "Qubole Hadoop 2";
     public static final String SPARK_VERISON = "Qubole Spark 2";
@@ -65,6 +69,7 @@ public class QuboleDistribution extends AbstractDistribution implements SparkBat
 
     protected Map<ComponentType, String> buildCustomVersionDisplayNames() {
         Map<ComponentType, String> result = new HashMap<>();
+        result.put(ComponentType.MAPREDUCE, MAPREDUCE_VERSION);
         result.put(ComponentType.HIVE, HIVE_VERSION);
         result.put(ComponentType.PIG, PIG_VERSION);
         result.put(ComponentType.PIGOUTPUT, PIG_VERSION);
@@ -81,6 +86,7 @@ public class QuboleDistribution extends AbstractDistribution implements SparkBat
         componentsMap.put(ComponentType.HIVE, QuboleHiveModuleGroup.getModuleGroups());
         componentsMap.put(ComponentType.PIG, QubolePigModuleGroup.getModuleGroups());
         componentsMap.put(ComponentType.PIGOUTPUT, QubolePigOutputModuleGroup.getModuleGroups());
+        componentsMap.put(ComponentType.MAPREDUCE, QuboleMapReduceModuleGroup.getModuleGroups());
         componentsMap.put(ComponentType.SPARKBATCH, QuboleSparkBatchModuleGroup.getModuleGroups());
         componentsMap.put(ComponentType.SPARKSTREAMING, QuboleSparkStreamingModuleGroup.getModuleGroups());
         return componentsMap;
