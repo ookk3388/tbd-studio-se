@@ -73,8 +73,16 @@ imports="
 			List<Map<String,String>> familyParameters = (List<Map<String,String>>)ElementParameterParser.getObjectValue(node,"__FAMILY_PARAMETERS__");
 			String table_name = ElementParameterParser.getValue(node, "__TABLE__");
 			String cid = node.getUniqueName();
+			if (!hbaseDistrib.doSupportHBase2x()) {
 %>
-			org.apache.hadoop.hbase.HTableDescriptor tableDes_<%=cid%> = new org.apache.hadoop.hbase.HTableDescriptor(<%=table_name%>);
+                org.apache.hadoop.hbase.HTableDescriptor tableDes_<%=cid%> = new org.apache.hadoop.hbase.HTableDescriptor(<%=table_name%>);
+<%
+			} else {
+%>			
+                org.apache.hadoop.hbase.client.TableDescriptorBuilder tableDesBuilder_<%=cid%> = org.apache.hadoop.hbase.client.TableDescriptorBuilder.newBuilder(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+<%
+			}
+%>
 			org.apache.hadoop.hbase.HColumnDescriptor family_<%=cid%> = null;
 <%
 			for(int familyParamNum=0;familyParamNum<familyParameters.size();familyParamNum++){
@@ -156,10 +164,24 @@ imports="
 					family_<%=cid%>.setTimeToLive(<%=family_timetolive%>);
 <%
 				}
+				if (!hbaseDistrib.doSupportHBase2x()) {
 %>
-				tableDes_<%=cid%>.addFamily(family_<%=cid%>);
+				    tableDes_<%=cid%>.addFamily(family_<%=cid%>);
+<% 
+				} else {
+%>
+                    tableDesBuilder_<%=cid%>.addColumnFamily(family_<%=cid%>);
 <%
+				}
 			}//for(int familyParamNum=0;familyParamNum<familyParameters.size();familyParamNum++)
+
+
+        // Build table descriptor (HBase 2.x only)
+        if (hbaseDistrib.doSupportHBase2x()) {
+%>
+            org.apache.hadoop.hbase.client.TableDescriptor tableDes_<%=cid%> = tableDesBuilder_<%=cid%>.build();
+<%
+        }
 %>
 		admin_<%=cid%>.createTable(tableDes_<%=cid%>);
 <%
@@ -167,12 +189,21 @@ imports="
 		public void generateDropTable(INode node){
 			String cid = node.getUniqueName();
 			String table_name = ElementParameterParser.getValue(node, "__TABLE__");
+			if (!hbaseDistrib.doSupportHBase2x()) {
 %>
 		if(!admin_<%=cid %>.isTableDisabled(<%=table_name%>)){
 			admin_<%=cid %>.disableTable(<%=table_name%>);
 		}
 			admin_<%=cid %>.deleteTable(<%=table_name%>);
 <%
+			} else {
+%>
+        if(!admin_<%=cid %>.isTableDisabled(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>))){ // LAURENT
+            admin_<%=cid %>.disableTable(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+        }
+            admin_<%=cid %>.deleteTable(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+<%
+			}
 		}
 	}
 	GenerateCode generateCode = new GenerateCode(isCustom, isHadoop2, hbaseDistrib);
@@ -303,9 +334,15 @@ if(hbaseDistrib.doSupportMapRDB() && useTableNsMapping){
 
 String table_action = ElementParameterParser.getValue(node, "__TABLE_ACTION__");
 if(!"NONE".equals(table_action)){
+    if (!hbaseDistrib.doSupportHBase2x()){
 %>
 	org.apache.hadoop.hbase.client.HBaseAdmin admin_<%=cid %> = new org.apache.hadoop.hbase.client.HBaseAdmin(conn_<%=cid %>);
 <%
+    } else {
+%>
+    org.apache.hadoop.hbase.client.Admin admin_<%=cid %> = org.apache.hadoop.hbase.client.ConnectionFactory.createConnection(conn_<%=cid %>).getAdmin();
+<%
+    }
 }
 if("NONE".equals(table_action)){
 }else if("CREATE".equals(table_action)){
@@ -314,8 +351,13 @@ if("NONE".equals(table_action)){
 	generateCode.generateDropTable(node);
 	generateCode.generateCreateTable(node);
 }else if("CREATE_IF_NOT_EXISTS".equals(table_action)){
+    if (!hbaseDistrib.doSupportHBase2x()){
 %>
-	boolean tableExist_<%=cid %> = admin_<%=cid %>.tableExists(<%=table_name%>);
+        boolean tableExist_<%=cid %> = admin_<%=cid %>.tableExists(<%=table_name%>);
+<%  } else { %>
+        boolean tableExist_<%=cid %> = admin_<%=cid %>.tableExists(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+
+<%  }%>
 	if(!tableExist_<%=cid %>){
 <%
 		generateCode.generateCreateTable(node);
@@ -323,8 +365,14 @@ if("NONE".equals(table_action)){
 	}
 <%
 }else if("DROP_IF_EXISTS_AND_CREATE".equals(table_action)){
+    if (!hbaseDistrib.doSupportHBase2x()){
 %>
-	boolean tableExist_<%=cid %> = admin_<%=cid %>.tableExists(<%=table_name%>);
+        boolean tableExist_<%=cid %> = admin_<%=cid %>.tableExists(<%=table_name%>);
+<%  } else { %>
+
+        boolean tableExist_<%=cid %> = admin_<%=cid %>.tableExists(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+<%  }%>
+
 	if(tableExist_<%=cid %>){
 <%
 		generateCode.generateDropTable(node); 
@@ -333,9 +381,19 @@ if("NONE".equals(table_action)){
 <%
 	generateCode.generateCreateTable(node);
 }
+if (!hbaseDistrib.doSupportHBase2x()) {
 %>
-org.apache.hadoop.hbase.client.HTable table_<%=cid%> = null;
-table_<%=cid%> = new org.apache.hadoop.hbase.client.HTable(conn_<%=cid %>,<%=table_name%>);
+    org.apache.hadoop.hbase.client.HTable table_<%=cid%> = null;
+    table_<%=cid%> = new org.apache.hadoop.hbase.client.HTable(conn_<%=cid %>,<%=table_name%>);
+<%
+} else { 
+%>
+    // LAURENT
+    org.apache.hadoop.hbase.client.Table table_<%=cid%> = org.apache.hadoop.hbase.client.ConnectionFactory.createConnection(conn_<%=cid %>).getTable(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+<%
+}
+%>
+
 byte[] temp_<%=cid %> = null;
 
 <%
