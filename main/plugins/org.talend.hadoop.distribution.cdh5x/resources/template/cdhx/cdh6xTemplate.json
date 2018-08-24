@@ -71,6 +71,14 @@
 			"classifier": "",
 			"description": ""
 		},
+        {
+            "id": "talend-lineage-api",
+            "type": "STANDARD",
+            "context": "{properties.context}",
+            "jarName": "talend-lineage-api-0.2.0.jar",
+            "mvnUri": "mvn:org.talend.libraries/talend-lineage-api-0.2.0/6.0.0",
+            "useStudioRepository": "true"
+        },
 		{
 			"id": "cloudera-navigator",
 			"type": "BASE",
@@ -177,6 +185,14 @@
 				}
 			]
 		},
+		{
+            "id": "elephant-bird-rcfile",
+            "type": "STANDARD",
+            "context": "{properties.context}",
+            "jarName": "elephant-bird-rcfile-4.9-patched-hive-1.x.jar",
+            "mvnUri": "mvn:org.talend.libraries/elephant-bird-rcfile-4.9-patched-hive-1.x/6.0.0",
+            "useStudioRepository": "true"
+        },
 		{
 			"id": "hadoop-azure",
 			"type": "BASE",
@@ -901,7 +917,7 @@
 				"hbase-server",
 				"hbase-hadoop-compat",
 				"hive-hbase-handler",
-				"parquet-avro",
+				"parquet-avro"
 			]
 		},
         {
@@ -909,7 +925,7 @@
 			"description": "",
 			"modules": [
 				"hadoop-client",
-				"hbase-client",
+				"hbase-client"
 			]
 		},
 		{
