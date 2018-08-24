@@ -12,12 +12,10 @@
 // ============================================================================
 package org.talend.hadoop.distribution.cdh6x;
 
-import org.talend.hadoop.distribution.cdh5x.CDH5xDistributionTemplate;
 import org.talend.hadoop.distribution.component.HBaseComponent;
 import org.talend.hadoop.distribution.component.HCatalogComponent;
 import org.talend.hadoop.distribution.component.HDFSComponent;
 import org.talend.hadoop.distribution.component.HiveComponent;
-import org.talend.hadoop.distribution.component.HiveOnSparkComponent;
 import org.talend.hadoop.distribution.component.ImpalaComponent;
 import org.talend.hadoop.distribution.component.MRComponent;
 import org.talend.hadoop.distribution.component.PigComponent;
@@ -139,4 +137,8 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
 		return true;
 	}
 
+    @Override
+    public boolean doSupportHBase2x() {
+        return true;
+    }
 }
