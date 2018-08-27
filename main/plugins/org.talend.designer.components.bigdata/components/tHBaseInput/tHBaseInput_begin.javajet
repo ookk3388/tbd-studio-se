@@ -345,8 +345,16 @@ if ((metadatas!=null) && (metadatas.size() > 0)) {
 			scan_<%=cid %>.setFilter(filterList_<%=cid%>);
 <%
 		}
+		if (!hbaseDistrib.doSupportHBase2x()) {
 %>		
-		org.apache.hadoop.hbase.client.HTable table_<%=cid %> = new org.apache.hadoop.hbase.client.HTable(conn_<%=cid %>, <%=table_name%>);
+		    org.apache.hadoop.hbase.client.HTable table_<%=cid %> = new org.apache.hadoop.hbase.client.HTable(conn_<%=cid %>, <%=table_name%>);
+<% 
+		} else { 
+%>
+            org.apache.hadoop.hbase.client.Table table_<%=cid%> = org.apache.hadoop.hbase.client.ConnectionFactory.createConnection(conn_<%=cid %>).getTable(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
+<% 
+        }
+%>
 		String temp_<%=cid %>=null;
 		byte[] rowResult_<%=cid %> = null;
 		org.apache.hadoop.hbase.client.ResultScanner scanner_<%=cid %> = table_<%=cid %>.getScanner(scan_<%=cid %>);
