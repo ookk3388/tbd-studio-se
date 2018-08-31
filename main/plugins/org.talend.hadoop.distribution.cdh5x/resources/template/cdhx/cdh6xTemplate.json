@@ -279,7 +279,14 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                }
+                },
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }                
 			]
 		},
 		{
@@ -347,7 +354,14 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				}
+				},
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
 			]
 		},
 		{
