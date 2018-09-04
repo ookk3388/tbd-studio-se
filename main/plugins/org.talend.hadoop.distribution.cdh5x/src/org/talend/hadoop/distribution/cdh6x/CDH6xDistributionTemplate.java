@@ -33,6 +33,8 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
 
     public final static String TEMPLATE_ID = "CDH6xDistributionTemplate";
 
+    private final static String YARN_APPLICATION_CLASSPATH = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,$YARN_HOME/*,$YARN_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*"; //$NON-NLS-1$
+
     public CDH6xDistributionTemplate(DynamicPluginAdapter pluginAdapter) throws Exception {
         super(pluginAdapter);
     }
@@ -140,5 +142,10 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
     @Override
     public boolean doSupportHBase2x() {
         return true;
+    }
+
+    @Override
+    public String getYarnApplicationClasspath() {
+        return YARN_APPLICATION_CLASSPATH;
     }
 }
