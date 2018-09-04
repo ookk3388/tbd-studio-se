@@ -148,4 +148,9 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
     public String getYarnApplicationClasspath() {
         return YARN_APPLICATION_CLASSPATH;
     }
+
+    @Override
+    public short orderingWeight() {
+        return 15;
+    }
 }
