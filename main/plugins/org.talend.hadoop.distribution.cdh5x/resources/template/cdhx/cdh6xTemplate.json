@@ -990,6 +990,39 @@
 			"context": "{properties.context}",
 			"jarName": "commons-codec-1.10.jar",
 			"description": ""
+		},
+		{
+			"id": "json-20080701",
+			"type": "STANDARD",
+			"context": "{properties.context}",
+			"groupId": "org.json",
+			"artifactId": "json",
+			"version": "20080701",
+			"mvnUri": "mvn:org.json/json/20080701",
+			"useStudioRepository": "true",
+			"description": ""
+		},
+		{
+			"id": "jackson-core",
+			"type": "STANDARD",
+			"context": "{properties.context}",
+			"groupId": "com.fasterxml.jackson.core",
+			"artifactId": "jackson-core",
+			"version": "2.9.2",
+			"mvnUri": "mvn:com.fasterxml.jackson.core/jackson-core/2.9.2",
+			"useStudioRepository": "true",
+			"description": ""
+		},
+		{
+			"id": "jackson-databind",
+			"type": "STANDARD",
+			"context": "{properties.context}",
+			"groupId": "com.fasterxml.jackson.core",
+			"artifactId": "jackson-databind",
+			"version": "2.9.2",
+			"mvnUri": "mvn:com.fasterxml.jackson.core/jackson-databind/2.9.2",
+			"useStudioRepository": "true",
+			"description": ""
 		}
     ],
     "moduleGroups": [
@@ -1163,7 +1196,11 @@
 			"description": "",
 			"modules": [
 				"avro-mapred",
-				"sqoop_only"
+				"sqoop_only",
+				"json-20080701",
+				"commons-lang3-3.4",
+				"jackson-core",
+				"jackson-databind"
 			]
 		},
 		{

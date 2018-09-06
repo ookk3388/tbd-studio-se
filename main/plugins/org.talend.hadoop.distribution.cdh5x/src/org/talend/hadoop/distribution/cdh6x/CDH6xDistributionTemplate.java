@@ -12,6 +12,7 @@
 // ============================================================================
 package org.talend.hadoop.distribution.cdh6x;
 
+import org.talend.hadoop.distribution.ESqoopPackageName;
 import org.talend.hadoop.distribution.component.HBaseComponent;
 import org.talend.hadoop.distribution.component.HCatalogComponent;
 import org.talend.hadoop.distribution.component.HDFSComponent;
@@ -152,5 +153,10 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
     @Override
     public short orderingWeight() {
         return 15;
+    }
+    
+    @Override
+    public String getSqoopPackageName() {
+        return ESqoopPackageName.ORG_APACHE_SQOOP.toString();
     }
 }

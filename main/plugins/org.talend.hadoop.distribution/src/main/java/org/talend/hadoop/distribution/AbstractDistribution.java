@@ -357,4 +357,8 @@ public boolean isQuboleDistribution() {
     public boolean doSupportHBase2x() {
         return false;
     }
+    
+    public String getSqoopPackageName() {
+        return ESqoopPackageName.COM_CLOUDERA_SQOOP.toString();
+    }
 }
