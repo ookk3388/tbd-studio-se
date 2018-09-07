@@ -1,0 +1,134 @@
+{
+  "childNodes" : [ {
+    "childNodes" : [ ],
+    "distribution" : "CLOUDERA",
+    "id" : "Cloudera_CDH6_0_0",
+    "name" : "Cloudera CDH6.0.0",
+    "projectTechnicalName" : "NEW4",
+    "repository" : "https://talend-update.talend.com/nexus/content/repositories/cdh-releases-rcs/",
+    "selectedSparkVersions" : [ "SPARK_2_2" ],
+    "tagName" : "dynamicPluginConfiguration",
+    "templateId" : "CDH6xDistributionTemplate",
+    "version" : "6.0.0"
+  }, {
+    "childNodes" : [ {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_commons_lang3_3_4",
+      "mvn_uri" : "mvn:org.talend.libraries/commons-lang3-3.4/6.2.0",
+      "name" : "commons-lang3-3.4.jar",
+      "tagName" : "libraryNeeded",
+      "useStudioRepository" : "true"
+    }, {
+      "childNodes" : [ ],
+      "description" : "",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_EXAMPLE_SPARK_RELATED_MODULE_GROUP_DYNAMIC",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "EXAMPLE-SPARK-RELATED-MODULE-GROUP-DYNAMIC"
+    }, {
+      "childNodes" : [ {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_commons_lang3_3_4",
+        "tagName" : "library"
+      } ],
+      "description" : "jars for hdfs, only module.id permitted",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_HDFS_LIB_DYNAMIC",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "HDFS-LIB-DYNAMIC"
+    }, {
+      "childNodes" : [ ],
+      "description" : "",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_HIVE_LIB_DYNAMIC",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "HIVE-LIB-DYNAMIC"
+    }, {
+      "childNodes" : [ ],
+      "description" : "",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_HBASE_LIB_DYNAMIC",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "HBASE-LIB-DYNAMIC"
+    }, {
+      "childNodes" : [ ],
+      "description" : "",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_MAPREDUCE_LIB_DYNAMIC",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "MAPREDUCE-LIB-DYNAMIC"
+    }, {
+      "childNodes" : [ ],
+      "description" : "",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_IMPALA_LIB_DYNAMIC",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "IMPALA-LIB-DYNAMIC"
+    } ],
+    "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_org_talend_core_runtime_librariesNeeded.extensionId",
+    "point" : "org.talend.core.runtime.librariesNeeded",
+    "tagName" : "extension"
+  }, {
+    "childNodes" : [ {
+      "childNodes" : [ ],
+      "index" : "HDFS:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300",
+      "libraries" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_commons_lang3_3_4",
+      "moduleGroupTemplateId" : "HDFS-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "HDFS:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300?USE_KRB",
+      "libraries" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_commons_lang3_3_4",
+      "moduleGroupTemplateId" : "HDFS-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "HIVE:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300:EMBEDDED",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "HIVE-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "HIVE:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300:STANDALONE",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "HIVE-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "HIVE2:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300:EMBEDDED",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "HIVE-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "HIVE2:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300:STANDALONE",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "HIVE-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "HBASE:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "HBASE-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "MAP_REDUCE:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "MAPREDUCE-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "IMPALA:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "IMPALA-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    }, {
+      "childNodes" : [ ],
+      "index" : "IMPALA:CLOUDERA:Cloudera_CDH6_0_0_dynamic_20180906201831535_0300?USE_KRB",
+      "libraries" : "",
+      "moduleGroupTemplateId" : "IMPALA-LIB-DYNAMIC",
+      "tagName" : "classloader"
+    } ],
+    "id" : "DYNAMIC_Cloudera_CDH6_0_0_dynamic_20180906201831535_0300_org_talend_core_runtime_classloader_provider.extensionId",
+    "point" : "org.talend.core.runtime.classloader_provider",
+    "tagName" : "extension"
+  } ],
+  "tagName" : "plugin"
+}
