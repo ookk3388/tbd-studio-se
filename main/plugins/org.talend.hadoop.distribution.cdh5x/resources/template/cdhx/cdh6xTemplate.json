@@ -279,13 +279,6 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                },
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
                 }                
 			]
 		},
@@ -354,14 +347,7 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                }
+				}
 			]
 		},
 		{
@@ -396,13 +382,6 @@
 				},
 				{
 					"groupId": "xerces",
-					"artifactId": "*",
-					"classifier": "",
-					"extension": "",
-					"description": ""
-				},
-				{
-					"groupId": "jdk.tools",
 					"artifactId": "*",
 					"classifier": "",
 					"extension": "",
@@ -461,13 +440,6 @@
 					"extension": "",
 					"description": ""
 				},
-				{
-					"groupId": "jdk.tools",
-					"artifactId": "*",
-					"classifier": "",
-					"extension": "",
-					"description": ""
-				},
                 {
                     "groupId": "org.glassfish",
                     "artifactId": "javax.el",
@@ -506,13 +478,6 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                },
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
                 }
 			]
 		},
@@ -528,13 +493,6 @@
                 {
                     "groupId": "org.glassfish",
                     "artifactId": "javax.el",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                },
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
                     "classifier": "",
                     "extension": "",
                     "description": ""
@@ -564,23 +522,9 @@
 					"extension": "",
 					"description": ""
 				},
-				{
-					"groupId": "jdk.tools",
-					"artifactId": "*",
-					"classifier": "",
-					"extension": "",
-					"description": ""
-				},
                 {
                     "groupId": "org.glassfish",
                     "artifactId": "javax.el",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                },
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
                     "classifier": "",
                     "extension": "",
                     "description": ""
@@ -630,14 +574,7 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                }
+				}
 			]
 		},
 		{
@@ -676,14 +613,7 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                }
+				}
 			]
 		},
 		{
@@ -729,14 +659,7 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                }
+				}
 			]
 		},
 		{
@@ -775,14 +698,7 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                }
+				}
 			]
 		},
 		{
@@ -847,13 +763,6 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
-				{
-					"groupId": "jdk.tools",
-					"artifactId": "*",
-					"classifier": "",
-					"extension": "",
-					"description": ""
 				}
 			]
 		},
@@ -873,16 +782,7 @@
 			"groupId": "com.twitter",
 			"artifactId": "parquet-avro",
 			"classifier": "",
-			"description": "",
-            "exclusions": [			
-                {
-                    "groupId": "jdk.tools",
-                    "artifactId": "*",
-                    "classifier": "",
-                    "extension": "",
-                    "description": ""
-                }
-			]
+			"description": ""
 		},
 		{
 			"id": "parquet-hadoop-bundle",
@@ -917,16 +817,87 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				},
+				}
+			]
+		},
+		{
+            "id": "spark-hive_2.11",
+            "type": "BASE",
+            "context": "{properties.context}",
+            "groupId": "org.apache.spark",
+            "artifactId": "spark-hive_2.11",
+            "version": "2.2.0",
+            "classifier": "",
+            "description": "",
+            "exclusions": [
                 {
-                    "groupId": "jdk.tools",
+                    "groupId": "org.apache.hadoop",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                },
+                {
+                    "groupId": "xerces",
                     "artifactId": "*",
                     "classifier": "",
                     "extension": "",
                     "description": ""
                 }
-			]
-		},
+            ]
+        },
+		{
+            "id": "spark-mllib_2.11",
+            "type": "BASE",
+            "context": "{properties.context}",
+            "groupId": "org.apache.spark",
+            "artifactId": "spark-mllib_2.11",
+            "version": "2.2.0",
+            "classifier": "",
+            "description": "",
+            "exclusions": [
+                {
+                    "groupId": "org.apache.hadoop",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                },
+                {
+                    "groupId": "xerces",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
+            ]
+        },
+		{
+            "id": "spark-yarn_2.11",
+            "type": "BASE",
+            "context": "{properties.context}",
+            "groupId": "org.apache.spark",
+            "artifactId": "spark-yarn_2.11",
+            "version": "2.2.0",
+            "classifier": "",
+            "description": "",
+            "exclusions": [
+                {
+                    "groupId": "org.apache.hadoop",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                },
+                {
+                    "groupId": "xerces",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
+            ]
+        },                		
 		{
 			"id": "sqoop",
 			"type": "BASE",
@@ -1034,6 +1005,17 @@
                 "SPARK_2_3"
             ],
             "modules": [
+            ]
+        },
+        {
+            "id": "SPARK-LIB-SPARK2-DYNAMIC",
+            "description": "",
+            "modules": [
+                "hadoop-mapreduce-client-core",
+                "hadoop-yarn-server-web-proxy",
+                "spark-hive_2.11",
+                "spark-mllib_2.11",
+                "spark-yarn_2.11"
             ]
         },
         {
