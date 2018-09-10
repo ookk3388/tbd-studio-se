@@ -198,7 +198,7 @@ imports="
 <%
 			} else {
 %>
-        if(!admin_<%=cid %>.isTableDisabled(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>))){ // LAURENT
+        if(!admin_<%=cid %>.isTableDisabled(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>))){
             admin_<%=cid %>.disableTable(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
         }
             admin_<%=cid %>.deleteTable(org.apache.hadoop.hbase.TableName.valueOf(<%=table_name%>));
