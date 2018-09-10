@@ -20,6 +20,7 @@ import org.talend.hadoop.distribution.component.HiveComponent;
 import org.talend.hadoop.distribution.component.ImpalaComponent;
 import org.talend.hadoop.distribution.component.MRComponent;
 import org.talend.hadoop.distribution.component.PigComponent;
+import org.talend.hadoop.distribution.component.SparkBatchComponent;
 import org.talend.hadoop.distribution.component.SqoopComponent;
 import org.talend.hadoop.distribution.dynamic.adapter.DynamicPluginAdapter;
 import org.talend.hadoop.distribution.dynamic.template.cdh.AbstractDynamicCDHDistributionTemplate;
@@ -30,7 +31,7 @@ import org.talend.hadoop.distribution.dynamic.template.cdh.AbstractDynamicCDHDis
  */
 @SuppressWarnings("nls")
 public class CDH6xDistributionTemplate extends AbstractDynamicCDHDistributionTemplate implements HDFSComponent, HBaseComponent,
-HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, SqoopComponent, ICDH6xDistributionTemplate {
+HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, SqoopComponent, SparkBatchComponent, ICDH6xDistributionTemplate {
 
     public final static String TEMPLATE_ID = "CDH6xDistributionTemplate";
 
@@ -159,4 +160,19 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
     public String getSqoopPackageName() {
         return ESqoopPackageName.ORG_APACHE_SQOOP.toString();
     }
+
+	@Override
+	public boolean doSupportSparkStandaloneMode() {
+		return true;
+	}
+
+	@Override
+	public boolean doSupportSparkYarnClientMode() {
+		return true;
+	}
+
+	@Override
+	public boolean doSupportDynamicMemoryAllocation() {
+		return true;
+	}
 }
