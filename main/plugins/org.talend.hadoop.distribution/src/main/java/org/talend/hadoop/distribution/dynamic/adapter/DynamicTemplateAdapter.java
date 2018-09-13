@@ -56,12 +56,10 @@ public class DynamicTemplateAdapter extends AbstractDynamicAdapter {
 
         TemplateBean templateBean = getTemplateBean();
         DynamicConfiguration configuration = getConfiguration();
-        
-        // use id instead of version
-        templateBean.setDynamicVersion(configuration.getId());
 
         DynamicDistributionManager dynamicDistributionManager = DynamicDistributionManager.getInstance();
         IDependencyResolver dependencyResolver = dynamicDistributionManager.getDependencyResolver(configuration);
+        dependencyResolver.prepare(monitor, templateBean);
 
         dynamicPlugin = DynamicFactory.getInstance().createDynamicPlugin();
 

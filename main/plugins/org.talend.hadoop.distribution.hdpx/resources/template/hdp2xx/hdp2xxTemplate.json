@@ -10,12 +10,24 @@
 		"context": "plugin:org.talend.hadoop.distribution.hdpx"
 	},
 	"description": "",
-	"supportedSparkVersions": [
+	"supportedsparkVersionMap.SPARK_2_1s": [
         "SPARK_2_0",
         "SPARK_2_1",
         "SPARK_2_2",
         "SPARK_2_3"
 	],
+	"sparkArtifactSurfixMap": {
+        "SPARK_2_0": "_2.00",
+        "SPARK_2_1": "_2.10",
+        "SPARK_2_2": "_2.20",
+        "SPARK_2_3": "_2.30"
+	},
+	"sparkVersionMap": {
+        "SPARK_2_0": "2.0.0",
+        "SPARK_2_1": "2.1.0",
+        "SPARK_2_2": "2.2.0",
+        "SPARK_2_3": "2.3.0"
+	},
 	"modules": [
 	    {
             "id": "commons-lang3-3.4",
@@ -24,7 +36,7 @@
             "jarName": "commons-lang3-3.4.jar",
             "mvnUri": "mvn:org.talend.libraries/commons-lang3-3.4/6.2.0",
             "useStudioRepository": "true",
-            "supportedSparkVersions": [
+            "supportedsparkVersionMap.SPARK_2_1s": [
                 "SPARK_2_2",
                 "SPARK_2_3"
             ],
@@ -589,7 +601,7 @@
 			"type": "BASE",
 			"context": "{properties.context}",
 			"groupId": "org.apache.spark",
-			"artifactId": "spark-yarn_2.11",
+			"artifactId": "spark-yarn{sparkArtifactSurfixMap.SPARK_2_1}",
 			"classifier": "",
 			"description": "",
 			"exclusions": [
@@ -614,8 +626,8 @@
 			"type": "BASE",
 			"context": "{properties.context}",
 			"groupId": "org.apache.spark",
-			"artifactId": "spark-streaming-kinesis-asl_2.11",
-			"version": "2.1.0",
+			"artifactId": "spark-streaming-kinesis-asl{sparkArtifactSurfixMap.SPARK_2_1}",
+			"version": "{sparkVersionMap.SPARK_2_1}",
 			"classifier": "",
 			"description": "",
 			"exclusions": [
@@ -640,7 +652,7 @@
 			"type": "BASE",
 			"context": "{properties.context}",
 			"groupId": "org.apache.spark",
-			"artifactId": "spark-hive_2.11",
+			"artifactId": "spark-hive{sparkArtifactSurfixMap.SPARK_2_1}",
 			"classifier": "",
 			"description": "",
 			"exclusions": [
@@ -665,7 +677,7 @@
 			"type": "BASE",
 			"context": "{properties.context}",
 			"groupId": "org.apache.spark",
-			"artifactId": "spark-mllib_2.11",
+			"artifactId": "spark-mllib{sparkArtifactSurfixMap.SPARK_2_1}",
 			"classifier": "",
 			"description": "",
 			"exclusions": [
@@ -690,7 +702,7 @@
 			"type": "BASE",
 			"context": "{properties.context}",
 			"groupId": "org.apache.spark",
-			"artifactId": "spark-streaming-kafka-0-10_2.11",
+			"artifactId": "spark-streaming-kafka-0-10{sparkArtifactSurfixMap.SPARK_2_1}",
 			"classifier": "",
 			"description": "",
 			"exclusions": [

@@ -28,6 +28,7 @@ import org.talend.designer.maven.aether.node.DependencyNode;
 import org.talend.designer.maven.aether.util.DynamicDistributionAetherUtils;
 import org.talend.hadoop.distribution.dynamic.DynamicConfiguration;
 import org.talend.hadoop.distribution.dynamic.VersionNotFoundException;
+import org.talend.hadoop.distribution.dynamic.bean.TemplateBean;
 import org.talend.hadoop.distribution.dynamic.pref.IDynamicDistributionPreference;
 
 /**
@@ -46,6 +47,12 @@ public abstract class AbstractDependencyResolver implements IDependencyResolver 
     private DynamicConfiguration configuration;
 
     abstract protected List<Pattern> getDistributionPatterns();
+
+    @Override
+    public void prepare(IDynamicMonitor monitor, TemplateBean templateBean) throws Exception {
+        // use id instead of version
+        templateBean.setDynamicVersion(getConfiguration().getId());
+    }
 
     @Override
     public DependencyNode collectDependencies(DependencyNode baseNode, IDynamicMonitor monitor) throws Exception {

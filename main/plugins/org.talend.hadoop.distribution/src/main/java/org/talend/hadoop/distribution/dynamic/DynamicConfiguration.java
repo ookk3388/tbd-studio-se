@@ -13,6 +13,7 @@
 package org.talend.hadoop.distribution.dynamic;
 
 import java.util.List;
+import java.util.Map;
 
 import org.talend.commons.exception.ExceptionHandler;
 import org.talend.hadoop.distribution.ESparkVersion;
@@ -35,6 +36,10 @@ public class DynamicConfiguration {
     private String description;
 
     private List<ESparkVersion> selectedSparkVersions;
+
+    private Map<ESparkVersion, String> sparkArtifactSurfixMap;
+
+    private Map<ESparkVersion, String> sparkVersionMap;
 
     public String getId() {
         return this.id;
@@ -86,6 +91,22 @@ public class DynamicConfiguration {
 
     public void setSelectedSparkVersions(List<ESparkVersion> selectedSparkVersions) {
         this.selectedSparkVersions = selectedSparkVersions;
+    }
+
+    public Map<ESparkVersion, String> getSparkArtifactSurfixMap() {
+        return this.sparkArtifactSurfixMap;
+    }
+
+    public void setSparkArtifactSurfixMap(Map<ESparkVersion, String> sparkArtifactSurfixMap) {
+        this.sparkArtifactSurfixMap = sparkArtifactSurfixMap;
+    }
+
+    public Map<ESparkVersion, String> getSparkVersionMap() {
+        return this.sparkVersionMap;
+    }
+
+    public void setSparkVersionMap(Map<ESparkVersion, String> sparkVersionMap) {
+        this.sparkVersionMap = sparkVersionMap;
     }
 
     public IDynamicDistributionPreference getPreference() {

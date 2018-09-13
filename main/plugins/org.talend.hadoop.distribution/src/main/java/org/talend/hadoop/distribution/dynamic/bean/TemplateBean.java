@@ -54,6 +54,10 @@ public class TemplateBean implements IVariable {
 
     public static final String ATTR_SUPPORTED_SPARK_VERSIONS = "supportedSparkVersions"; //$NON-NLS-1$
 
+    public static final String ATTR_SPARK_ARTIFACT_SURFIX_MAP = "sparkArtifactSurfixMap"; //$NON-NLS-1$
+
+    public static final String ATTR_SPARK_VERSION_MAP = "sparkVersionMap"; //$NON-NLS-1$
+
     private String id;
 
     private String name;
@@ -71,6 +75,10 @@ public class TemplateBean implements IVariable {
     private String topVersion;
 
     private Map<String, String> properties;
+
+    private Map<String, String> sparkArtifactSurfixMap;
+
+    private Map<String, String> sparkVersionMap;
 
     private List<String> services;
 
@@ -142,6 +150,22 @@ public class TemplateBean implements IVariable {
 
     public void setTopVersion(String topVersion) {
         this.topVersion = topVersion;
+    }
+
+    public Map<String, String> getSparkArtifactSurfixMap() {
+        return this.sparkArtifactSurfixMap;
+    }
+
+    public void setSparkArtifactSurfixMap(Map<String, String> sparkArtifactSurfixMap) {
+        this.sparkArtifactSurfixMap = sparkArtifactSurfixMap;
+    }
+
+    public Map<String, String> getSparkVersionMap() {
+        return this.sparkVersionMap;
+    }
+
+    public void setSparkVersionMap(Map<String, String> sparkVersionMap) {
+        this.sparkVersionMap = sparkVersionMap;
     }
 
     public Map<String, String> getProperties() {
@@ -266,6 +290,12 @@ public class TemplateBean implements IVariable {
             break;
         case ATTR_SERVICES:
             value = getServices();
+            break;
+        case ATTR_SPARK_ARTIFACT_SURFIX_MAP:
+            value = getSparkArtifactSurfixMap();
+            break;
+        case ATTR_SPARK_VERSION_MAP:
+            value = getSparkVersionMap();
             break;
         case ATTR_SUPPORTED_SPARK_VERSIONS:
             value = getSupportedSparkVersions();

@@ -17,11 +17,14 @@ import java.util.List;
 import org.talend.designer.maven.aether.IDynamicMonitor;
 import org.talend.designer.maven.aether.node.DependencyNode;
 import org.talend.hadoop.distribution.dynamic.DynamicConfiguration;
+import org.talend.hadoop.distribution.dynamic.bean.TemplateBean;
 
 /**
  * DOC cmeng  class global comment. Detailled comment
  */
 public interface IDependencyResolver {
+
+    public void prepare(IDynamicMonitor monitor, TemplateBean templateBean) throws Exception;
 
     public DependencyNode collectDependencies(DependencyNode baseNode, IDynamicMonitor monitor) throws Exception;
 
