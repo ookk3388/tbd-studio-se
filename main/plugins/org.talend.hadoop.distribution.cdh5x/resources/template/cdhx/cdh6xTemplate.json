@@ -279,6 +279,13 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
+                },
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
                 }                
 			]
 		},
@@ -347,7 +354,14 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				}
+				},
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
 			]
 		},
 		{
@@ -382,6 +396,13 @@
 				},
 				{
 					"groupId": "xerces",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
 					"artifactId": "*",
 					"classifier": "",
 					"extension": "",
@@ -440,6 +461,13 @@
 					"extension": "",
 					"description": ""
 				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
                 {
                     "groupId": "org.glassfish",
                     "artifactId": "javax.el",
@@ -478,6 +506,13 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
+                },
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
                 }
 			]
 		},
@@ -493,6 +528,13 @@
                 {
                     "groupId": "org.glassfish",
                     "artifactId": "javax.el",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                },
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
                     "classifier": "",
                     "extension": "",
                     "description": ""
@@ -522,9 +564,23 @@
 					"extension": "",
 					"description": ""
 				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
                 {
                     "groupId": "org.glassfish",
                     "artifactId": "javax.el",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                },
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
                     "classifier": "",
                     "extension": "",
                     "description": ""
@@ -574,7 +630,14 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				}
+				},
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
 			]
 		},
 		{
@@ -613,7 +676,14 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				}
+				},
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
 			]
 		},
 		{
@@ -659,7 +729,14 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				}
+				},
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
 			]
 		},
 		{
@@ -698,7 +775,14 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
-				}
+				},
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
 			]
 		},
 		{
@@ -763,6 +847,13 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
 				}
 			]
 		},
@@ -782,7 +873,16 @@
 			"groupId": "com.twitter",
 			"artifactId": "parquet-avro",
 			"classifier": "",
-			"description": ""
+			"description": "",
+            "exclusions": [			
+                {
+                    "groupId": "jdk.tools",
+                    "artifactId": "*",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
+                }
+			]
 		},
 		{
 			"id": "parquet-hadoop-bundle",
