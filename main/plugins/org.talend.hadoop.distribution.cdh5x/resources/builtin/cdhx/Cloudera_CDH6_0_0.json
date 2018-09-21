@@ -2024,6 +2024,10 @@
         "tagName" : "library"
       }, {
         "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_parquet_avro_1_9_0_cdh6_0_0_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
         "id" : "DYNAMIC_Cloudera_CDH6_0_0_parquet_hadoop_bundle_1_9_0_cdh6_0_0_jar",
         "tagName" : "library"
       }, {
@@ -2157,10 +2161,6 @@
       }, {
         "childNodes" : [ ],
         "id" : "DYNAMIC_Cloudera_CDH6_0_0_zookeeper_3_4_5_cdh6_0_0_jar",
-        "tagName" : "library"
-      }, {
-        "childNodes" : [ ],
-        "id" : "parquet-avro",
         "tagName" : "library"
       } ],
       "description" : "",
@@ -13607,6 +13607,14 @@
       "excludeDependencies" : "true",
       "id" : "DYNAMIC_Cloudera_CDH6_0_0_parquet_avro_1_9_0_cdh6_0_0_jar",
       "mvn_uri" : "mvn:org.apache.parquet/parquet-avro/1.9.0-cdh6.0.0",
+      "name" : "parquet-avro-1.9.0-cdh6.0.0.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_parquet_avro_1_9_0_cdh6_0_0_jar",
+      "mvn_uri" : "mvn:com.twitter/parquet-avro/1.9.0-cdh6.0.0",
       "name" : "parquet-avro-1.9.0-cdh6.0.0.jar",
       "tagName" : "libraryNeeded"
     }, {
