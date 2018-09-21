@@ -17,6 +17,7 @@ import org.talend.hadoop.distribution.component.HBaseComponent;
 import org.talend.hadoop.distribution.component.HCatalogComponent;
 import org.talend.hadoop.distribution.component.HDFSComponent;
 import org.talend.hadoop.distribution.component.HiveComponent;
+import org.talend.hadoop.distribution.component.HiveOnSparkComponent;
 import org.talend.hadoop.distribution.component.ImpalaComponent;
 import org.talend.hadoop.distribution.component.MRComponent;
 import org.talend.hadoop.distribution.component.PigComponent;
@@ -31,7 +32,7 @@ import org.talend.hadoop.distribution.dynamic.template.cdh.AbstractDynamicCDHDis
  */
 @SuppressWarnings("nls")
 public class CDH6xDistributionTemplate extends AbstractDynamicCDHDistributionTemplate implements HDFSComponent, HBaseComponent,
-HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, SqoopComponent, SparkBatchComponent, ICDH6xDistributionTemplate {
+HCatalogComponent, PigComponent, MRComponent, HiveComponent, HiveOnSparkComponent, ImpalaComponent, SqoopComponent, SparkBatchComponent, ICDH6xDistributionTemplate {
 
     public final static String TEMPLATE_ID = "CDH6xDistributionTemplate";
 
