@@ -1170,7 +1170,6 @@
 			"id": "PIG-LIB-DYNAMIC",
 			"description": "",
 			"modules": [
-				"datafu",
 				"pig"
 			]
 		},
@@ -1178,7 +1177,6 @@
 			"id": "MAPREDUCE-PARQUET-LIB-DYNAMIC",
 			"description": "",
 			"modules": [
-				"parquet-hadoop-bundle"
 			]
 		},
 		{
@@ -1211,7 +1209,6 @@
 			"id": "PIG-PARQUET-LIB-DYNAMIC",
 			"description": "",
 			"modules": [
-				"parquet-pig-bundle"
 			]
 		},
 		{
@@ -1239,7 +1236,9 @@
 			"description": "",
 			"modules": [
 				"hadoop-client",
-				"jodd"
+				"jodd",
+				"jackson-databind",
+				"jackson-core"
 			]
 		},
         {
