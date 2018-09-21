@@ -2,7 +2,7 @@
   "childNodes" : [ {
     "childNodes" : [ ],
     "distribution" : "CLOUDERA",
-    "id" : "Cloudera_CDH6_0_0_dynamic_20180921102722869_0300",
+    "id" : "Cloudera_CDH6_0_0",
     "name" : "Cloudera CDH6.0.0",
     "repository" : "https://talend-update.talend.com/nexus/content/repositories/cdh-releases-rcs/",
     "selectedSparkVersions" : [ "SPARK_2_2" ],
