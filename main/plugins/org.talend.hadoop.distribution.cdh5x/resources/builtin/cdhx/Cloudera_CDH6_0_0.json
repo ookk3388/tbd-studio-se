@@ -10452,6 +10452,84 @@
     }, {
       "childNodes" : [ {
         "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_aws_java_sdk_bundle_1_11_271_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_commons_codec_1_10_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_commons_logging_1_2_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_hadoop_aws_3_0_0_cdh6_0_0_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_httpclient_4_5_3_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_httpcore_4_4_6_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_java_xmlbuilder_0_4_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_jets3t_0_9_0_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_log4j_1_2_17_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_buffer_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_codec_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_codec_http_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_common_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_handler_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_resolver_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_transport_4_1_17_Final_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_protobuf_java_2_5_0_jar",
+        "tagName" : "library"
+      }, {
+        "childNodes" : [ ],
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_slf4j_api_1_7_25_jar",
+        "tagName" : "library"
+      } ],
+      "description" : "",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_SPARK_S3_LIB_MRREQUIRED",
+      "tagName" : "libraryNeededGroup",
+      "templateId" : "SPARK-S3-LIB-MRREQUIRED-DYNAMIC"
+    }, {
+      "childNodes" : [ {
+        "childNodes" : [ ],
         "id" : "DYNAMIC_Cloudera_CDH6_0_0_avro_mapred_1_8_2_cdh6_0_0_hadoop2_jar",
         "tagName" : "library"
       }, {
@@ -10756,7 +10834,7 @@
         "tagName" : "library"
       }, {
         "childNodes" : [ ],
-        "id" : "DYNAMIC_Cloudera_CDH6_0_0_hadoop_aws_2_6_0_cdh5_4_0_jar",
+        "id" : "DYNAMIC_Cloudera_CDH6_0_0_hadoop_aws_3_0_0_cdh6_0_0_jar",
         "tagName" : "library"
       }, {
         "childNodes" : [ ],
@@ -11363,6 +11441,14 @@
       "childNodes" : [ ],
       "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
       "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_aws_java_sdk_bundle_1_11_271_jar",
+      "mvn_uri" : "mvn:com.amazonaws/aws-java-sdk-bundle/1.11.271",
+      "name" : "aws-java-sdk-bundle-1.11.271.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
       "id" : "DYNAMIC_Cloudera_CDH6_0_0_bonecp_0_8_0_RELEASE_jar",
       "mvn_uri" : "mvn:com.jolbox/bonecp/0.8.0.RELEASE",
       "name" : "bonecp-0.8.0.RELEASE.jar",
@@ -11861,9 +11947,9 @@
       "childNodes" : [ ],
       "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
       "excludeDependencies" : "true",
-      "id" : "DYNAMIC_Cloudera_CDH6_0_0_hadoop_aws_2_6_0_cdh5_4_0_jar",
-      "mvn_uri" : "mvn:org.apache.hadoop/hadoop-aws/2.6.0-cdh5.4.0",
-      "name" : "hadoop-aws-2.6.0-cdh5.4.0.jar",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_hadoop_aws_3_0_0_cdh6_0_0_jar",
+      "mvn_uri" : "mvn:org.apache.hadoop/hadoop-aws/3.0.0-cdh6.0.0",
+      "name" : "hadoop-aws-3.0.0-cdh6.0.0.jar",
       "tagName" : "libraryNeeded"
     }, {
       "childNodes" : [ ],
@@ -13536,6 +13622,62 @@
       "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_all_4_1_17_Final_jar",
       "mvn_uri" : "mvn:io.netty/netty-all/4.1.17.Final",
       "name" : "netty-all-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_buffer_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-buffer/4.1.17.Final",
+      "name" : "netty-buffer-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_codec_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-codec/4.1.17.Final",
+      "name" : "netty-codec-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_codec_http_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-codec-http/4.1.17.Final",
+      "name" : "netty-codec-http-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_common_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-common/4.1.17.Final",
+      "name" : "netty-common-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_handler_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-handler/4.1.17.Final",
+      "name" : "netty-handler-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_resolver_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-resolver/4.1.17.Final",
+      "name" : "netty-resolver-4.1.17.Final.jar",
+      "tagName" : "libraryNeeded"
+    }, {
+      "childNodes" : [ ],
+      "context" : "plugin:org.talend.hadoop.distribution.cdh5x",
+      "excludeDependencies" : "true",
+      "id" : "DYNAMIC_Cloudera_CDH6_0_0_netty_transport_4_1_17_Final_jar",
+      "mvn_uri" : "mvn:io.netty/netty-transport/4.1.17.Final",
+      "name" : "netty-transport-4.1.17.Final.jar",
       "tagName" : "libraryNeeded"
     }, {
       "childNodes" : [ ],

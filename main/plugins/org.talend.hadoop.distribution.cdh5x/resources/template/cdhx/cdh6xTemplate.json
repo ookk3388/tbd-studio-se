@@ -29,6 +29,36 @@
             ],
             "description": ""
         },
+		{
+			"id": "jets3t",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "net.java.dev.jets3t",
+			"artifactId": "jets3t",
+			"version": "0.9.0",
+			"classifier": "",
+			"description": ""
+		},
+		{
+			"id": "hadoop-aws",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "org.apache.hadoop",
+			"artifactId": "hadoop-aws",
+			"version": "3.0.0-cdh6.0.0",
+			"classifier": "",
+			"description": ""
+		},
+		{
+			"id": "aws-java-sdk-bundle",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "com.amazonaws",
+			"artifactId": "aws-java-sdk-bundle",
+			"version": "1.11.271",
+			"classifier": "",
+			"description": ""
+		},
         {
 			"id": "avro-mapred",
 			"type": "BASE",
@@ -1161,6 +1191,15 @@
                 "avro-mapred"
             ]
         },
+        {
+			"id": "SPARK-S3-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"hadoop-aws",
+				"jets3t",
+				"aws-java-sdk-bundle"
+			]
+		},
         {
 			"id": "PIG-S3-LIB-DYNAMIC",
 			"description": "",
