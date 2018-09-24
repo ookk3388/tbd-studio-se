@@ -59,6 +59,16 @@
 			"classifier": "",
 			"description": ""
 		},
+		{
+			"id": "azure-data-lake-store-sdk",
+			"type": "BASE",
+			"context": "{properties.context}",
+			"groupId": "com.microsoft.azure",
+			"artifactId": "azure-data-lake-store-sdk",
+			"version": "2.1.4",
+			"classifier": "",
+			"description": ""
+		},
         {
 			"id": "avro-mapred",
 			"type": "BASE",
@@ -229,6 +239,7 @@
 			"context": "{properties.context}",
 			"groupId": "org.apache.hadoop",
 			"artifactId": "hadoop-azure",
+			"version": "3.0.0-cdh6.0.0",
 			"classifier": "",
 			"description": "",
 			"exclusions": [
@@ -245,6 +256,13 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
 				}
 			]
 		},
@@ -254,12 +272,20 @@
 			"context": "{properties.context}",
 			"groupId": "org.apache.hadoop",
 			"artifactId": "hadoop-azure-datalake",
+			"version": "3.0.0-cdh6.0.0",
 			"classifier": "",
 			"description": "",
 			"exclusions": [
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -327,6 +353,13 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
 				}
 			]
 		},
@@ -342,6 +375,13 @@
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -374,6 +414,13 @@
 				{
 					"groupId": "io.netty",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -424,7 +471,14 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                }
+                },
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
 			]
 		},
 		{
@@ -477,7 +531,14 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                }
+                },
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
 			]
 		},
 		{
@@ -510,7 +571,14 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                }
+                },
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
 			]
 		},
 		{
@@ -528,7 +596,14 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                }
+                },
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
             ]
 		},
 		{
@@ -561,7 +636,14 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
-                }
+                },
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				}
 			]
 		},
 		{
@@ -607,6 +689,13 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
 				}
 			]
 		},
@@ -643,6 +732,13 @@
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -692,6 +788,13 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
 				}
 			]
 		},
@@ -731,6 +834,13 @@
 					"classifier": "",
 					"extension": "",
 					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
+					"classifier": "",
+					"extension": "",
+					"description": ""
 				}
 			]
 		},
@@ -746,6 +856,13 @@
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -793,6 +910,13 @@
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -848,6 +972,13 @@
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -965,6 +1096,13 @@
 				{
 					"groupId": "xerces",
 					"artifactId": "*",
+					"classifier": "",
+					"extension": "",
+					"description": ""
+				},
+				{
+					"groupId": "jdk.tools",
+					"artifactId": "jdk.tools",
 					"classifier": "",
 					"extension": "",
 					"description": ""
@@ -1198,6 +1336,16 @@
 				"hadoop-aws",
 				"jets3t",
 				"aws-java-sdk-bundle"
+			]
+		},
+		{
+			"id": "SPARK-AZURE-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"hadoop-azure",
+				"hadoop-azure-datalake",
+                "azure-data-lake-store-sdk",
+                "jackson-core"
 			]
 		},
         {
