@@ -1008,6 +1008,13 @@
                     "classifier": "",
                     "extension": "",
                     "description": ""
+                },
+                {
+                    "groupId": "org.apache.logging.log4j",
+                    "artifactId": "log4j-1.2-api",
+                    "classifier": "",
+                    "extension": "",
+                    "description": ""
                 }
             ]
         },
@@ -1353,6 +1360,14 @@
 			"description": "",
 			"modules": [
 				"hadoop-client"
+			]
+		},
+		{
+			"id": "SPARK-HIVE-LIB-MRREQUIRED-DYNAMIC",
+			"description": "",
+			"modules": [
+				"hadoop-client",
+				"hbase-server"
 			]
 		},
         {
