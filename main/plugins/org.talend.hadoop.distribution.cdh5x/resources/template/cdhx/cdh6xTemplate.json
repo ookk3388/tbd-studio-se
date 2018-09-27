@@ -884,15 +884,14 @@
                 }
 			]
 		},
-		{
-			"id": "parquet-hadoop-bundle",
-			"type": "BASE",
-			"context": "{properties.context}",
-			"groupId": "com.twitter",
-			"artifactId": "parquet-hadoop-bundle",
-			"classifier": "",
-			"description": ""
-		},
+        {
+            "id": "parquet-hadoop-bundle-1.6.0",
+            "type": "STANDARD",
+            "context": "{properties.context}",
+            "jarName": "parquet-hadoop-bundle-1.6.0.jar",
+            "mvnUri": "mvn:com.twitter/parquet-hadoop-bundle/1.6.0",
+            "useStudioRepository": "false"
+        },
 		{
 			"id": "parquet-pig-bundle",
 			"type": "BASE",
@@ -1245,8 +1244,7 @@
 			"id": "MAPREDUCE-PARQUET-LIB-MRREQUIRED-DYNAMIC",
 			"description": "",
 			"modules": [
-				"hadoop-client",
-				"jodd"
+				"parquet-hadoop-bundle-1.6.0"
 			]
 		},
         {

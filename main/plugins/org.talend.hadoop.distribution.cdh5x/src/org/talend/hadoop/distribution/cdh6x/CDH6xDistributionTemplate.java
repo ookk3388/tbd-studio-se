@@ -175,4 +175,9 @@ HCatalogComponent, PigComponent, MRComponent, HiveComponent, ImpalaComponent, Sq
 	public boolean doSupportDynamicMemoryAllocation() {
 		return true;
 	}
+	
+	@Override
+	public boolean doSupportAvroDeflateProperties() {
+	    return true;
+	}
 }
