@@ -1169,8 +1169,8 @@
 			"context": "{properties.context}",
 			"groupId": "com.fasterxml.jackson.core",
 			"artifactId": "jackson-databind",
-			"version": "2.9.2",
-			"mvnUri": "mvn:com.fasterxml.jackson.core/jackson-databind/2.9.2",
+			"version": "2.9.5",
+			"mvnUri": "mvn:com.fasterxml.jackson.core/jackson-databind/2.9.5",
 			"useStudioRepository": "true",
 			"description": ""
 		}
@@ -1250,7 +1250,9 @@
 			"description": "",
 			"modules": [
 				"datafu",
-				"pig"
+				"pig",
+				"jackson-databind",
+				"jackson-core"
 			]
 		},
         {
