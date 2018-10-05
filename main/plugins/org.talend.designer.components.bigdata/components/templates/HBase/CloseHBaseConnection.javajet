@@ -22,6 +22,6 @@ if((isCustom && isHadoop2) || (!isCustom && hbaseDistrib != null && hbaseDistrib
         if ((hConnection_<%=cid%> != null) && (!hConnection_<%=cid%>.isClosed())) {
             hConnection_<%=cid%>.close();
         }
-<%} else {%>
+<%} else if (!hbaseDistrib.doSupportHBase2x()) {%>
 		org.apache.hadoop.hbase.client.HConnectionManager.deleteConnection(conn_<%=cid%>,true);
 <%}%>
