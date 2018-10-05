@@ -253,13 +253,6 @@
 					"description": ""
 				},
 				{
-					"groupId": "org.apache.httpcomponents",
-					"artifactId": "*",
-					"classifier": "",
-					"extension": "",
-					"description": ""
-				},
-				{
 					"groupId": "io.netty",
 					"artifactId": "*",
 					"classifier": "",
