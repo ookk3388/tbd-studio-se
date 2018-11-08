@@ -123,12 +123,6 @@
          version="0.0.0"/>
 
    <plugin
-         id="org.talend.libraries.jersey"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.talend.libraries.palo"
          download-size="0"
          install-size="0"
@@ -136,12 +130,6 @@
 
    <plugin
          id="org.talend.libraries.pig"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.talend.libraries.saaj"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
@@ -363,7 +351,6 @@
          install-size="0"
          version="0.0.0"
          fragment="true"/>
-
 
    <plugin
          id="org.talend.hadoop.distribution.emr550.jars"
