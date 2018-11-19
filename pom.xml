@@ -45,7 +45,6 @@
 
         <module>main/features/org.talend.rcp.branding.tos.bigdata.feature</module>
         <module>main/features/org.talend.tos.bigdata.feature</module>
-        <module>main/features/org.talend.tos.bigdata.core.feature</module>
         <module>main/features/org.talend.tos.bigdata.designer.feature</module>
         <module>main/features/org.talend.tos.bigdata.libraries.feature</module>
         <module>main/features/org.talend.tos.bigdata.repository.feature</module>
